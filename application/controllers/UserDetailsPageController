@@ -1,0 +1,74 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class UserDetailsController extends CI_Controller {
+
+	function __construct(){
+        parent::__construct();
+        $this->load->helper('url');  // Load the URL Helper
+        $this->load->model('comptablemodel');
+
+        // $this->load->model('adminpagemodel');
+        $this->load->library('session');
+    }
+
+    public function gererUser(){
+        $user = $this->session->userdata('user');
+        $data['comptables'] = $this->comptableModel->comptables();
+        
+        if($user && isset($user['fonction'])){ 
+          if($user['fonction'] == 'Chef de Bureau'){
+            $this->load->view('adminHeader');
+            $this->load->view('gererUser', $data);
+            $this->load->view('Footer');
+            
+          } elseif ($user['fonction'] == 'Comptable') {
+              redirect('/');
+          }
+      } else {
+          redirect('/');
+      }
+      }
+    
+      public function userDetails(){
+        $immatricule = $this->input->post('imatComptable');
+    
+        $data['results'] = $this->comptableModel->checkComptable($immatricule);
+        $data['byComptable'] = $this->comptableModel->byComptableValidation($immatricule);
+    
+        $this->load->view('adminHeader');
+        $this->load->view('userDetailsPages', $data);
+        $this->load->view('Footer');
+      }
+      public function Profile(){
+        $user = $this->session->userdata('user');
+        
+        if($user && isset($user['fonction'])){ 
+          if($user['fonction'] == 'Chef de Bureau'){
+            $this->load->view('adminHeader');
+            $this->load->view('profile');
+            $this->load->view('Footer');
+            
+          } elseif ($user['fonction'] == 'Comptable') {
+            $immatricule = $user['imUser'];
+            $data['number'] = $this->databasemodel->Notification($immatricule);
+            $data['newValidation'] = $this->databasemodel->NewValidation($immatricule);
+            $data['count'] = $this->databasemodel->TotalNbValidationByComp($immatricule);
+            $data['countYear'] = $this->databasemodel->YearNbValidationByCom($immatricule);
+            $data['countTraite'] = $this->databasemodel->NbTraiteValidationByCom($immatricule);
+            $data['countWait'] = $this->databasemodel->NbWaitValidationByCom($immatricule);
+            $data['countTraiteYear'] = $this->databasemodel->NbTraiteValYearByCom($immatricule);
+            $data['countWaitYear'] = $this->databasemodel->NbWaitValYearByCom($immatricule);
+            $data['listValidation'] = $this->databasemodel->allValidationByComptable($immatricule);
+            $data['completeValidation'] = $this->databasemodel->completeValidationByComptable($immatricule);
+            $data['pendingValidation'] = $this->databasemodel->pendingValidationByComptable($immatricule);
+            $this->load->view('Header', $data);
+            $this->load->view('profile', $data);
+            $this->load->view('Footer');
+          }
+      } else {
+          redirect('/');
+      }
+      }
+
+}
