@@ -21,6 +21,7 @@
         </div>
     </footer>
     <!-- Manao recherche agent --->
+    
     <script>
       $(document).ready(function () {
         var immatriculeLength = 0;
@@ -43,6 +44,8 @@
             messageElement.text("");
             searchResults.show();
             startPage.hide();
+            console.log("hita");
+
             $.ajax({
               url: "<?php echo base_url()?>agentcontroller/searchAgent",
               data: { immatricule: immatricule },
@@ -50,6 +53,7 @@
               success: function(data) {
                 // Afficher les résultats de la recherche
                 searchResults.html(data);
+                console.log("hita");
               },
               error: function(err) {
                 // Afficher un message d'erreur
@@ -125,5 +129,8 @@
     <script src="<?php echo base_url()?>assets/template/js/chartCustom.js"></script>
     <!-- Custom JavaScript -->
     <script src="<?php echo base_url()?>assets/template/js/customs.js"></script>
+    <!-- sweet alert JavaScript -->
+    <script src="<?php echo base_url()?>assets/template/js/sweetAlert.js"></script>
+
   </body>
 </html>

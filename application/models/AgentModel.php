@@ -12,5 +12,12 @@ class AgentModel extends CI_Model {
         return $query->result();
     }
 
+    public function getAgent($immatricule) {
+        $sql = "SELECT * FROM agent WHERE imatricule = ?";
+        $query = $this->db->query($sql, array($immatricule));
+        $result = $query->row();
+        return $result;
+    }
+
 
 }

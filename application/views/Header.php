@@ -247,7 +247,7 @@ function listeClick(){
                      <li>
                         <a href="#Validations" class="active iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-download"></i><span>Etat de Decompte </span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                         <ul id="Validations" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                            <li class="active"><a href="<?php echo base_url(); ?>index.php/backend/allBudgetDownPage"><i class="ri-arrow-right-line"></i> Tous les Budgets</a></li>
+                            <li class="active"><a href="<?php echo base_url(); ?>index.php/backend/"><i class="ri-arrow-right-line"></i> Tous les Budgets</a></li>
                             <li><a href="<?php echo base_url(); ?>index.php/backend/test"><i class="ri-arrow-right-line"></i> Budget Général</a></li>
                             <li><a href="<?php echo base_url(); ?>index.php/backend/receivedValidationPage"><i class="ri-arrow-right-line"></i> Budget Autonome</a></li>
                             <li><a href="<?php echo base_url(); ?>index.php/backend/receivedValidationPage"><i class="ri-arrow-right-line"></i> Budget Autonome-Général</a></li>
@@ -312,7 +312,7 @@ function listeClick(){
                             <div class="iq-card shadow-none m-0">
                                 <div class="iq-card-body p-0">
                                   <div class="bg-primary p-3">
-                                    <h5 class="mb-0 text-white">Tous Notifications<small class="badge  badge-light float-right pt-1"><?php echo $number; ?></small></h5>
+                                    <h5 class="mb-0 text-white">Tous Notifications<small class="badge  badge-light float-right pt-1"><?php echo isset($number) ? $number : 0; ?></small></h5>
                                   </div>
                                   <?php foreach ($newValidation as $newVal){ 
                                     $immatricule = $newVal->immatricule;

@@ -233,7 +233,7 @@ function listeClick(){
                       <a href="#admin" class="iq-waves-effect" data-toggle="collapse" aria-expanded="true"><span class="ripple rippleEffect"></span><i class="las la-home iq-arrow-left"></i><span>Acceuil</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                       <ul id="admin" class="iq-submenu collapse show" data-parent="#iq-sidebar-toggle">
                           <li class="active"><a href="<?php echo base_url(); ?>index.php/adminpagecontroller/AdminPageHome"><i class="las la-house-damage"></i>Dashboard</a></li>
-                          <li><a href="<?php echo base_url(); ?>index.php/adminpagecontroller/allBudgetDownPageAdmin"><i class="fa fa-download"></i>Etat de Decompte</a></li>
+                          <li><a href="<?php echo base_url(); ?>adminpagecontroller/listRequestAdmin"><i class="fa fa-download"></i>Liste de demandes</a></li>
                          
                       </ul>
                     </li>
@@ -297,7 +297,69 @@ function listeClick(){
                           </div>
                       </li>
                      
-                    
+                      <li class="nav-item nav-icon">
+                          <a href="#" class="search-toggle iq-waves-effect text-black rounded">
+                            <i class="ri-notification-line block"></i>
+                            <?php if($number > 0){ ?>
+                            <span class="notice-icon dots badge badge-primary"><?php echo $number; ?></span>
+                            <?php } else{ ?>
+                              <span class="notice-icon dots badge badge-info">0</span>
+                            <?php } ?>
+                          </a>
+                          <div class="iq-sub-dropdown">
+                            <div class="iq-card shadow-none m-0">
+                                <div class="iq-card-body p-0">
+                                  <div class="bg-primary p-3">
+                                    <h5 class="mb-0 text-white">Tous Notifications<small class="badge  badge-light float-right pt-1"><?php echo isset($number) ? $number : 0; ?></small></h5>
+                                  </div>
+                                  <?php foreach ($newValidation as $newVal){ 
+                                    $immatricule = $newVal->immatricule;
+                                    $nom = $newVal->NOM;
+                                    $prenom = $newVal->PRENOMS;
+                                    $dateArrive = $newVal->dateArrive;
+                                    
+                                    $elemDate = explode("-", $dateArrive);
+                                    $dateArrives = implode("-", array_reverse($elemDate));
+                                    ?>
+                                  <a href="#" class="iq-sub-card" id="Viewed">
+                                    <div class="media align-items-center">
+                                        <div class="">
+                                            <div class="rounded-circle iq-bg-warning"><i class="ri-information-fill h2"></i></div>
+                                        </div>
+                                        <div class="media-body ml-3">
+                                            <h6 class="mb-0 ">Au titre de <?php echo $prenom; ?></h6>
+                                            <small class="float-right">Du <?php echo $dateArrives; ?></small>
+                                            <p class="mb-0"><?php echo $immatricule; ?></p>
+                                            <input type="hidden" name="immatricule" id="immatricule" value="<?php echo $immatricule; ?>">
+                                        </div>
+                                    </div>
+                                  </a>
+                                  <script>
+                                    $('#Viewed').on('click', function(){
+                                        var view = 1;
+                                        var immatricule = $('#immatricule').val();;
+
+
+                                            $.ajax({
+                                                type: "POST",
+                                                url: "<?php echo site_url('adminpagecontroller/updateNotification') ?>",
+                                                dataType: "JSON",
+                                                data: {immatricule:immatricule, view:view},
+                                                success: function(data){
+                                                    
+
+                                                }
+                                            });
+
+                                        
+
+                                    });
+                                  </script>
+                                  <?php }?>
+                                </div>
+                            </div>
+                          </div>
+                      </li>
                      
                       <li class="line-height pt-3">
                           <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">

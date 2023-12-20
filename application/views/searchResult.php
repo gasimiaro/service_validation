@@ -652,6 +652,14 @@
         //   verifPiece.style.display = 'block';
         //   uncheckCheckboxes();
         // }
+        else if (casInput.value === "ECD-ELD") {
+          specEFA.style.display = 'none';
+          specECD.style.display = 'block';
+          specELD.style.display = 'block';
+          specSerPrive.style.display = 'none';
+          verifPiece.style.display = 'block';
+          uncheckCheckboxes();
+        }
         else if (casInput.value === "ECD-ELD-EFA") {
           specEFA.style.display = 'block';
           specECD.style.display = 'block';
@@ -755,7 +763,8 @@
                             $("#pieceSPECIFIQUEBG").removeClass("col-lg-4");
                             $("#pieceSPECIFIQUEBG").addClass("col-lg-6");
                         }
-                    }else if (casValue === "EFA-ECD-ELD" ) {
+                    }
+                    else if (casValue === "ECD-ELD-EFA" ) {
                         if ((switchPieceEFABG1.checked && switchPieceEFABG2.checked && switchPieceEFABG3.checked) && (switchPieceECDBG1.checked && switchPieceECDBG2.checked && switchPieceECDBG3.checked) && switchPieceELDBG.checked) {
                             
                             informationBG.style.display = "block";
@@ -879,35 +888,17 @@ if (!isActive) {
           specSerPrive.style.display = 'block';
           verifPieceBA.style.display = 'block';
           uncheckCheckboxes();
-        }else if (casInput.value === "ServicePrive-ECD") {
-          specEFA.style.display = 'none';
-          specECD.style.display = 'block';
-          specELD.style.display = 'none';
-          specSerPrive.style.display = 'block';
-          verifPieceBA.style.display = 'block';
-          uncheckCheckboxes();
-        }else if (casInput.value === "EFA-ECD") {
-          specEFA.style.display = 'block';
-          specECD.style.display = 'block';
-          specELD.style.display = 'none';
-          specSerPrive.style.display = 'none';
-          verifPieceBA.style.display = 'block';
-          uncheckCheckboxes();
-        }else if (casInput.value === "ECD-ELD") {
+        }
+        else if (casInput.value === "ECD-ELD") {
           specEFA.style.display = 'none';
           specECD.style.display = 'block';
           specELD.style.display = 'block';
           specSerPrive.style.display = 'none';
           verifPieceBA.style.display = 'block';
           uncheckCheckboxes();
-        }else if (casInput.value === "EFA-ECD-ELD") {
-          specEFA.style.display = 'block';
-          specECD.style.display = 'block';
-          specELD.style.display = 'block';
-          specSerPrive.style.display = 'none';
-          verifPieceBA.style.display = 'block';
-          uncheckCheckboxes();
-        }else if (casInput.value === "ECD-ELD-EFA") {
+        }
+        
+        else if (casInput.value === "ECD-ELD-EFA") {
           specEFA.style.display = 'block';
           specECD.style.display = 'block';
           specELD.style.display = 'block';
@@ -996,22 +987,24 @@ if (!isActive) {
                             $("#pieceSPECIFIQUEBA").removeClass("col-lg-4");
                             $("#pieceSPECIFIQUEBA").addClass("col-lg-6");
                         }
-                    }else if ( casValue === "ServicePrive-ECD") {
-                        if ((switchPieceECDBA1.checked && switchPieceECDBA2.checked && switchPieceECDBA3.checked) && (switchPieceSerPriveBA1.checked && switchPieceSerPriveBA2.checked && switchPieceSerPriveBA3.checked)) {
+                    }
+                    // else if ( casValue === "ServicePrive-ECD") {
+                    //     if ((switchPieceECDBA1.checked && switchPieceECDBA2.checked && switchPieceECDBA3.checked) && (switchPieceSerPriveBA1.checked && switchPieceSerPriveBA2.checked && switchPieceSerPriveBA3.checked)) {
                             
-                            informationBA.style.display = "block";
-                            $("#pieceBASEBA").removeClass("col-lg-6");
-                            $("#pieceBASEBA").addClass("col-lg-4");
-                            $("#pieceSPECIFIQUEBA").removeClass("col-lg-6");
-                            $("#pieceSPECIFIQUEBA").addClass("col-lg-4");
-                        }else{
-                            informationBA.style.display = "none";
-                            $("#pieceBASEBA").removeClass("col-lg-4");
-                            $("#pieceBASEBA").addClass("col-lg-6");
-                            $("#pieceSPECIFIQUEBA").removeClass("col-lg-4");
-                            $("#pieceSPECIFIQUEBA").addClass("col-lg-6");
-                        }
-                    }else if (casValue === "EFA-ECD-ELD" ) {
+                    //         informationBA.style.display = "block";
+                    //         $("#pieceBASEBA").removeClass("col-lg-6");
+                    //         $("#pieceBASEBA").addClass("col-lg-4");
+                    //         $("#pieceSPECIFIQUEBA").removeClass("col-lg-6");
+                    //         $("#pieceSPECIFIQUEBA").addClass("col-lg-4");
+                    //     }else{
+                    //         informationBA.style.display = "none";
+                    //         $("#pieceBASEBA").removeClass("col-lg-4");
+                    //         $("#pieceBASEBA").addClass("col-lg-6");
+                    //         $("#pieceSPECIFIQUEBA").removeClass("col-lg-4");
+                    //         $("#pieceSPECIFIQUEBA").addClass("col-lg-6");
+                    //     }
+                    // }
+                    else if (casValue === "ECD-ELD-EFA" ) {
                         if ((switchPieceEFABA1.checked && switchPieceEFABA2.checked && switchPieceEFABA3.checked) && (switchPieceECDBA1.checked && switchPieceECDBA2.checked && switchPieceECDBA3.checked) && switchPieceELDBA.checked) {
                             
                             informationBA.style.display = "block";
@@ -1106,45 +1099,64 @@ if (casInput.value === "") {
   verifPieceBAG.style.display = 'none';
   uncheckCheckboxes();
 }
-else if (casInput.value === "ELD-EFA") {
+else if (casInput.value === "EFA") {
+          specEFA.style.display = 'block';
+          specECD.style.display = 'none';
+          specELD.style.display = 'none';
+          specSerPrive.style.display = 'none';
+          verifPieceBAG.style.display = 'block';
+          uncheckCheckboxes();
+        }else if (casInput.value === "ECD") {
+          specEFA.style.display = 'none';
+          specECD.style.display = 'block';
+          specELD.style.display = 'none';
+          specSerPrive.style.display = 'none';
+          verifPieceBAG.style.display = 'block';
+          uncheckCheckboxes();
+        }else if (casInput.value === "ELD") {
+          specEFA.style.display = 'none';
+          specECD.style.display = 'none';
+          specELD.style.display = 'block';
+          specSerPrive.style.display = 'none';
+          verifPieceBAG.style.display = 'block';
+          uncheckCheckboxes();
+        }else if (casInput.value === "ServicePrive") {
+          specEFA.style.display = 'none';
+          specECD.style.display = 'none';
+          specELD.style.display = 'none';
+          specSerPrive.style.display = 'block';
+          verifPieceBAG.style.display = 'block';
+          uncheckCheckboxes();
+        }
+        else if (casInput.value === "ServicePrive-ECD") {
+          specEFA.style.display = 'none';
+          specECD.style.display = 'block';
+          specELD.style.display = 'none';
+          specSerPrive.style.display = 'block';
+          verifPieceBAG.style.display = 'block';
+          uncheckCheckboxes();
+        }
+        else if (casInput.value === "ServicePrive-ECD-ELD") {
+          specEFA.style.display = 'none';
+          specECD.style.display = 'block';
+          specELD.style.display = 'block';
+          specSerPrive.style.display = 'block';
+          verifPieceBAG.style.display = 'block';
+          uncheckCheckboxes();
+        }
+
+else if (casInput.value === "ServicePrive-ECD-ELD-EFA") {
   specEFA.style.display = 'block';
-  specECD.style.display = 'none';
-  specELD.style.display = 'block';
-  specSerPrive.style.display = 'none';
-  verifPieceBAG.style.display = 'block';
-  uncheckCheckboxes();
-}
-else if (casInput.value === "ServicePrive-ECD") {
-  specEFA.style.display = 'none';
   specECD.style.display = 'block';
-  specELD.style.display = 'none';
+  specELD.style.display = 'block';
   specSerPrive.style.display = 'block';
   verifPieceBAG.style.display = 'block';
   uncheckCheckboxes();
-}else if (casInput.value === "EFA-ECD") {
+}
+
+else if (casInput.value === "ELD-EFA") {
   specEFA.style.display = 'block';
-  specECD.style.display = 'block';
-  specELD.style.display = 'none';
-  specSerPrive.style.display = 'none';
-  verifPieceBAG.style.display = 'block';
-  uncheckCheckboxes();
-}else if (casInput.value === "ECD-ELD") {
-  specEFA.style.display = 'none';
-  specECD.style.display = 'block';
-  specELD.style.display = 'block';
-  specSerPrive.style.display = 'none';
-  verifPieceBAG.style.display = 'block';
-  uncheckCheckboxes();
-}else if (casInput.value === "EFA-ECD-ELD") {
-  specEFA.style.display = 'block';
-  specECD.style.display = 'block';
-  specELD.style.display = 'block';
-  specSerPrive.style.display = 'none';
-  verifPieceBAG.style.display = 'block';
-  uncheckCheckboxes();
-}else if (casInput.value === "ECD-ELD-EFA") {
-  specEFA.style.display = 'block';
-  specECD.style.display = 'block';
+  specECD.style.display = 'none';
   specELD.style.display = 'block';
   specSerPrive.style.display = 'none';
   verifPieceBAG.style.display = 'block';
@@ -1217,8 +1229,8 @@ $(document).ready(function(){
 
     function checkIfAllChecked() {
         if (switchPieceBaseBAG1.checked && switchPieceBaseBAG2.checked && switchPieceBaseBAG3.checked && switchPieceBaseBAG4.checked && switchPieceBaseBAG5.checked && switchPieceBaseBAG6.checked && switchPieceBAG.checked){
-            if (casValue === "EFA"|| casValue === "ECD" || casValue === "ELD" || casValue === "ServicePrive") {
-                if ((switchPieceEFABAG1.checked && switchPieceEFABAG2.checked && switchPieceEFABAG3.checked) || (switchPieceECDBAG1.checked && switchPieceECDBAG2.checked && switchPieceECDBAG3.checked) || switchPieceELDBAG.checked || (switchPieceSerPriveBAG1.checked && switchPieceSerPriveBAG2.checked && switchPieceSerPriveBAG3.checked)) {
+             if ( casValue === "ServicePrive-ECD-ELD-EFA") {
+                if ((switchPieceECDBAG1.checked && switchPieceECDBAG2.checked && switchPieceECDBAG3.checked) && (switchPieceSerPriveBAG1.checked && switchPieceSerPriveBAG2.checked && switchPieceSerPriveBAG3.checked) && (switchPieceEFABAG1.checked && switchPieceEFABAG2.checked && switchPieceEFABAG3.checked) && switchPieceELDBAG.checked) {
                     
                     informationBAG.style.display = "block";
                     $("#pieceBASEBAG").removeClass("col-lg-6");
@@ -1232,23 +1244,8 @@ $(document).ready(function(){
                     $("#pieceSPECIFIQUEBAG").removeClass("col-lg-4");
                     $("#pieceSPECIFIQUEBAG").addClass("col-lg-6");
                 }
-            }else if ( casValue === "ServicePrive-ECD") {
-                if ((switchPieceECDBAG1.checked && switchPieceECDBAG2.checked && switchPieceECDBAG3.checked) && (switchPieceSerPriveBAG1.checked && switchPieceSerPriveBAG2.checked && switchPieceSerPriveBAG3.checked)) {
-                    
-                    informationBAG.style.display = "block";
-                    $("#pieceBASEBAG").removeClass("col-lg-6");
-                    $("#pieceBASEBAG").addClass("col-lg-4");
-                    $("#pieceSPECIFIQUEBAG").removeClass("col-lg-6");
-                    $("#pieceSPECIFIQUEBAG").addClass("col-lg-4");
-                }else{
-                    informationBAG.style.display = "none";
-                    $("#pieceBASEBAG").removeClass("col-lg-4");
-                    $("#pieceBASEBAG").addClass("col-lg-6");
-                    $("#pieceSPECIFIQUEBAG").removeClass("col-lg-4");
-                    $("#pieceSPECIFIQUEBAG").addClass("col-lg-6");
-                }
-            }else if (casValue === "EFA-ECD-ELD" ) {
-                if ((switchPieceEFABAG1.checked && switchPieceEFABAG2.checked && switchPieceEFABAG3.checked) && (switchPieceECDBAG1.checked && switchPieceECDBAG2.checked && switchPieceECDBAG3.checked) && switchPieceELDBAG.checked) {
+            }else if (casValue === "ELD-EFA" ) {
+                if ((switchPieceEFABAG1.checked && switchPieceEFABAG2.checked && switchPieceEFABAG3.checked) && switchPieceELDBAG.checked) {
                     
                     informationBAG.style.display = "block";
                     $("#pieceBASEBAG").removeClass("col-lg-6");

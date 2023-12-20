@@ -16,16 +16,21 @@ class AdminPageController extends CI_Controller {
 
     public function AdminPageHome(){
         $user = $this->session->userdata('user');
-        // $immatricule = $user['imUser'];
+        $immatricule = $user['imUser'];
+        $data['number'] = $this->validationmodel->Notification($immatricule);
+        $data['newValidation'] = $this->validationmodel->NewValidation($immatricule);
+        $data['pendingValidation'] = $this->validationmodel->pendingValidation();
 
         $data['count'] = $this->validationmodel->TotalNbValidation();
         $data['countYear'] = $this->validationmodel->YearNbValidation();
         $data['countTraite'] = $this->validationmodel->NbTraiteValidation();
         $data['countWait'] = $this->validationmodel->NbWaitValidation();
         $data['comptable'] = $this->comptablemodel->comptable();
+
         $data['listValidation'] = $this->validationmodel->allValidation();
+
         $data['completeValidation'] = $this->validationmodel->completeValidation();
-        $data['pendingValidation'] = $this->validationmodel->pendingValidation();
+       
         
         $data['numberPerMonth'] = $this->validationmodel->numberPerMonth();
         $data['numberBG'] = $this->validationmodel->numberBG();
@@ -34,7 +39,7 @@ class AdminPageController extends CI_Controller {
 
     if($user && isset($user['fonction'])){ 
         if($user['fonction'] == 'Chef de Bureau'){
-          $this->load->view('adminHeader');
+          $this->load->view('adminHeader',$data);
           $this->load->view('adminHome',$data);
           $this->load->view('Footer');
           
@@ -46,7 +51,7 @@ class AdminPageController extends CI_Controller {
     }
   }
 
-  public function allBudgetDownPage(){
+  public function listRequestAdmin(){
     $user = $this->session->userdata('user');
     $immatricule = $user['imUser'];
     $data['number'] = $this->validationmodel->Notification($immatricule);
@@ -55,20 +60,26 @@ class AdminPageController extends CI_Controller {
     $data['countYear'] = $this->validationmodel->YearNbValidationByCom($immatricule);
     $data['countTraite'] = $this->validationmodel->NbTraiteValidationByCom($immatricule);
     $data['countWait'] = $this->validationmodel->NbWaitValidationByCom($immatricule);
-    $data['validationData'] = $this->validationmodel->allBudgetValidationByCompt($immatricule);
+    // $data['validationData'] = $this->validationmodel->allBudgetValidationByCompt($immatricule);
+    $data['listValidation'] = $this->validationmodel->allValidation();
+    $data['completeValidation'] = $this->validationmodel->completeValidation();
+    $data['pendingValidation'] = $this->validationmodel->pendingValidation();
+    $data['comptable'] = $this->comptablemodel->comptable();
+
+
   
     if($user && isset($user['fonction'])){ 
         if($user['fonction'] == 'Comptable'){
             $this->load->view('Header', $data);
-            $this->load->view('allBudgetDownPage', $data);
+            $this->load->view('listRequestAdminPage', $data);
             $this->load->view('Footer');
         } elseif ($user['fonction'] == 'Chef de Bureau') {
           $this->load->view('adminHeader', $data);
-          $this->load->view('allBudgetDownPage', $data);
+          $this->load->view('listRequestAdminPage', $data);
           $this->load->view('Footer');
         }
     } else {
-        redirect('/');
+        redirect('/login');
     }
   }
   public function allBudgetDownPageAdmin(){
@@ -93,8 +104,20 @@ class AdminPageController extends CI_Controller {
           $this->load->view('Footer');
         }
     } else {
-        redirect('/');
+        redirect('/login');
     }
   }
 
+  public function updateNotification() {
+    $view = '1';
+    
+    $immatricule = $this->input->post('immatricule');
+    // Ajoutez votre logique pour mettre à jour les informations dans la base de données
+    $viewed = $this->validationmodel-->updateNotification($immatricule,$view);
+    if ($viewed) {
+      redirect('gererUserPage');
+  } else {
+    redirect('gererUserPage');
+  }
+}
 }

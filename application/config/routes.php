@@ -9,6 +9,10 @@ $route['login'] = 'logincontroller';
 $route['adminpage'] = 'adminpagecontroller/AdminPageHome';
 
 $route['userpage'] = 'userpagecontroller/UserPageHome';
+$route['liste-demande'] = 'adminpagecontroller/listRequestAdmin';
+
+
+
 
 
 

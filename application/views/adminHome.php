@@ -182,7 +182,7 @@
                       <div class="iq-thumb">
                           <div class="iq-music-overlay"></div>
                           <a href="#">
-                            <img src="<?php echo $imageUrl; ?>" class="img-border-radius img-fluid w-100" alt="">
+                            <img src="<?php echo $imageUrl; ?>" class="img-border-radius img-fluid w-100" alt="" style="width: 110px;height:150px">
                           </a>
                           <div class="overlay-music-icon">
                             <form action="<?php echo base_url(); ?>userdetailspagecontroller/userDetails" method="post">
@@ -205,7 +205,7 @@
         </div>
     </div>
   </div>
-
+<!-- 
   <div class="col-sm-12">
     <div class="iq-card">
         <div class="iq-card-header d-flex justify-content-between">
@@ -214,7 +214,7 @@
           </div>
           <div class="iq-card-header-toolbar d-flex align-items-center">
             <div class="btn-group">
-              <a href="#allList" class="btn btn-link" id="allButton" >Tous le demande</a>
+              <a href="#allList" class="btn btn-link" id="allButton" >Tous les demandes</a>
               <a href="#completeList" class="btn btn-success" id="completeButton" >Traitée</a>
               <a href="#pendingList" class="btn btn-danger" id="pendingButton" >En attente</a>
             </div> 
@@ -257,10 +257,12 @@
 
                       if ($duDateVal == "" && $auDateVal == "") {
                         $statut = '<span class="badge badge-danger">En attente</span>';
+                        $editButton = ' <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="admin-add-category.html"><i class="ri-pencil-line"></i></a>';
                         $delButton = '<a href="#myModal'.$id.'" class="bg-primary"  data-toggle="modal" data-original-title="Supprimer"><i class="ri-delete-bin-line"></i></a>';
                       }
                       else{
                         $statut = '<span class="badge badge-success">Traitée</span>';
+                        $editButton = ' <a class="bg-secondary disabled" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line"></i></a>';
                         $delButton = '<a href="#'.$id.'" class="bg-secondary disabled"><i class="ri-delete-bin-line"></i></a>';
 
                       }
@@ -312,7 +314,7 @@
                         </td>
                         <td>
                           <div class="flex align-items-center list-user-action">
-                            <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="admin-add-category.html"><i class="ri-pencil-line"></i></a>
+                            <?php echo $editButton; ?> 
                             <?php echo $delButton; ?>
 
                           </div>
@@ -472,6 +474,6 @@
         </div>
     </div>
   </div>
-  
+   -->
 </div>
           
