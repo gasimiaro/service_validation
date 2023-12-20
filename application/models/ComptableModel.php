@@ -8,9 +8,6 @@ class ComptableModel extends CI_Model {
 
 
 
-
-
-
 public function comptables(){
         $sql = "SELECT * FROM user";
         $query = $this->db->query($sql);
@@ -79,5 +76,10 @@ public function comptables(){
         $query = $this->db->query($sql);
         return $query->result();
     }
+
+
+
+
+
 
 }

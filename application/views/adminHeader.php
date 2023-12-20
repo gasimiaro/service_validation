@@ -233,13 +233,13 @@ function listeClick(){
                       <a href="#admin" class="iq-waves-effect" data-toggle="collapse" aria-expanded="true"><span class="ripple rippleEffect"></span><i class="las la-home iq-arrow-left"></i><span>Acceuil</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                       <ul id="admin" class="iq-submenu collapse show" data-parent="#iq-sidebar-toggle">
                           <li class="active"><a href="<?php echo base_url(); ?>index.php/adminpagecontroller/AdminPageHome"><i class="las la-house-damage"></i>Dashboard</a></li>
-                          <li><a href="<?php echo base_url(); ?>adminpagecontroller/listRequestAdmin"><i class="fa fa-download"></i>Liste de demandes</a></li>
+                          <li><a href="<?php echo base_url(); ?>adminpagecontroller/listRequestAdmin"><i class="fa fa-download"></i>Liste des demandes</a></li>
                          
                       </ul>
                     </li>
                    
                     <li>
-                      <a href="<?php echo base_url(); ?>index.php/backend/gererUser" class="iq-waves-effect"><i class="las la-user-tie iq-arrow-left"></i><span>Utilisateur</span></a>
+                      <a href="<?php echo base_url(); ?>adminpagecontroller/gererUser" class="iq-waves-effect"><i class="las la-user-tie iq-arrow-left"></i><span>Utilisateur</span></a>
                       
                     </li>
                     

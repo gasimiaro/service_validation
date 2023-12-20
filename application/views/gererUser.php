@@ -13,7 +13,7 @@
         <div class="iq-card">
             <div class="iq-card-header d-flex justify-content-between align-items-center">
                 <div class="iq-header-title">
-                    <h4 class="card-title">Featured Albums</h4>
+                    <h4 class="card-title">Employés</h4>
                 </div>
                 <div class="d-flex align-items-center iq-view">
                     <b class="mb-0 text-primary">
@@ -53,10 +53,10 @@
                     <div class="iq-thumb-artist">
                         <div class="iq-music-overlay"></div>
                         <a href="#">
-                        <img src="<?php echo $imageUrl; ?>" class="w-100 img-fluid" alt="">
+                        <img src="<?php echo $imageUrl; ?>" class="w-100 img-fluid" alt="" style="width: 100px; height: 150px;">
                         </a>
                         <div class="overlay-music-icon">
-                            <form action="<?php echo base_url(); ?>userdetailspagecontroller/userDetails" method="post">
+                            <form action="<?php echo base_url(); ?>adminpagecontroller/userDetails" method="post">
                                 <input type="hidden" name="imatComptable" id="" value="<?php echo $im; ?>">
                                 <button type="submit" style="display: inline-block; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 40px; font-size: 25px;">
                                     <i class="las la-eye"></i>

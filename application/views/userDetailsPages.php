@@ -37,7 +37,7 @@
                     <div class="music-detail">
                         <h3><?php echo $nom; ?></h3>
                         <div class="h4"><?php echo $prenom; ?></div>
-                        <p class="mb-0"><?php echo $imat; ?></p>
+                        <p class="mb-0">Im : <?php echo $imat; ?></p>
                         <span><?php echo $fonction; ?></span>
                         <h6 style="display:none"><?php echo $statut; ?></h6>
                         
@@ -47,24 +47,25 @@
                     </div>
                     <div class="music-right">
                         <div class="d-flex align-items-center">
-                        <?php if ($statut == 'Deblocké') {?>
-                        <div class="iq-circle mr-2">
-                            <form action="<?php echo base_url(); ?>index.php/backend/changeUserStatut" method="post">
-                                <input type="hidden" name="imat" value="<?php echo $imat; ?>"> 
-                                <input type="hidden" value="Blocké" name="statut">
-                                <button type="submit"style="display: inline-block; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 40px; font-size: 25px;"><i class="fa fa-unlock text-info"></i></button>
+                           <!-- <div class="iq-circle" id="lock-state-div" style="display : <?php $statut == "Blocké" ? "" : "none" ?> ">
+                                <form id="switch-status-form">
 
+                                    <input type="hidden" name="imat" value="<?php echo $imat; ?>"> 
+                                    <input type="hidden" value="Deblocké" name="statut">
+                                    <button type="submit" style="display: inline-block; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 40px; font-size: 25px;"><i class="fa fa-lock text-primary"></i></button>
+                                </form>
+                            </div> -->
+                            <form id="switch-status-form">
+                            <div class="iq-circle mr-2"  >
+
+                                    <input type="hidden" name="imat" value="<?php echo $imat; ?>"> 
+                                    <input type="hidden" id="lock-state-value-input" value="<?php echo $statut == "Blocké" ? "Deblocké" : "Blocké" ?>" name="statut">
+                                    <button type="submit" id="lock-state-div" style="display: <?php echo $statut == "Blocké" ? "inline-block" : "none" ?>; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 40px; font-size: 25px;"><i class="fa fa-lock text-primary"></i></button>
+                                    <button type="submit" id="unlock-state-div" style=" display: <?php  echo $statut == "Deblocké" ? "inline-block" : "none" ?>; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 40px; font-size: 25px;"><i class="fa fa-unlock text-info"></i></button>
+
+                                </div>    
                             </form>
-                        </div>    
-                        <?php } else{?>             
-                        <div class="iq-circle">
-                            <form action="<?php echo base_url(); ?>index.php/backend/changeUserStatut" method="post">
-                                <input type="hidden" name="imat" value="<?php echo $imat; ?>"> 
-                                <input type="hidden" value="Deblocké" name="statut">
-                                <button type="submit" style="display: inline-block; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 40px; font-size: 25px;"><i class="fa fa-lock text-primary"></i></button>
-                            </form>
-                        </div>
-                        <?php } ?>
+
                         </div>
                     </div>
                     </div>
@@ -346,4 +347,60 @@
             $('#editModal option[id="option3"]').text("Chef De Service");
         }
     });
+
+
+    
+
+$(document).ready(function () {
+        // Add an event listener for the form submission
+        $('#switch-status-form').submit(function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            var formData = $(this).serialize();
+
+
+            $.ajax({
+                type: 'POST', // Use GET method
+                url: '<?php echo base_url("adminpagecontroller/changeUserStatut"); ?>' , // Append form data to the URL
+                data: formData, // Use the data option for POST requests
+                dataType: 'json',
+                success: function (response) {
+                    // Check the response
+                    if (response.success) {
+                        console.log("resp : "+ response.state);
+                        // Update the UI with the new data (you need to implement this part)
+                        if(response.state == "Deblocké"){
+                            document.getElementById("lock-state-value-input").value = "Blocké";
+                            document.getElementById("lock-state-div").style.display = "none";
+                            document.getElementById("unlock-state-div").style.display = "inline-block";
+                            swal("Employé debloqué", "","success");
+                            
+                        }
+                        else if( response.state == "Blocké"){
+                            document.getElementById("lock-state-value-input").value = "Deblocké";
+                            document.getElementById("lock-state-div").style.display = "inline-block";
+                            document.getElementById("unlock-state-div").style.display = "none";
+
+                            swal("Employé bloqué", "","warning");
+                        }
+                       
+                        setTimeout(function(){
+                            swal.close();
+                        }, 2000);
+                        // Display a success message (you need to implement this part)
+                        // alert(JSON.stringify(response));
+                    } else {
+                        // Display an error message (you need to implement this part)
+                        alert(response.message);
+                    }
+                },
+                error: function () {
+                    // Handle AJAX error (you need to implement this part)
+                    alert('Error during AJAX request');
+                }
+            });
+        });
+    });
+
 </script>

@@ -238,7 +238,7 @@ function listeClick(){
                     </li>
                    
                     <li>
-                        <a href="#pagesValidation" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="true"><i class="ri-function-line"></i><span>Liste de Demande</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                        <a href="#pagesValidation" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="true"><i class="ri-function-line"></i><span>Liste des Demandes</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                         <ul id="pagesValidation" class="iq-submenu collapse show" data-parent="#iq-sidebar-toggle">
                             <li><a href="<?php echo base_url(); ?>index.php/backend/InfoValidationPage"><i class="ri-check-line"></i>Demande Traitée</a></li>
                             <li><a href="<?php echo base_url(); ?>index.php/backend/receivedValidationPage"><i class="las la-edit"></i>Demade reçus</a></li>

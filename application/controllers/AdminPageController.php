@@ -7,6 +7,7 @@ class AdminPageController extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');  // Load the URL Helper
         $this->load->model('comptablemodel');
+        $this->load->model('agentmodel');
 
         $this->load->model('validationmodel');
 
@@ -120,4 +121,69 @@ class AdminPageController extends CI_Controller {
     redirect('gererUserPage');
   }
 }
+
+public function gererUser(){
+      $user = $this->session->userdata('user');
+      $immatricule = $user['imUser'];
+
+      $data['comptables'] = $this->comptablemodel->comptables();
+      $data['newValidation'] = $this->validationmodel->NewValidation($immatricule);
+      $data['number'] = $this->validationmodel->Notification($immatricule);
+
+
+      if($user && isset($user['fonction'])){ 
+        if($user['fonction'] == 'Chef de Bureau'){
+          $this->load->view('adminHeader',$data);
+          $this->load->view('gererUser', $data);
+          $this->load->view('Footer');
+          
+        } elseif ($user['fonction'] == 'Comptable') {
+            redirect('/');
+        }
+    } else {
+        redirect('/');
+    }
+}
+
+public function userDetails(){
+      $immatricule = $this->input->post('imatComptable');
+      $data['newValidation'] = $this->validationmodel->NewValidation($immatricule);
+      $data['number'] = $this->validationmodel->Notification($immatricule);
+
+      $data['results'] = $this->agentmodel->checkComptable($immatricule);
+      $data['byComptable'] = $this->agentmodel->byComptableValidation($immatricule);
+
+      $this->load->view('adminHeader',$data);
+      $this->load->view('userDetailsPages', $data);
+      $this->load->view('Footer');
+    }
+
+    
+  public function changeUserStatut(){
+    $immatricule = $this->input->post('imat');
+    $statut = $this->input->post('statut');
+    $change = $this->comptablemodel->changeCopmtStatut($immatricule, $statut);
+    // $results = $this->comptablemodel->checkComptable($immatricule);
+    if ($change) {
+      // $this->session->set_flashdata('success', 'Donnée a été supprimer, ');
+      $response['success'] = true;
+      $response['state'] = $statut;
+
+      
+      // redirect('adminpage');
+    }
+    else {
+      $response['success'] = false;
+      $response['message'] = 'Erreur lors du changement';
+  }
+  echo json_encode($response);
+
+
+    
+    // $this->load->view('adminHeader',$data);
+    // $this->load->view('userDetailsPages', $data);
+    // $this->load->view('Footer');
+    
+  }
+
 }
