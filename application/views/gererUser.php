@@ -40,7 +40,7 @@
                     $poste = "Chef de Service";
                     $alias = "Chef";
                 }
-                else if ($fonction == 'administrator') {
+                else if ($fonction == 'Chef de Bureau') {
                     $poste = "Chef de Bureau";
                     $alias = "Chef";
                 } else if ($fonction == 'Comptable') {
@@ -94,7 +94,9 @@
                      
         
         <div class="iq-card-body">
-            <form class="needs-validation" action="<?php echo base_url(); ?>index.php/backend/addComptable" method="post" novalidate>
+            <!-- <form class="needs-validation" action="<?php echo base_url(); ?>userpagecontroller/addComptable" method="post" novalidate> -->
+            <form id="form-add-user" novalidate>
+
                 <div class="form-row">
                 <div class="col-md-6 mb-3">
                         <label for="validationTooltipUsername">Immatricule</label>
@@ -179,3 +181,86 @@
     </div>
   </div>
 </div>
+
+<script>
+
+
+$(document).ready(function () {
+        // Add an event listener for the form submission
+  
+
+
+        $('#form-add-user').submit(function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            var formData1 = $(this).serialize();
+            // Make a GET AJAX request
+            // setTimeout(function () {
+            $.ajax({
+                type: 'POST', // Use GET method
+                url: '<?php echo base_url("userpagecontroller/addComptable"); ?>' , // Append form data to the URL
+                data: formData1, // Use the data option for POST requests
+                dataType: 'json',
+                success: function (response) {
+                    // Check the response
+                    if (response.success) {
+                        // Update the UI with the new data (you need to implement this part)
+
+                        var user = response.user; // Assuming your controller sends the user data in the response
+
+                        var imageUrl =  '<?php echo base_url("assets/template/images/user/whatsapp-dp-for-boys.webp"); ?>';
+
+                        var html = '<li class="col-lg-12 iq-music-box">' +
+                            '<div class="iq-thumb-artist">' +
+                            '<div class="iq-music-overlay"></div>' +
+                            '<a href="#">' +
+                            '<img src="' + imageUrl + '" class="w-100 img-fluid" alt="" style="width: 100px; height: 150px;">' +
+                            '</a>' +
+                            '<div class="overlay-music-icon">' +
+                            '<form action="<?php echo base_url(); ?>adminpagecontroller/userDetails" method="post">' +
+                            '<input type="hidden" name="imatComptable" id="" value="' + user.imUser + '">' +
+                            '<button type="submit" style="display: inline-block; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 40px; font-size: 25px;">' +
+                            '<i class="las la-eye"></i>' +
+                            '</button>' +
+                            '</form>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="feature-list text-center">' +
+                            '<h6 class="font-weight-600  mb-0">' + user.alias + ' ' + user.prenom + '</h6>' +
+                            '<h6 class="font-weight-400  mb-0">' + user.poste + '</h6>' +
+                            '</div>' +
+                            '</li>';
+
+                        // Append the new HTML content
+                        $('.feature-album-artist li:last').append(html);
+
+                        // Optionally, you can also close the modal or show a success message.
+                        $('#myModal').modal('hide');
+                        swal("Ajout avec succès", "", "success");
+                        setTimeout(function () {
+                            swal.close();
+                        }, 2000);
+
+
+
+                        // Display a success message (you need to implement this part)
+                        // alert(JSON.stringify(response));
+                    } else {
+                        // Display an error message (you need to implement this part)
+                        // alert(response.message);
+                        swal(response.message, "", "warning");
+                        setTimeout(function () {
+                            swal.close();
+                        }, 2000);
+                    }
+                },
+                error: function () {
+                    // Handle AJAX error (you need to implement this part)
+                    alert('Error during AJAX request');
+                }
+            });
+        });
+    });
+
+    </script>

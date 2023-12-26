@@ -206,6 +206,33 @@ function listeClick(){
         </div>
     </div>
     <!-- loader END -->
+    <div id="modal-disconnect" class="modal fade">
+                            <div class="modal-dialog modal-confirm">
+                                <div class="modal-content">
+                                    <div class="modal-header flex-column">
+                                        <div class="icon-box">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- <p>Voullez-vous la editer ?</p> -->
+                                          
+                                          <p?>Etes-vous sûre de vouloir vous déconnecter? </p>
+                                        
+                                      </div>
+                                      <div class="modal-footer justify-content-center">
+                                      
+                                      <form action="<?php echo base_url(); ?>logincontroller/logout" method="post">
+
+                                        <form id="edit-comptable-form" >
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-danger">Se déconnecter</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
     <!-- Wrapper Start -->
     <div class="wrapper">
         <!-- Sidebar  -->
@@ -232,7 +259,7 @@ function listeClick(){
                     <li class="active">
                       <a href="#admin" class="iq-waves-effect" data-toggle="collapse" aria-expanded="true"><span class="ripple rippleEffect"></span><i class="las la-home iq-arrow-left"></i><span>Acceuil</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                       <ul id="admin" class="iq-submenu collapse show" data-parent="#iq-sidebar-toggle">
-                          <li class="active"><a href="<?php echo base_url(); ?>index.php/adminpagecontroller/AdminPageHome"><i class="las la-house-damage"></i>Dashboard</a></li>
+                          <li class="active"><a href="<?php echo base_url(); ?>index.php/adminpagecontroller/AdminPageHome"><i class="las la-house-damage"></i>Tableau de bord</a></li>
                           <li><a href="<?php echo base_url(); ?>adminpagecontroller/listRequestAdmin"><i class="fa fa-download"></i>Liste des demandes</a></li>
                          
                       </ul>
@@ -242,7 +269,10 @@ function listeClick(){
                       <a href="<?php echo base_url(); ?>adminpagecontroller/gererUser" class="iq-waves-effect"><i class="las la-user-tie iq-arrow-left"></i><span>Utilisateur</span></a>
                       
                     </li>
-                    
+                    <li>
+                      <!-- <a href="<?php echo base_url(); ?>" class="iq-waves-effect"><i class="ri-login-box-line iq-arrow-left"></i><span>Se Déconnecter</span></a> -->
+                      <a  href="#modal-disconnect"  data-toggle="modal" data-placement="top" title="" data-original-title="Disconnect" class="iq-waves-effect"><i class="ri-login-box-line iq-arrow-left"></i><span>Se Déconnecter</span></a>
+                    </li>
                     
                 </ul>
               </nav>
@@ -390,7 +420,7 @@ function listeClick(){
                                         </div>
                                       </div>
                                   </a>
-                                  <a href="account-setting.html" class="iq-sub-card iq-bg-primary-hover">
+                                  <!-- <a href="account-setting.html" class="iq-sub-card iq-bg-primary-hover">
                                       <div class="media align-items-center">
                                         <div class="rounded iq-card-icon iq-bg-primary">
                                             <i class="ri-account-box-line"></i>
@@ -400,10 +430,12 @@ function listeClick(){
                                             <p class="mb-0 font-size-12">Mondier le parametre de mon compte.</p>
                                         </div>
                                       </div>
-                                  </a>
+                                  </a> -->
                                   
                                   <div class="d-inline-block w-100 text-center p-3">
-                                      <a class="bg-primary iq-sign-btn" href="<?php echo site_url('logincontroller/logout'); ?>" role="button">Deconnexion<i class="ri-login-box-line ml-2"></i></a>
+                                      <!-- <a class="bg-primary iq-sign-btn" href="<?php echo site_url('logincontroller/logout'); ?>" role="button">Deconnexion<i class="ri-login-box-line ml-2"></i></a> -->
+                                      <a  href="#modal-disconnect"  data-toggle="modal" data-placement="top" title="" data-original-title="Disconnect" class="iq-waves-effect"><i class="ri-login-box-line iq-arrow-left"></i><span>Se Déconnecter</span></a>
+
                                   </div>
                                 </div>
                             </div>
