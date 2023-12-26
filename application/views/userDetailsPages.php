@@ -37,7 +37,7 @@
                     <div class="music-detail">
                         <h3><?php echo $nom; ?></h3>
                         <div class="h4"><?php echo $prenom; ?></div>
-                        <p class="mb-0">Im : <?php echo $imat; ?></p>
+                        <p class="mb-0"><?php echo $imat; ?></p>
                         <span><?php echo $fonction; ?></span>
                         <h6 style="display:none"><?php echo $statut; ?></h6>
                         
@@ -110,8 +110,10 @@
                         <input type="text" class="form-control" id="prenom" name="prenom">
                     </div>
                     <div class="form-group col-sm-6">
-                        <label for="uname">Immatricule:</label>
-                        <input type="text" class="form-control" id="immatricule" name="immatricule" readonly>
+                        <label for="immatricule">Immatricule:</label>
+                        <input type="hidden" class="form-control" id="immat" name="immatricule" >
+                        <input type="text" class="form-control immatricule-edit"  readonly>
+
                     </div>
                     <div class="form-group col-sm-6">
                         <label>Fonction:</label>
@@ -123,9 +125,9 @@
                             
                         </select>
                     </div>
-                    <input type="text" name="statut" id="statut">
+                    <!-- <input type="text" name="statut" id="statut"> -->
                 </div>
-                <button type="reset" class="btn iq-bg-danger">Cancel <i class="fa fa-times"></i></button>
+                <button type="reset" class="btn iq-bg-danger">Annuler <i class="fa fa-times"></i></button>
                 <button type="submit" class="btn btn-primary mr-2" id="btnUpdateUser">Valider <i class="fa fa-check"></i></button>
 
 <script>
@@ -133,22 +135,35 @@
         // Récupérez les données à partir du formulaire
         var nom = $('#nom').val();
         var prenom = $('#prenom').val();
-        var immatricule = $('#immatricule').val();
+        var immatricule = document.getElementById('immat').value;
         var fonction = $('#fonction').val();
+        console.log(immatricule)
 
         // Envoyez une requête AJAX pour mettre à jour les informations de l'utilisateur
         $.ajax({
             type: 'POST',
-            url: '<?php echo base_url(); ?>index.php/backend/updateUserDetails',
+            url: '<?php echo base_url(); ?>userpagecontroller/updateUserDetails',
             data: {
                 nom: nom,
                 prenom: prenom,
                 immatricule: immatricule,
                 fonction: fonction
             },
+            dataType: 'json',
+
             success: function(response) {
+                console.log(JSON.stringify(response));
                 // Rechargez la page userDetails après la mise à jour
-                $('#editModal').modal('hide'); // Fermez le modal si nécessaire
+                if(response.success){
+                    $('#editModal').modal('hide'); // Fermez le modal si nécessaire
+                swal("Employé modifié", "","success");
+                }
+                else{
+                    swal("Erreur de modification", "","warning");
+
+                }
+            
+
                 
             },
             error: function(error) {
@@ -302,12 +317,14 @@
         var prenom = row.find('.h4').text();
         var im = row.find('p').text();
         var fonct = row.find('span').text();
-        var statut = row.find('h6').text();
+        // var statut = row.find('h6').text();
 
         $('#editModal input[name="nom"]').val(nom);
         $('#editModal input[name="prenom"]').val(prenom);
         $('#editModal input[name="immatricule"]').val(im);
-        $('#editModal input[name="statut"]').val(statut);
+        $('.immatricule-edit').val(im);
+
+        // $('#editModal input[name="statut"]').val(statut);
         $('#editModal img.profile-pic').attr('src', imgSrc);
         if (fonct === "Chef De Service") {
             $('#editModal option[id="option"]').val(fonct);

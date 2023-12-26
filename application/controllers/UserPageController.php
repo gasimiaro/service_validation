@@ -93,4 +93,31 @@ class UserPageController extends CI_Controller {
     
       }
 
+      public function updateUserDetails() {
+        $immatricule = $this->input->post('immatricule');
+        $nom = $this->input->post('nom');
+        $prenom = $this->input->post('prenom');
+        $fonction = $this->input->post('fonction');
+        // $statut = $this->input->post('statut');
+    
+        // Ajoutez votre logique pour mettre à jour les informations dans la base de données
+        $updated = $this->comptablemodel->updatedComptable($immatricule, $nom, $prenom, $fonction);
+        if ($updated) {
+        //   $this->session->set_flashdata('success', 'Insertion avec succes, ');
+        //   redirect('gererUserPage');
+        $response['success'] = true;
+        $response['message'] = "Modification avec succès";
+        $response['data'] = [     'imUser' => $immatricule,
+        'fonction' =>$fonction,
+        'prenom' => $prenom];
+
+      } else {
+        $response['success'] = false;
+        $response['message'] = "Il y a un erreur lors de la modification";
+        
+      }
+      echo json_encode($response);
+
+    }
+
 }
