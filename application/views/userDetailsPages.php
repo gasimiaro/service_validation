@@ -36,9 +36,9 @@
                 <div class="d-flex align-items-top justify-content-between iq-music-play-detail">
                     <div class="music-detail">
                         <h3><?php echo $nom; ?></h3>
-                        <div class="h4"><?php echo $prenom; ?></div>
-                        <p class="mb-0"><?php echo $imat; ?></p>
-                        <span><?php echo $fonction; ?></span>
+                        <div class="prenom"><?php echo $prenom; ?></div>
+                        <p class="mb-0 current-comptable-immat"><?php echo $imat; ?></p>
+                        <span class="fonction"><?php echo $fonction; ?></span>
                         <h6 style="display:none"><?php echo $statut; ?></h6>
                         
                         <div class="d-flex align-items-center">                                       
@@ -155,11 +155,23 @@
                 console.log(JSON.stringify(response));
                 // Rechargez la page userDetails après la mise à jour
                 if(response.success){
+                    var row = $(this).closest('.row');
+
+                $('h3').text(nom);
+                $('.prenom').text(prenom);
+                $('.fonction').text(fonction);
+
                     $('#editModal').modal('hide'); // Fermez le modal si nécessaire
                 swal("Employé modifié", "","success");
+                setTimeout(function(){
+                            swal.close();
+                        }, 2000);
                 }
                 else{
                     swal("Erreur de modification", "","warning");
+                    setTimeout(function(){
+                            swal.close();
+                        }, 2000);
 
                 }
             
@@ -194,7 +206,7 @@
         <div class="iq-card-header d-flex justify-content-between">
           <div class="iq-header-title">
           
-              <h4 class="card-title">Liste des Demandes Traitée par <span class="text-primary"><?php echo $prenom; ?> </span></h4>
+              <h4 class="card-title">Liste des Demandes Traitée par <span class="text-primary prenom"><?php echo $prenom; ?> </span></h4>
             
           </div>
         </div>
@@ -232,16 +244,19 @@
 
                       if ($duDateVal == "" && $auDateVal == "") {
                         $statut = '<span class="badge badge-danger">En attente</span>';
-                        $delButton = '<a href="#myModal'.$id.'" class="bg-primary"  data-toggle="modal" data-original-title="Supprimer"><i class="ri-eye-bin-line"></i></a>';
+                        // $editButton = ' <a  href="#modal-edit-'.$id.'" class="bg-primary" data-toggle="modal" data-placement="top" title="" data-original-title="Edit"><i class="ri-pencil-line"></i></a>';
+                        $editButton = ' <a  href="#modal-edit-'.$id.'" class="bg-primary" data-toggle="modal" data-placement="top" title="" data-original-title="Edit"><i class="ri-pencil-line"></i></a>';
+                        $delButton = '<a href="#myModal'.$id.'" class="bg-primary" data-id="'.$id.'" data-toggle="modal" data-original-title="Supprimer"><i class="ri-delete-bin-line"></i></a>';
                       }
                       else{
                         $statut = '<span class="badge badge-success">Traitée</span>';
+                        $editButton = ' <a class="bg-secondary disabled" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line"></i></a>';
                         $delButton = '<a href="#'.$id.'" class="bg-secondary disabled"><i class="ri-delete-bin-line"></i></a>';
 
                       }
                       
                     ?>
-                    <div id="myModal<?php echo $id; ?>" class="modal fade">
+                    <!-- <div id="myModal<?php echo $id; ?>" class="modal fade">
                       <div class="modal-dialog modal-confirm">
                           <div class="modal-content">
                               <div class="modal-header flex-column">
@@ -265,8 +280,83 @@
                               </div>
                           </div>
                       </div>
-                    </div>
-                    <tr>
+                    </div> -->
+
+                    <!-- modal edit comptable -->
+                    <div id="modal-edit-<?php echo $id; ?>" class="modal fade">
+                            <div class="modal-dialog modal-confirm">
+                                <div class="modal-content">
+                                    <div class="modal-header flex-column">
+                                        <div class="icon-box">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                        <h4 class="modal-title w-100">Comptable</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <form id="edit-comptable-form" >
+
+                                            <select class="custom-select" id="select-id" name="comptableId" required>
+                                                <option value="">Sélectioné le comptable</option>
+                                                <?php 
+                                                $prenomsArray = array();
+                                                foreach ($comptable as $comptab){ 
+                                                    $imat = $comptab->imUser; 
+                                                    $prenom = $comptab->prenom; 
+                                                    $prenomsArray[$imat] = $prenom;
+                                                ?>
+                                                <option value="<?php echo $imat; ?>" <?php echo ($comImmatricule == $imat) ? "selected" : ""; ?>> <?php echo $prenom; ?></option>
+                                                <?php } ?>
+                                            </select>
+                                            <input type="hidden" name="prenoms" value="<?php echo isset($prenomsArray[$comImmatricule]) ? $prenomsArray[$comImmatricule] : ''; ?>">
+                                        
+                                    </div>
+                                    <div class="modal-footer justify-content-center">
+                                        
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Annuler</button>
+                                            <input type="hidden" id="idnum"  name="id" value="<?php echo $id; ?>">
+                                            <button type="submit" class="btn btn-success">Valider</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+<!--  end edit comptable -->
+
+
+                    <!-- suppr comptable -->
+
+                    <div id="myModal<?php echo $id; ?>" class="modal fade">
+                            <div class="modal-dialog modal-confirm">
+                                <div class="modal-content">
+                                    <div class="modal-header flex-column">
+                                        <div class="icon-box">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                        <h4 class="modal-title w-100">Confirmation</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Voullez-vous la supprimer ?</p>
+                                        
+                                    </div>
+                                    <div class="modal-footer justify-content-center">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">NON</button>
+                                        <!-- <form action="<?php echo base_url(); ?>validationcontroller/delValidation" method="post"> -->
+                                        <form id="delete-validation-form">
+
+                                            <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                            <button type="submit" class="btn btn-danger">OUI</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<!-- -->
+                <tr id="line-delete-<?php echo $id; ?>">
                       <td></td>
                         <td><?php echo $immatricule; ?></td>
                         <td><?php echo $nom.' '.$prenom; ?></td>
@@ -284,7 +374,7 @@
                         </td>
                         <td>
                           <div class="flex align-items-center list-user-action">
-                            <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="admin-add-category.html"><i class="ri-pencil-line"></i></a>
+                          <?php echo $editButton; ?> 
                             <?php echo $delButton; ?>
 
                           </div>
@@ -314,7 +404,7 @@
         var row = $(this).closest('.row');
         var imgSrc = row.find('img').attr('src');
         var nom = row.find('h3').text();
-        var prenom = row.find('.h4').text();
+        var prenom = row.find('.prenom').text();
         var im = row.find('p').text();
         var fonct = row.find('span').text();
         // var statut = row.find('h6').text();
@@ -418,6 +508,108 @@ $(document).ready(function () {
                 }
             });
         });
+
+
+
+        $('#edit-comptable-form').submit(function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            var formData = $(this).serialize();
+            var row = $(this).closest('.row');
+
+        var im = $('.current-comptable-immat').text();
+
+            $.ajax({
+                type: 'POST', // Use GET method
+                url: '<?php echo base_url("validationcontroller/editValidationComptable"); ?>' , // Append form data to the URL
+                data: formData, // Use the data option for POST requests
+                dataType: 'json',
+                success: function (response) {
+                    // Check the response
+                    if (response.success) {
+                        // Update the UI with the new data (you need to implement this part)
+                        var selectElement = document.getElementById('select-id'); // Remplacez 'yourId' par l'ID de votre select
+                        var desiredValue = response.comptable; // Remplacez 'VotreValeur' par la valeur de l'option dont vous voulez obtenir le texte
+
+                        for (var i = 0; i < selectElement.options.length; i++) {
+                            if (selectElement.options[i].value == desiredValue) {
+                                var selectedText = selectElement.options[i].text;
+                                // console.log("Texte sélectionné : " + selectedText);
+                                // $('#comptable-im-' + response.id).text(selectedText);
+                                console.log("new = "+ response.comptable);
+                                console.log("old = "+ im);
+
+                                if(response.comptable != im){
+                                    var deletedRow = $('#line-delete-'+response.id);
+                                    deletedRow.remove();
+                                }
+                                break;
+                            }
+                        }
+                        $('#modal-edit-' + response.id).modal('hide');
+                        swal("Edition avec succès", "","success");
+                        setTimeout(function(){
+                            swal.close();
+                        }, 2000);
+                        // Display a success message (you need to implement this part)
+                        // alert(JSON.stringify(response));
+                    } else {
+                        // Display an error message (you need to implement this part)
+                        alert(response.message);
+                    }
+                },
+                error: function () {
+                    // Handle AJAX error (you need to implement this part)
+                    alert('Error during AJAX request');
+                }
+            });
+        });
+
+
+        $('#delete-validation-form').submit(function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            var formData1 = $(this).serialize();
+            // Make a GET AJAX request
+            // setTimeout(function () {
+            $.ajax({
+                type: 'POST', // Use GET method
+                url: '<?php echo base_url("validationcontroller/delValidation"); ?>' , // Append form data to the URL
+                data: formData1, // Use the data option for POST requests
+                dataType: 'json',
+                success: function (response) {
+                    // Check the response
+                    if (response.success) {
+                        // Update the UI with the new data (you need to implement this part)
+                        var deletedRow = $('#line-delete-'+response.id);
+                        deletedRow.remove();
+
+                        // Optionally, you can also close the modal or show a success message.
+                        $('#myModal' + response.id).modal('hide');
+                        swal("Suppression avec succès", "", "success");
+                        setTimeout(function () {
+                            swal.close();
+                        }, 2000);
+
+
+
+                        // Display a success message (you need to implement this part)
+                        // alert(JSON.stringify(response));
+                    } else {
+                        // Display an error message (you need to implement this part)
+                        alert(response.message);
+                    }
+                },
+                error: function () {
+                    // Handle AJAX error (you need to implement this part)
+                    alert('Error during AJAX request');
+                }
+            });
+        });
+
+
     });
 
 </script>

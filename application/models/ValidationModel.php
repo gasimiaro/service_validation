@@ -78,7 +78,7 @@ class ValidationModel extends CI_Model {
     }
 
     public function completeValidation(){
-        $sql = "SELECT validation.id,validation.immatricule, agent.NOM, agent.PRENOMS, 
+        $sql = "SELECT validation.numDossier, validation.id,validation.immatricule, agent.NOM, agent.PRENOMS, 
                 validation.DuDateValidation, validation.AuDateValidation, 
                 validation.Cas, validation.typeBudget, validation.dateArrive, 
                 validation.comptable, user.prenom FROM validation, agent, user 
@@ -90,7 +90,7 @@ class ValidationModel extends CI_Model {
 
 
     public function pendingValidation(){
-        $sql = "SELECT validation.id,validation.immatricule, agent.NOM, agent.PRENOMS, 
+        $sql = "SELECT validation.id,validation.numDossier,validation.immatricule, agent.NOM, agent.PRENOMS, 
                 validation.DuDateValidation, validation.AuDateValidation, 
                 validation.Cas, validation.typeBudget, validation.dateArrive, 
                 validation.comptable, user.prenom FROM validation, agent, user 

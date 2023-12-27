@@ -53,7 +53,7 @@ class ValidationController extends CI_Controller {
             $response['id'] = $idValidation;
             $response['comptable'] = $comptable;
             // $response['prenoms'] = $prenoms;
-            $this->session->set_flashdata('success', 'Donnée a été suppmodifié, ');
+            // $this->session->set_flashdata('success', 'Donnée a été suppmodifié, ');
 
 
         } else {

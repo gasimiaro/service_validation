@@ -152,6 +152,8 @@ public function userDetails(){
 
       $data['results'] = $this->agentmodel->checkComptable($immatricule);
       $data['byComptable'] = $this->agentmodel->byComptableValidation($immatricule);
+      $data['comptable'] = $this->comptablemodel->comptable();
+
 
       $this->load->view('adminHeader',$data);
       $this->load->view('userDetailsPages', $data);

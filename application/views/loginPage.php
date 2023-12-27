@@ -94,7 +94,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <?php
           }
           ?>
-                <form class="login-form" action="<?php echo base_url(); ?>logincontroller/login" method="post">
+                <!-- <form class="login-form" action="<?php echo base_url(); ?>logincontroller/login" method="post"> -->
+                <form class="login-form" id="login-form">
+
                     <div class="input-group  input-group-lg">
                         <span class="input-group-text" style="height:48px; background-color:#ff6347; color:white"><i class="lni lni-user"></i></span>
                         <input type="text" class="form-control" name="imat" id="imatInput" placeholder="Immatricule" required>
@@ -179,12 +181,68 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	<script type='text/javascript' src='<?php echo base_url()?>assets/js/toaste.js'></script>
 	<script src="<?php echo base_url()?>/assets/js/title.js"></script>
+      <!-- sweet alert JavaScript -->
+      <script src="<?php echo base_url()?>assets/template/js/sweetAlert.js"></script>
 
     <script>
     function updateImmatricule(immatricule) {
         // Update the input field with the clicked immatricule
         $('#imatInput').val(immatricule);
     }
+
+
+
+
+
+
+    $(document).ready(function () {
+        // Add an event listener for the form submission
+        $('#login-form').submit(function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            var formData = $(this).serialize();
+
+
+            $.ajax({
+                type: 'POST', // Use GET method
+                url: '<?php echo base_url("logincontroller/login"); ?>' , // Append form data to the URL
+                data: formData, // Use the data option for POST requests
+                dataType: 'json',
+                success: function (response) {
+                    // Check the response
+                    if (!response.success) {
+
+                        swal("Vous etes blocké!!!", "Contacter l'administrateur!","warning");
+                        setTimeout(function(){
+                            swal.close();
+                        }, 4000);
+                        // Display a success message (you need to implement this part)
+                        // alert(JSON.stringify(response));
+                    } else {
+                        // Display an error message (you need to implement this part)
+                        swal("Vous etes connecter!!!", "","success");
+                        setTimeout(function(){
+                            swal.close();
+                        }, 3000);
+                        if(response.fonction == "Chef de Bureau"){
+                            window.location.href = '<?php echo base_url("adminpage"); ?>';
+                        }
+                        else{
+                            window.location.href = '<?php echo base_url("userpage"); ?>';
+                        }
+                    }
+                },
+                error: function () {
+                    // Handle AJAX error (you need to implement this part)
+                    alert('Error during AJAX request');
+                }
+            });
+        });
+
+    });
+
+
 </script>
 
 </body>

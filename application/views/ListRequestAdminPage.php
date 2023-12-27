@@ -31,6 +31,7 @@
                     <thead>
                         <tr>
                         <th></th>
+                        <th>N° Dossier</th>
                         <th width="2%">Immatricule</th>
                         <th>Nom et Prenom</th>
                         <th>Cas</th>
@@ -45,6 +46,7 @@
                     <tbody>
                         <?php foreach ($listValidation as $validation){ 
                         $id = $validation->id;
+                        $numDossier = $validation->numDossier;
                         $immatricule = $validation->immatricule;
                         $nom = $validation->NOM;
                         $prenom = $validation->PRENOMS;
@@ -73,6 +75,35 @@
                         }
                         
                         ?>
+                           <tr id="line-delete-<?php echo $id; ?>">
+                        <td></td>
+                        <td><?php echo $numDossier; ?></td>
+                            <td><?php echo $immatricule; ?></td>
+                            <td><?php echo $nom.' '.$prenom; ?></td>
+                            <td>
+                            <p class="mb-0"><?php echo $cas; ?></p>
+                            </td>
+                            <td>
+                            <p class="mb-0"><?php echo $typeBudget; ?></p>
+                            </td>
+                            <td>
+                            <p class="mb-0"><?php echo $dateArrives; ?></p>
+                            </td>
+                            <td>
+                            <p class="mb-0" id="comptable-im-<?php echo $id ?>"><?php echo $comPrenom; ?></p>
+                            </td>
+                            <td>
+                            <p class="mb-0"><?php echo $statut; ?></p>
+                            </td>
+                            <td>
+                            <div class="flex align-items-center list-user-action">
+                                <!-- <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="admin-add-category.html"><i class="ri-pencil-line"></i></a> -->
+                                <?php echo $editButton; ?> 
+                                <?php echo $delButton; ?>
+
+                            </div>
+                            </td>
+                        </tr>
                         <div id="modal-edit-<?php echo $id; ?>" class="modal fade">
                             <div class="modal-dialog modal-confirm">
                                 <div class="modal-content">
@@ -142,34 +173,7 @@
                                 </div>
                             </div>
                         </div>
-                        <tr id="line-delete-<?php echo $id; ?>">
-                        <td></td>
-                            <td><?php echo $immatricule; ?></td>
-                            <td><?php echo $nom.' '.$prenom; ?></td>
-                            <td>
-                            <p class="mb-0"><?php echo $cas; ?></p>
-                            </td>
-                            <td>
-                            <p class="mb-0"><?php echo $typeBudget; ?></p>
-                            </td>
-                            <td>
-                            <p class="mb-0"><?php echo $dateArrives; ?></p>
-                            </td>
-                            <td>
-                            <p class="mb-0" id="comptable-im-<?php echo $id ?>"><?php echo $comPrenom; ?></p>
-                            </td>
-                            <td>
-                            <p class="mb-0"><?php echo $statut; ?></p>
-                            </td>
-                            <td>
-                            <div class="flex align-items-center list-user-action">
-                                <!-- <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="admin-add-category.html"><i class="ri-pencil-line"></i></a> -->
-                                <?php echo $editButton; ?> 
-                                <?php echo $delButton; ?>
-
-                            </div>
-                            </td>
-                        </tr>
+                     
                         
                         
                         <?php } ?>
@@ -184,6 +188,7 @@
                     <thead>
                         <tr>
                         <th></th>
+                        <th>N° Dossier</th>
                         <th id="imComplete">Immatricule</th>
                         <th>Nom et Prenom</th>
                         <th>Cas</th>
@@ -198,6 +203,7 @@
                     <tbody>
                         <?php foreach ($completeValidation as $validation){ 
                         $id = $validation->id;
+                        $numDossier = $validation->numDossier;
                         $immatricule = $validation->immatricule;
                         $nom = $validation->NOM;
                         $prenom = $validation->PRENOMS;
@@ -222,6 +228,7 @@
                         ?>
                         <tr id="line-delete-<?php echo $id; ?>">
                         <td></td>
+                        <td><?php echo $numDossier; ?></td>
                             <td><?php echo $immatricule; ?></td>
                             <td><?php echo $nom.' '.$prenom; ?></td>
                             <td>
@@ -241,8 +248,8 @@
                             </td>
                             <td>
                             <div class="flex align-items-center list-user-action">
-                                <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="admin-add-category.html"><i class="ri-pencil-line"></i></a>
-                                <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line"></i></a>
+                            <a class="bg-secondary disabled" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line"></i></a>                                
+                            <a href="#'.$id.'" class="bg-secondary disabled"><i class="ri-delete-bin-line"></i></a>
                             </div>
                             </td>
                         </tr>
@@ -257,6 +264,7 @@
                     <thead>
                         <tr>
                         <th></th>
+                        <th>N°Dossier</th>
                         <th id="imPendig">Immatricule</th>
                         <th>Nom et Prenom</th>
                         <th>Cas</th>
@@ -271,6 +279,7 @@
                     <tbody>
                         <?php foreach ($pendingValidation as $validation){ 
                             $id = $validation->id;
+                            $numDossier = $validation->numDossier;
                         $immatricule = $validation->immatricule;
                         $nom = $validation->NOM;
                         $prenom = $validation->PRENOMS;
@@ -295,6 +304,7 @@
                         ?>
                         <tr id="line-delete-<?php echo $id; ?>">
                         <td></td>
+                        <td><?php echo $numDossier; ?></td>
                             <td><?php echo $immatricule; ?></td>
                             <td><?php echo $nom.' '.$prenom; ?></td>
                             <td>
@@ -314,11 +324,81 @@
                             </td>
                             <td>
                             <div class="flex align-items-center list-user-action">
-                                <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="admin-add-category.html"><i class="ri-pencil-line"></i></a>
-                                <a class="bg-primary" data-toggle="tooltip"  title="" data-original-title="Delete" ><i class="ri-delete-bin-line"></i></a>
-                            </div>
+                            <a  href="#modal-edit2-<?php echo $id ?>" class="bg-primary" data-toggle="modal" data-placement="top" title="" data-original-title="Edit"><i class="ri-pencil-line"></i></a>                                
+                            <a href="#myModal2<?php echo $id ?>" class="bg-primary" data-id="'.$id.'" data-toggle="modal" data-original-title="Supprimer"><i class="ri-delete-bin-line"></i></a>                            </div>
                             </td>
                         </tr>
+
+                        <div id="modal-edit2-<?php echo $id; ?>" class="modal fade">
+                            <div class="modal-dialog modal-confirm">
+                                <div class="modal-content">
+                                    <div class="modal-header flex-column">
+                                        <div class="icon-box">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                        <h4 class="modal-title w-100">Comptable</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- <p>Voullez-vous la editer ?</p> -->
+                                        <!-- <form id="edit-comptable-form" action="<?php echo base_url(); ?>validationcontroller/editValidationComptable" method="post"> -->
+                                        <form id="edit-comptable-form" >
+
+                                            
+                                            <!-- <label for="#">Comptable</label> -->
+                                            <select class="custom-select" id="select-id" name="comptableId" required>
+                                                <option value="">Sélectioné le comptable</option>
+                                                <?php 
+                                                $prenomsArray = array();
+                                                foreach ($comptable as $comptab){ 
+                                                    $imat = $comptab->imUser; 
+                                                    $prenom = $comptab->prenom; 
+                                                    $prenomsArray[$imat] = $prenom;
+                                                ?>
+                                                <option value="<?php echo $imat; ?>" <?php echo ($comImmatricule == $imat) ? "selected" : ""; ?>> <?php echo $prenom; ?></option>
+                                                <?php } ?>
+                                            </select>
+                                            <input type="hidden" name="prenoms" value="<?php echo isset($prenomsArray[$comImmatricule]) ? $prenomsArray[$comImmatricule] : ''; ?>">
+                                        
+                                    </div>
+                                    <div class="modal-footer justify-content-center">
+                                        
+                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Annuler</button>
+                                            <input type="hidden" id="idnum"  name="id" value="<?php echo $id; ?>">
+                                            <button type="submit" class="btn btn-success">Valider</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="myModal2<?php echo $id; ?>" class="modal fade">
+                            <div class="modal-dialog modal-confirm">
+                                <div class="modal-content">
+                                    <div class="modal-header flex-column">
+                                        <div class="icon-box">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                        <h4 class="modal-title w-100">Confirmation</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Voullez-vous la supprimer ?</p>
+                                        
+                                    </div>
+                                    <div class="modal-footer justify-content-center">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">NON</button>
+                                        <!-- <form action="<?php echo base_url(); ?>validationcontroller/delValidation" method="post"> -->
+                                        <form id="delete-validation-form">
+
+                                            <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                            <button type="submit" class="btn btn-danger">OUI</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <?php } ?>
                     </tbody>
                 </table>

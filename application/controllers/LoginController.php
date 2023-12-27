@@ -32,16 +32,25 @@ class LoginController extends CI_Controller {
             if ($data) {
                 if ($data['fonction'] == 'Chef de Bureau') {
                     $this->session->set_userdata('user', $data);
-                    redirect('adminpage');
+                    $response['success'] = true;
+                    $response['fonction'] = 'Chef de Bureau';
+
+                    // redirect('adminpage');
                 }else {
             
                     if ($data['statut'] == "Deblocké") {
                     $this->session->set_userdata('user', $data);
-                            redirect('userpage');
+                    $response['success'] = true;
+                    $response['fonction'] = 'Comptable';
+
+                            // redirect('userpage');
                     }elseif ($data['statut'] == "Blocké") {
-                    redirect('/login');
+                        // $this->session->set_flashdata('error', 'Vous etes blocker, ');
+                        $response['success'] = false;
+                        
                     }
                 }
+                echo json_encode($response);
             } else {
                 $this->session->set_flashdata('error', 'Invalide d\'authentification, ');
                 redirect('/login');
