@@ -188,6 +188,7 @@
 $(document).ready(function () {
         // Add an event listener for the form submission
   
+        document.getElementById('gererUser').classList.add("active");
 
 
         $('#form-add-user').submit(function (e) {

@@ -126,7 +126,9 @@
     <!-- Style Customizer -->
     <script src="<?php echo base_url()?>assets/template/js/style-customizer.js"></script>
     <!-- Chart Custom JavaScript -->
-    <script src="<?php echo base_url()?>assets/template/js/chartCustom.js"></script>
+    <!-- <script src="<?php echo base_url()?>assets/template/js/chartCustom.js"></script> -->
+    <script src="<?php echo base_url()?>assets/js/chart-Customs.js"></script>
+
     <!-- Custom JavaScript -->
     <script src="<?php echo base_url()?>assets/template/js/customs.js"></script>
     <!-- sweet alert JavaScript -->

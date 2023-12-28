@@ -399,6 +399,7 @@
 
 <script>
 
+document.getElementById('gererUser').classList.add("active");
 
     $('#editButton').click(function() {
         var row = $(this).closest('.row');

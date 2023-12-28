@@ -47,14 +47,18 @@ class LoginController extends CI_Controller {
                     }elseif ($data['statut'] == "Blocké") {
                         // $this->session->set_flashdata('error', 'Vous etes blocker, ');
                         $response['success'] = false;
+                        $response['message'] =  'Vous êtes blocker';
                         
                     }
                 }
-                echo json_encode($response);
             } else {
-                $this->session->set_flashdata('error', 'Invalide d\'authentification, ');
-                redirect('/login');
+                // $this->session->set_flashdata('error', 'Invalide d\'authentification, ');
+                // redirect('/login');
+                $response['success'] = false;
+                $response['message'] =  'On vous connait pas!!!';
             }
+            echo json_encode($response);
+
         }
     
         public function logout() {

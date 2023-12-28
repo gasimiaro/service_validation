@@ -83,6 +83,66 @@ class AdminPageController extends CI_Controller {
         redirect('/login');
     }
   }
+
+  public function listPendingAdmin(){
+    $user = $this->session->userdata('user');
+    $immatricule = $user['imUser'];
+    $data['number'] = $this->validationmodel->Notification($immatricule);
+    $data['newValidation'] = $this->validationmodel->NewValidation($immatricule);
+    $data['count'] = $this->validationmodel->TotalNbValidationByComp($immatricule);
+    $data['countYear'] = $this->validationmodel->YearNbValidationByCom($immatricule);
+    $data['countTraite'] = $this->validationmodel->NbTraiteValidationByCom($immatricule);
+    $data['countWait'] = $this->validationmodel->NbWaitValidationByCom($immatricule);
+    // $data['validationData'] = $this->validationmodel->allBudgetValidationByCompt($immatricule);
+    $data['pendingValidation'] = $this->validationmodel->pendingValidation();
+    $data['comptable'] = $this->comptablemodel->comptable();
+
+
+  
+    if($user && isset($user['fonction'])){ 
+        if($user['fonction'] == 'Comptable'){
+            $this->load->view('Header', $data);
+            $this->load->view('PendingAdminPage', $data);
+            $this->load->view('Footer');
+        } elseif ($user['fonction'] == 'Chef de Bureau') {
+          $this->load->view('adminHeader', $data);
+          $this->load->view('PendingAdminPage', $data);
+          $this->load->view('Footer');
+        }
+    } else {
+        redirect('/login');
+    }
+  }
+  public function listCompleteAdmin(){
+    $user = $this->session->userdata('user');
+    $immatricule = $user['imUser'];
+    $data['number'] = $this->validationmodel->Notification($immatricule);
+    $data['newValidation'] = $this->validationmodel->NewValidation($immatricule);
+    $data['count'] = $this->validationmodel->TotalNbValidationByComp($immatricule);
+    $data['countYear'] = $this->validationmodel->YearNbValidationByCom($immatricule);
+    $data['countTraite'] = $this->validationmodel->NbTraiteValidationByCom($immatricule);
+    $data['countWait'] = $this->validationmodel->NbWaitValidationByCom($immatricule);
+    // $data['validationData'] = $this->validationmodel->allBudgetValidationByCompt($immatricule);
+    $data['completeValidation'] = $this->validationmodel->completeValidation();
+    $data['comptable'] = $this->comptablemodel->comptable();
+
+
+  
+    if($user && isset($user['fonction'])){ 
+        if($user['fonction'] == 'Comptable'){
+            $this->load->view('Header', $data);
+            $this->load->view('CompleteAdminPage', $data);
+            $this->load->view('Footer');
+        } elseif ($user['fonction'] == 'Chef de Bureau') {
+          $this->load->view('adminHeader', $data);
+          $this->load->view('CompleteAdminPage', $data);
+          $this->load->view('Footer');
+        }
+    } else {
+        redirect('/login');
+    }
+  }
+
   public function allBudgetDownPageAdmin(){
     $user = $this->session->userdata('user');
     $immatricule = $user['imUser'];

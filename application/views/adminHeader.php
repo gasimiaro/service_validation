@@ -256,20 +256,33 @@ function listeClick(){
               <nav class="iq-sidebar-menu">
                 <ul id="iq-sidebar-toggle" class="iq-menu">
                     
-                    <li class="active">
+                    <!-- <li class="active">
                       <a href="#admin" class="iq-waves-effect" data-toggle="collapse" aria-expanded="true"><span class="ripple rippleEffect"></span><i class="las la-home iq-arrow-left"></i><span>Acceuil</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                       <ul id="admin" class="iq-submenu collapse show" data-parent="#iq-sidebar-toggle">
                           <li class="active"><a href="<?php echo base_url(); ?>index.php/adminpagecontroller/AdminPageHome"><i class="las la-house-damage"></i>Tableau de bord</a></li>
                           <li><a href="<?php echo base_url(); ?>adminpagecontroller/listRequestAdmin"><i class="fa fa-download"></i>Liste des demandes</a></li>
                          
                       </ul>
+                    </li> -->
+                    <li id="adminHome" >
+                      <a href="<?php echo base_url(); ?>adminpagecontroller/AdminPageHome" class="iq-waves-effect"><i class="las la-home iq-arrow-left"></i><span>Acceuil</span></a>
+                    </li>
+                    <li>
+                      <a href="#demande" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false"><span class="ripple rippleEffect"></span><i class="lab la-elementor iq-arrow-left"></i><span>Demande</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                      <ul id="demande" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                          <li id="adminAllList"><a href="<?php echo base_url(); ?>adminpagecontroller/listRequestAdmin"><i class="ri-inbox-fill"></i>Demande reçue</a></li>
+                          <li id="adminPendingList"><a href="<?php echo base_url(); ?>adminpagecontroller/listPendingAdmin"><i class="ion-alert"></i>Demande En attente</a></li>
+                          <li id="AdminHome"><a href="<?php echo base_url(); ?>index.php/backend/AdminPageHome"><i class="">?</i>Avoir d'anomalie</a></li>
+                          <li id="adminCompleteList"><a href="<?php echo base_url(); ?>adminpagecontroller/listCompleteAdmin"><i class="fa fa-check-circle"></i>Demande Traité</a></li>
+                         
+                      </ul>
                     </li>
                    
-                    <li>
+                    <li id="gererUser">
                       <a href="<?php echo base_url(); ?>adminpagecontroller/gererUser" class="iq-waves-effect"><i class="las la-user-tie iq-arrow-left"></i><span>Utilisateur</span></a>
                       
                     </li>
-                    <li>
+                    <li >
                       <!-- <a href="<?php echo base_url(); ?>" class="iq-waves-effect"><i class="ri-login-box-line iq-arrow-left"></i><span>Se Déconnecter</span></a> -->
                       <a  href="#modal-disconnect"  data-toggle="modal" data-placement="top" title="" data-original-title="Disconnect" class="iq-waves-effect"><i class="ri-login-box-line iq-arrow-left"></i><span>Se Déconnecter</span></a>
                     </li>

@@ -10,6 +10,9 @@ $route['adminpage'] = 'adminpagecontroller/AdminPageHome';
 
 $route['userpage'] = 'userpagecontroller/UserPageHome';
 $route['liste-demande'] = 'adminpagecontroller/listRequestAdmin';
+$route['liste-en-attente-demande'] = 'adminpagecontroller/listPendingAdmin';
+$route['liste-complete-demande'] = 'adminpagecontroller/listCompleteAdmin';
+
 
 
 

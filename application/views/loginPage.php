@@ -132,7 +132,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     if ($image != "") {
                                         $imageUrl = base_url() . 'assets/images/profile/' . $image;
                                     } else {
-                                    $imageUrl = base_url() . 'assets/images/profile/profile.png';
+                                    $imageUrl = base_url() . 'assets/template/images/user/whatsapp-dp-for-boys.webp';
                                     }
 
                                     if ($fonction == 'Chef De Service') {
@@ -213,7 +213,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     // Check the response
                     if (!response.success) {
 
-                        swal("Vous etes blocké!!!", "Contacter l'administrateur!","warning");
+                        swal(response.message, "Contacter l'administrateur!","warning");
                         setTimeout(function(){
                             swal.close();
                         }, 4000);
