@@ -3413,20 +3413,26 @@ if(jQuery('#chartdiv').length){
             colors: ['#ff4545', '#ffc107', '#1ee2ac'],
             series: [{
                 name: 'En attente',
-                data: [44, 55, 57, 56, 61, 58]
-            }, {
-                name: 'Anomalie',
-                data: [76, 85, 101, 98, 87, 105]
-            }, {
+                // data: [44, 55, 0, 56, 61, 58, 22, 56, 32, 95, 74, 24]
+                data: statPendingValidation
+
+            },
+            //  {
+            //     name: 'Anomalie',
+            //     data: [76, 85, 0, 98, 87, 105, 56, 51, 34, 8, 55, 12]
+            // }, 
+            {
                 name: 'Traité',
-                data: [35, 41, 36, 26, 45, 48]
+                // data: [35, 41, 0, 26, 45, 48, 12, 34, 26, 27, 29, 46]
+                data: statCompleteValidation
+
             }],
             xaxis: {
-                categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                categories: ['Jan','Fev', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul','Aoû','Sep','Oct','Nov','Dec'],
             },
             yaxis: {
                 title: {
-                    text: 'Nombre des demandes'
+                    text: 'Nombre de demandes en '+ statePerMonthYear
                 }
             },
             fill: {
@@ -6081,7 +6087,7 @@ if(jQuery('#chartdiv').length){
 
         yAxis: {
             title: {
-                text: 'Nombre des demandes'
+                text: 'Nombre de demandes'
             }
         },
         legend: {
@@ -6095,25 +6101,34 @@ if(jQuery('#chartdiv').length){
                 label: {
                     connectorAllowed: false
                 },
-                pointStart: 2010
+                pointStart: 2022                
             }
         },
 
         series: [{
             name: 'Tous les Types de Budget',
-            // data: [10, 30, 25, 60, 22, 69, 80, 90],
+            // data: [30, 25, 60, 22, 69, 80],
+            data: countValidationsByYear,
+
             color: '#ff4545'
+
         }, {
             name: 'Budget Generale',
-            data: [2, 25, 6, 50, 20, 40, 70, 78],
+            data: countValidationsBG,
+
+            // data: [2, 25, 6, 50, 20, 40, 70, 78],
             color: '#1ee2ac'
         }, {
             name: 'Budget Autonome',
-            data: [6, 3, 15, 5, 1, 20, 5, 8],
+            data: countValidationsBA,
+
+            // data: [6, 3, 15, 5, 1, 20, 5, 8],
             color: '#ff7750'
         }, {
             name: 'Budget Autonome - Budget Generale',
-            data: [null, null, 15, 20, 30, 10, 20, 36],
+            data: countValidationsBABG,
+
+            // data: [null, null, 15, 20, 30, 10, 20, 36],
             color: '#00d0ff'
         }],
 

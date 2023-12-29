@@ -114,7 +114,7 @@
   </div>
   <!-- Dans votre vue adminHome.php -->
 
-  <div class="col-sm-6 col-lg-6">
+  <!-- <div class="col-sm-6 col-lg-6">
     <div class="iq-card">
       <div class="iq-card-header d-flex justify-content-between">
           <div class="iq-header-title">
@@ -123,16 +123,11 @@
       </div>
       <div class="iq-card-body">
           <div id="high-pie-chart"></div>
-          <script>
-            // Stocker les données dans une variable JavaScript
-            var numberBGPerYearData = <?php echo json_encode($numberBG); ?>;
-            var numberBAPerYearData = <?php echo json_encode($numberBA); ?>;
-            var numberBAGPerYearData = <?php echo json_encode($numberBAG); ?>;
-          </script>
+       
       </div>
     </div>
-</div>
-<div class="col-lg-6">
+</div> -->
+<!-- <div class="col-lg-6">
     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
         <div class="iq-card-header d-flex justify-content-between">
             <div class="iq-header-title">
@@ -142,27 +137,56 @@
         <div class="iq-card-body">
             <div id="progress-chart-2"></div>
             <script>
-                // Stocker les données dans une variable JavaScript
                 var numberPerMonthData = <?php echo json_encode($numberPerMonth); ?>;
             </script>
         </div>
     </div>
-</div>
+</div> -->
 
 
-<div class="col-lg-5">
+                <div class="col-lg-5">
                   <div class="iq-card">
                      <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
-                           <h4 class="card-title">Demande Par Mois</h4>
+                           <h4 class="card-title" style="display: inline-block;">Demande Par Mois  </h4>
+                           <select class="form-control" id="year-filter-state">
+                              <!-- <option selected="" disabled="">Select your age</option> -->
+                           
+                            </select>
                         </div>
                      </div>
                      <div class="iq-card-body">
                         <div id="apex-column"></div>
+                        <script>
+   
+   var statCompleteValidation = <?php echo json_encode($statCompleteValidation); ?>;
+   var statPendingValidation = <?php echo json_encode($statPendingValidation); ?>;
+   var statePerMonthYear = new Date().getFullYear();
+   
+
+
+   //graph par type de budget par annee
+   var countValidationsByYear = <?php echo json_encode($countValidationsByYear); ?>;
+   var countValidationsBG = <?php echo json_encode($countValidationsBG); ?>;
+   var countValidationsBA = <?php echo json_encode($countValidationsBA); ?>;
+   var countValidationsBABG = <?php echo json_encode($countValidationsBABG); ?>;
+
+
+   // console.log("statePerMonthYear: "+statePerMonthYear)
+   // console.log("BA : "+numberBAPerYearData)
+   // console.log("BABG : "+numberBAGPerYearData)
+   // console.log("countValidationsByYear: "+JSON.stringify(countValidationsByYear))
+   // console.log("countValidationsBG: "+JSON.stringify(countValidationsBG))
+   // console.log("countValidationsBA: "+JSON.stringify(countValidationsBA))
+   // console.log("countValidationsBABG: "+JSON.stringify(countValidationsBABG))
+
+
+
+ </script>
                      </div>
                   </div>
                </div>
-<div class="col-lg-7">
+               <div class="col-lg-7">
                   <div class="iq-card">
                      <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
@@ -238,5 +262,76 @@
 
 </div>
           <script>
-              document.getElementById('adminHome').classList.add("active");
+ 
+
+// Attendre que le document soit prêt
+$(document).ready(function () {
+
+      document.getElementById('adminHome').classList.add("active");
+
+    // Obtenez l'élément select
+    var yearFilterState = document.getElementById('year-filter-state');
+
+    // Obtenez l'année actuelle
+    var currentYear = new Date().getFullYear();
+
+    // Boucle pour ajouter des options au menu déroulant
+    for (var year = currentYear; year >= 2000; year--) {
+        var option = document.createElement('option');
+        option.value = year;
+        option.text = year;
+        yearFilterState.add(option);
+    }
+
+    // Sélectionnez par défaut l'option "Select your age"
+    yearFilterState.selectedIndex = 0;
+
+
+    // Sélectionner l'élément select par son ID
+    var yearFilterState = $('#year-filter-state');
+    var myChart = $('#apex-column');
+
+
+    // Attacher un gestionnaire d'événements au changement de valeur du select
+    yearFilterState.change(function () {
+        // Récupérer la valeur sélectionnée
+        var selectedYearRange = $(this).val();
+
+        // Faire la requête Ajax avec la valeur sélectionnée
+        $.ajax({
+            type: 'POST', // ou 'GET' selon vos besoins
+            url: '<?php echo base_url("adminpagecontroller/filterGraphStateValidation"); ?>' , // Append form data to the URL
+            data: { selectedYearRange: selectedYearRange }, // Les données que vous souhaitez envoyer au script PHP
+            dataType: 'json',
+
+            success: function (response) {
+                // Traitement de la réponse (ce que vous voulez faire avec les données renvoyées par le script PHP)
+// console.log(myChart);
+                chart.updateSeries([{
+                    data: response.statPendingValidation
+                }, {
+                    data: response.statCompleteValidation
+                }]);
+                chart.updateOptions({
+                    yaxis: {
+                        title: {
+                            text: 'Nombre de demandes en ' + selectedYearRange
+                        }
+                    }
+                });
+
+
+                // console.log(response.statCompleteValidation);
+                // console.log(response.statPendingValidation);
+
+            },
+            error: function (error) {
+                // Gestion des erreurs
+                console.error('Erreur de requête Ajax :', error);
+            }
+        });
+    });
+});
+
+
             </script>

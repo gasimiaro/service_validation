@@ -100,6 +100,94 @@ class ValidationModel extends CI_Model {
         return $query->result();
     }
 
+    public function validationStatePendingPerMonth($annee) {
+        $result = array_fill(1, 12, 0); // Initialiser le tableau avec des zéros pour chaque mois
+
+        $this->db->select('MONTH(dateArrive) as mois, COUNT(*) as nombre_attente');
+        $this->db->from('validation');
+        $this->db->where('YEAR(dateArrive)', $annee);
+        $this->db->where('DuDateValidation', '');
+        $this->db->where('AuDateValidation', '');
+        $this->db->group_by('mois');
+
+        $query = $this->db->get();
+
+        foreach ($query->result() as $row) {
+            $result[$row->mois] = $row->nombre_attente;
+        }
+        $result = array_values($result);
+
+        return $result;
+    }
+
+    public function validationStateCompletePerMonth($annee) {
+        $result = array_fill(1, 12, 0); // Initialiser le tableau avec des zéros pour chaque mois
+
+        $this->db->select('MONTH(dateArrive) as mois, COUNT(*) as nombre_complete');
+        $this->db->from('validation');
+        $this->db->where('YEAR(dateArrive)', $annee);
+        $this->db->where('DuDateValidation !=', '');
+        $this->db->where('AuDateValidation !=', '');
+        $this->db->group_by('mois');
+
+        $query = $this->db->get();
+
+        foreach ($query->result() as $row) {
+            $result[$row->mois] = $row->nombre_complete;
+        }
+        $result = array_values($result);
+
+        return $result;
+    }
+
+
+    public function countValidationsByYear() {
+        $startYear = 2022; // Année de départ
+        $currentYear = date('Y');
+        
+        $this->db->select('YEAR(dateArrive) as year, COUNT(*) as count');
+        $this->db->from('validation');
+        $this->db->where('YEAR(dateArrive) >=', $startYear);
+        $this->db->group_by('YEAR(dateArrive)');
+        $query = $this->db->get();
+        
+        $result = array();
+        for ($i = $startYear; $i <= $currentYear; $i++) {
+            $result[$i] = 0;
+        }
+        
+        foreach ($query->result() as $row) {
+            $result[$row->year] = (int)$row->count;
+        }
+        $result = array_values($result);
+
+        return $result;
+    }
+
+    public function countValidationsByTypeBudget($typeBudget) {
+        $startYear = 2022; // Année de départ
+        $currentYear = date('Y');
+        
+        $this->db->select('YEAR(dateArrive) as year, COUNT(*) as count');
+        $this->db->from('validation');
+        $this->db->where('YEAR(dateArrive) >=', $startYear);
+        $this->db->where('typeBudget =', $typeBudget);
+        $this->db->group_by('YEAR(dateArrive)');
+        $query = $this->db->get();
+        
+        $result = array();
+        for ($i = $startYear; $i <= $currentYear; $i++) {
+            $result[$i] = 0;
+        }
+        
+        foreach ($query->result() as $row) {
+            $result[$row->year] = (int)$row->count;
+        }
+        $result = array_values($result);
+
+        return $result;
+    }
+
     private function getMonthName($monthNumber) {
         $monthNames = array(
             1 => 'Jan',

@@ -31,12 +31,20 @@ class AdminPageController extends CI_Controller {
         $data['listValidation'] = $this->validationmodel->allValidation();
 
         $data['completeValidation'] = $this->validationmodel->completeValidation();
-       
-        
+       //for graph
+        $data['statCompleteValidation'] = $this->validationmodel->validationStateCompletePerMonth(date('Y'));
+        $data['statPendingValidation'] = $this->validationmodel->validationStatePendingPerMonth(date('Y'));
+        $data['countValidationsByYear'] = $this->validationmodel->countValidationsByYear();
+        $data['countValidationsBG'] = $this->validationmodel->countValidationsByTypeBudget('BG');
+        $data['countValidationsBA'] = $this->validationmodel->countValidationsByTypeBudget('BA');
+        $data['countValidationsBABG'] = $this->validationmodel->countValidationsByTypeBudget('BABG');
+
+
+
         $data['numberPerMonth'] = $this->validationmodel->numberPerMonth();
-        $data['numberBG'] = $this->validationmodel->numberBG();
-        $data['numberBA'] = $this->validationmodel->numberBA();
-        $data['numberBAG'] = $this->validationmodel->numberBAG();
+        // $data['numberBG'] = $this->validationmodel->numberBG();
+        // $data['numberBA'] = $this->validationmodel->numberBA();
+        // $data['numberBAG'] = $this->validationmodel->numberBAG();
 
     if($user && isset($user['fonction'])){ 
         if($user['fonction'] == 'Chef de Bureau'){
@@ -51,6 +59,24 @@ class AdminPageController extends CI_Controller {
         redirect('/login');
     }
   }
+  public function filterGraphStateValidation(){
+    // Récupérer la valeur sélectionnée depuis la requête POST
+    $selectedYearRange = $this->input->post('selectedYearRange');
+
+    // Appeler les méthodes du modèle avec la bonne variable
+    $statCompleteValidation = $this->validationmodel->validationStateCompletePerMonth($selectedYearRange);
+    $statPendingValidation = $this->validationmodel->validationStatePendingPerMonth($selectedYearRange);
+
+    // Préparer la réponse JSON
+    $response['success'] = true;
+    $response['statCompleteValidation'] = $statCompleteValidation;
+    $response['statPendingValidation'] = $statPendingValidation;
+
+    // Envoyer la réponse JSON
+    echo json_encode($response);
+}
+
+
 
   public function listRequestAdmin(){
     $user = $this->session->userdata('user');
@@ -65,6 +91,9 @@ class AdminPageController extends CI_Controller {
     $data['listValidation'] = $this->validationmodel->allValidation();
     $data['completeValidation'] = $this->validationmodel->completeValidation();
     $data['pendingValidation'] = $this->validationmodel->pendingValidation();
+
+
+
     $data['comptable'] = $this->comptablemodel->comptable();
 
 
@@ -240,12 +269,6 @@ public function userDetails(){
   }
   echo json_encode($response);
 
-
-    
-    // $this->load->view('adminHeader',$data);
-    // $this->load->view('userDetailsPages', $data);
-    // $this->load->view('Footer');
-    
   }
 
 }
