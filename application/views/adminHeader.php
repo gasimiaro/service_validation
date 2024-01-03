@@ -206,7 +206,7 @@ function listeClick(){
         </div>
     </div>
     <!-- loader END -->
-    <div id="modal-disconnect" class="modal fade">
+                          <div id="modal-disconnect" class="modal fade">
                             <div class="modal-dialog modal-confirm">
                                 <div class="modal-content">
                                     <div class="modal-header flex-column">
@@ -216,7 +216,6 @@ function listeClick(){
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        <!-- <p>Voullez-vous la editer ?</p> -->
                                           
                                           <p?>Etes-vous sûre de vouloir vous déconnecter? </p>
                                         

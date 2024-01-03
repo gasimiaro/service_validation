@@ -5,11 +5,13 @@ class UserPageController extends CI_Controller {
 
 	function __construct(){
         parent::__construct();
-        $this->load->helper('url');  // Load the URL Helper
+        // $this->load->helper('url');  // Load the URL Helper
+        $this->load->helper(array('form', 'url'));
+
         $this->load->model('validationmodel');
         $this->load->model('comptablemodel');
 
-
+        $this->load->library('upload');
         // $this->load->model('adminpagemodel');
         $this->load->library('session');
     }
@@ -30,8 +32,8 @@ class UserPageController extends CI_Controller {
       
         if($user && isset($user['fonction'])){ 
             if($user['fonction'] == 'Comptable'){
-                $this->load->view('Header');
-                $this->load->view('userHome');
+                $this->load->view('Header',$data);
+                $this->load->view('userHome',$data);
                 $this->load->view('Footer');
             } elseif ($user['fonction'] == 'Chef de Bureau') {
                 redirect('/login');
@@ -119,5 +121,137 @@ class UserPageController extends CI_Controller {
       echo json_encode($response);
 
     }
+
+    public function Profile(){
+      $user = $this->session->userdata('user');
+      
+      if($user && isset($user['fonction'])){ 
+        if($user['fonction'] == 'Chef de Bureau'){
+          $this->load->view('adminHeader');
+          $this->load->view('profile');
+          $this->load->view('Footer');
+          
+        } elseif ($user['fonction'] == 'Comptable') {
+          $immatricule = $user['imUser'];
+          $data['number'] = $this->validationmodel->Notification($immatricule);
+          $data['newValidation'] = $this->validationmodel->NewValidation($immatricule);
+          $data['count'] = $this->validationmodel->TotalNbValidationByComp($immatricule);
+          $data['countYear'] = $this->validationmodel->YearNbValidationByCom($immatricule);
+          $data['countTraite'] = $this->validationmodel->NbTraiteValidationByCom($immatricule);
+          $data['countWait'] = $this->validationmodel->NbWaitValidationByCom($immatricule);
+          $data['countTraiteYear'] = $this->validationmodel->NbTraiteValYearByCom($immatricule);
+          $data['countWaitYear'] = $this->validationmodel->NbWaitValYearByCom($immatricule);
+          $data['listValidation'] = $this->validationmodel->allValidationByComptable($immatricule);
+          $data['completeValidation'] = $this->validationmodel->completeValidationByComptable($immatricule);
+          $data['pendingValidation'] = $this->validationmodel->pendingValidationByComptable($immatricule);
+          $this->load->view('Header', $data);
+          $this->load->view('profile', $data);
+          $this->load->view('Footer');
+        }
+    } else {
+        redirect('/');
+    }
+    }
+
+
+   
+    // public function do_upload()
+    // {
+    //   $config['upload_path'] = './assets/template/images/user/';
+    //   $config['allowed_types'] = 'gif|jpg|png';
+    //   $config['max_size'] = 8184; // in kilobytes
+
+    //     $this->load->library('upload', $config);
+
+    //     if (!$this->upload->do_upload('userfile'))
+    //     {
+    //         $error = array('error' => $this->upload->display_errors());
+    //         // $this->load->view('upload_form', $error);
+    //     }
+    //     else
+    //     {
+    //         $data = array('upload_data' => $this->upload->data());
+    //         $this->load->view('upload_success', $data);
+    //     }
+    // }
+    
+    public function upload_image() {
+      $immatricule = $this->input->post('immatricule');
+      $config['upload_path']   = './assets/template/images/user/';  // Répertoire où vous souhaitez enregistrer les images
+      $config['allowed_types'] = 'gif|jpg|png';
+      $config['max_size']      = 2048;  // Taille maximale en kilo-octets (2MB dans cet exemple)
+
+      $this->upload->initialize($config) ;
+
+      if (!$this->upload->do_upload('userImageFile')) {
+        // if (isset($_FILES['userImageFile']) && !empty($_FILES['userImageFile']['name'])) {
+
+
+          $error = array('error' => $this->upload->display_errors());
+          echo json_encode($error);
+         
+        
+      } else {
+
+        $data = $this->upload->data();
+
+        // Get the original file extension
+        $file_ext = pathinfo($_FILES["userImageFile"]["name"], PATHINFO_EXTENSION);
+
+        // Construct the new file name with immatricule and original extension
+        $new_file_name = $immatricule . '.' . $file_ext;
+
+        // Rename the uploaded file
+        rename($config['upload_path'] . $data["file_name"], $config['upload_path'] . $new_file_name);
+       $data['update'] = $this->comptablemodel->updatedComptablePhoto($immatricule,$new_file_name);
+       
+        if ( $data['update']){
+          $response['success'] = true;
+          $response['new_file_name'] = $new_file_name;
+
+        }
+        echo json_encode($response);
+
+
+      }
+  }
+
+
+//   function ajax_upload()  
+//   {  
+//     $immatricule = $this->input->post('immatricule');
+
+//        if(isset($_FILES["image_file"]["name"]))  
+//        {  
+//          $config['upload_path']   = './assets/template/images/user/';  
+//          $config['allowed_types'] = 'jpg|jpeg|png|gif';  
+//             $this->load->library('upload');
+
+//             // $this->load->library('upload', $config);  
+//             $this->upload->initialize($config) ;
+
+//             if(!$this->upload->do_upload('image_file'))  
+//             {  
+//                  echo $this->upload->display_errors();  
+//             }  
+//             else  
+//             {  
+//                  $data = $this->upload->data();  
+
+//                 // Get the original file extension
+//                 $file_ext = pathinfo($_FILES["image_file"]["name"], PATHINFO_EXTENSION);
+
+//                 // Construct the new file name with immatricule and original extension
+//                 $new_file_name = $immatricule . '.' . $file_ext;
+
+//                 // Rename the uploaded file
+//                 rename($config['upload_path'] . $data["file_name"], $config['upload_path'] . $new_file_name);
+//                 $data['update'] = $this->comptablemodel->updatedComptablePhoto($immatricule,$new_file_name);
+
+
+//                  echo '<img src="'.base_url().'assets/template/images/user/'.$data["file_name"].'" width="300" height="225" class="img-thumbnail" />';  
+//             }  
+//        }  
+//   }  
 
 }

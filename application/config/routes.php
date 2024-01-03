@@ -13,6 +13,7 @@ $route['liste-demande'] = 'adminpagecontroller/listRequestAdmin';
 $route['liste-en-attente-demande'] = 'adminpagecontroller/listPendingAdmin';
 $route['liste-complete-demande'] = 'adminpagecontroller/listCompleteAdmin';
 
+$route['main'] = 'main/image_upload';
 
 
 

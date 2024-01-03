@@ -23,12 +23,39 @@
         <div class="iq-card-body profile-page">
             <div class="profile-header">
                 <div class="cover-container text-center">
-                    <img src="<?php echo $imageUrl; ?>" alt="profile-bg" class="rounded-circle img-fluid" style="width: 35%">
+                    <!-- <img src="<?php echo $imageUrl; ?>" alt="profile-bg" class="rounded-circle img-fluid" style="width: 35%"> -->
+                    <div class="profile-img-edit">
+                      <img class="profile-pic" src="<?php echo $imageUrl; ?>" alt="profile-pic" style="width: 190px; height: 180px;">
+                      <div class="p-image">
+                          <i class="ri-pencil-line upload-button"></i>
+                          <input type="hidden" id="immatricule_photo" name="immatricule" value="<?php echo $immatricule ?>" >
+                          <input id="file-upload"  name="userImageFile" class="file-upload" type="file" accept="image/*"/>
+                      </div>
+                    </div>
+
+<!-- 
+                    <div class="container">  
+                        <br /><br /><br />  
+                        <form method="post" id="upload_form" align="center" enctype="multipart/form-data">  
+                              <input type="file" name="image_file" id="image_file" />  
+                              <br />  
+                              <br />  
+                              <input type="hidden" name="immatricule" value="<?php echo $immatricule ?>" >
+                              <input type="submit" name="upload" id="upload" value="Upload" class="btn btn-info" />  
+                        </form>  
+                        <br />  
+                        <br />  
+                        <div id="uploaded_image">  
+                        </div>  
+                    </div>   -->
+
+                    <!-- <input type="button" id="upload_page" value="next" > -->
+
                     <div class="profile-detail mt-3">
-                    <h3><?php echo $nom; ?></h3>
-                    <h4><?php echo $prenom; ?></h4>
-                    <p class="text-success h5">IM: <?php echo $immatricule; ?></p>
-                    <p class="text-primary"><?php echo $fonction; ?></p>
+                      <h3><?php echo $nom; ?></h3>
+                      <h4><?php echo $prenom; ?></h4>
+                      <p class="text-success h5">IM: <?php echo $immatricule; ?></p>
+                      <p class="text-primary"><?php echo $fonction; ?></p>
                     </div>
                     <div class="iq-social d-inline-block align-items-center">
                     
@@ -441,3 +468,72 @@
     </div>
   </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        // Gérez le changement de fichier
+        $('#file-upload').change(function () {
+          var fileInput = document.getElementById('file-upload');
+          var file = fileInput.files[0];
+          var im = document.getElementById("immatricule_photo").value;
+          if (file ) {
+            var formData = new FormData();
+            formData.append('immatricule', im);
+            formData.append('userImageFile', file);
+
+
+            $.ajax({
+              type: 'POST',
+              url: '<?php echo base_url("userpagecontroller/upload_image"); ?>',
+              data: formData,
+              contentType: false,
+              processData: false,
+              dataType: 'json',
+
+              success: function(response) {
+                console.log(response);
+                if(response.success){
+
+                  $("#header-user-photo").attr("src", '<?php echo base_url("assets/template/images/user/"); ?>' + response.new_file_name);
+
+
+                  swal("Photo modifié!!!", "","success");
+                        setTimeout(function(){
+                            swal.close();
+                        }, 2000);
+                }
+                // Traitez la réponse JSON si nécessaire
+              },
+              error: function(error) {
+                console.error('Erreur lors du téléchargement de l\'image:', error);
+              }
+            });
+          }
+        });
+
+      //   $('#upload_form').on('submit', function(e){  
+      //      e.preventDefault();  
+      //      if($('#image_file').val() == '')  
+      //      {  
+      //           alert("Please Select the File");  
+      //      }  
+      //      else  
+      //      {  
+      //           $.ajax({  
+      //                url:"<?php echo base_url(); ?>userpagecontroller/ajax_upload",   
+      //                method:"POST",  
+      //                data:new FormData(this),  
+      //                contentType: false,  
+      //                cache: false,  
+      //                processData:false,  
+      //                success:function(data)  
+      //                {  
+      //                     $('#uploaded_image').html(data);  
+      //                }  
+      //           });  
+      //      }  
+      // });  
+
+
+    });
+</script>

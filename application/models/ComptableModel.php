@@ -77,8 +77,21 @@ public function comptables(){
         return $query->result();
     }
 
-
-
+    public function update_image($immatricule, $new_image)
+    {
+        $this->db->where('imUser', $immatricule);
+        $this->db->update('user', array('photo' => $new_image));
+    }
+    
+    public function updatedComptablePhoto($immatricule, $fileName) {
+        $data = array(
+            'photo' => $fileName
+        );
+        $this->db->where('imUser', $immatricule);
+        $this->db->update('user', $data);
+    
+        return true; // Return true after successful update
+    }
 
 
 

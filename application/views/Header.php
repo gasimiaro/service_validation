@@ -228,22 +228,35 @@ function listeClick(){
           <div id="sidebar-scrollbar">
               <nav class="iq-sidebar-menu">
                 <ul id="iq-sidebar-toggle" class="iq-menu">
-                    
+<!--                     
                     <li class="">
                       <a href="#admin" class="iq-waves-effect" data-toggle="collapse" aria-expanded="true"><span class="ripple rippleEffect"></span><i class="las la-home iq-arrow-left"></i><span>Acceuil</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
-                      <ul id="admin" class="iq-submenu collapse show" data-parent="#iq-sidebar-toggle">
-                          <li class=""><a href="<?php echo base_url(); ?>index.php/userpagecontroller/UserPageHome"><i class="las la-house-damage"></i>Dashboard</a></li>
+                      <ul id="admin" class="iq-submenu collapse show" data-parent="#iq-sidebar-toggle"> -->
+                          <li class=""><a href="<?php echo base_url(); ?>index.php/userpagecontroller/UserPageHome"><i class="las la-house-damage"></i>Acceuil</a></li>
                          
-                      </ul>
-                    </li>
+                      <!-- </ul>
+                    </li> -->
                    
-                    <li>
+                    <!-- <li>
                         <a href="#pagesValidation" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-function-line"></i><span>Liste des Demandes</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                         <ul id="pagesValidation" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                             <li><a href="<?php echo base_url(); ?>index.php/backend/InfoValidationPage"><i class="ri-check-line"></i>Demande Traitée</a></li>
                             <li><a href="<?php echo base_url(); ?>index.php/backend/receivedValidationPage"><i class="las la-edit"></i>Demade reçus</a></li>
                         </ul>
-                     </li>
+                     </li> -->
+
+                     <li>
+                      <a href="#demande" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false"><span class="ripple rippleEffect"></span><i class="lab la-elementor iq-arrow-left"></i><span>Demande</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                      <ul id="demande" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                          <li id="adminAllList"><a href="<?php echo base_url(); ?>adminpagecontroller/listRequestAdmin"><i class="ri-inbox-fill"></i>Demande reçue</a></li>
+                          <li id="adminPendingList"><a href="<?php echo base_url(); ?>adminpagecontroller/listPendingAdmin"><i class="ion-alert"></i>Demande En attente</a></li>
+                          <li id="AdminHome"><a href="<?php echo base_url(); ?>index.php/backend/AdminPageHome"><i class="">?</i>Avoir d'anomalie</a></li>
+                          <li id="adminCompleteList"><a href="<?php echo base_url(); ?>adminpagecontroller/listCompleteAdmin"><i class="fa fa-check-circle"></i>Demande Traité</a></li>
+                         
+                      </ul>
+                    </li>
+
+
                      <li>
                         <a href="#Validations" class="active iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-download"></i><span>Etat de Decompte </span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                         <ul id="Validations" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
@@ -253,13 +266,18 @@ function listeClick(){
                             <li><a href="<?php echo base_url(); ?>index.php/backend/receivedValidationPage"><i class="ri-arrow-right-line"></i> Budget Autonome-Général</a></li>
                         </ul>
                      </li>
-                     <li>
+                     <!-- <li>
                         <a href="#pages" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="las la-user-tie iq-arrow-left"></i><span>Mes Apropos</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
-                        <ul id="pages" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                            <li><a href="<?php echo base_url(); ?>index.php/backend/Profile"><i class="las la-id-card-alt"></i>Mon Profile</a></li>
-                            <li><a href="profile-edit.html"><i class="las la-edit"></i>Modification</a></li>
+                        <ul id="pages" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle"> -->
+                            <li><a href="<?php echo base_url(); ?>userpagecontroller/Profile"><i class="las la-id-card-alt"></i>Mon Profile</a></li>
+                            <!-- <li><a href="profile-edit.html"><i class="las la-edit"></i>Modification</a></li>
                         </ul>
-                     </li>
+                     </li> -->
+
+                     <li >
+                      <!-- <a href="<?php echo base_url(); ?>" class="iq-waves-effect"><i class="ri-login-box-line iq-arrow-left"></i><span>Se Déconnecter</span></a> -->
+                      <a  href="#modal-disconnect"  data-toggle="modal" data-placement="top" title="" data-original-title="Disconnect" class="iq-waves-effect"><i class="ri-login-box-line iq-arrow-left"></i><span>Se Déconnecter</span></a>
+                    </li>
                     
                     
                 </ul>
@@ -371,7 +389,7 @@ function listeClick(){
                             $imageUrl = base_url() . 'assets/template/images/user/whatsapp-dp-for-boys.webp';
                             }
                           ?>
-                            <img src="<?php echo $imageUrl; ?>" class="img-fluid rounded-circle" alt="user">
+                            <img id="header-user-photo" src="<?php echo $imageUrl; ?>" class="img-fluid rounded-circle" alt="user">
                           </a>
                           <div class="iq-sub-dropdown iq-user-dropdown">
                             <div class="iq-card shadow-none m-0">
@@ -391,7 +409,7 @@ function listeClick(){
                                         </div>
                                       </div>
                                   </a>
-                                  <a href="account-setting.html" class="iq-sub-card iq-bg-primary-hover">
+                                  <!-- <a href="account-setting.html" class="iq-sub-card iq-bg-primary-hover">
                                       <div class="media align-items-center">
                                         <div class="rounded iq-card-icon iq-bg-primary">
                                             <i class="ri-account-box-line"></i>
@@ -401,10 +419,12 @@ function listeClick(){
                                             <p class="mb-0 font-size-12">Mondier le parametre de mon compte.</p>
                                         </div>
                                       </div>
-                                  </a>
+                                  </a> -->
                                   
                                   <div class="d-inline-block w-100 text-center p-3">
-                                      <a class="bg-primary iq-sign-btn" href="<?php echo site_url('logincontroller/logout'); ?>" role="button">Deconnexion<i class="ri-login-box-line ml-2"></i></a>
+                                      <!-- <a class="bg-primary iq-sign-btn" href="<?php echo site_url('logincontroller/logout'); ?>" role="button">Deconnexion<i class="ri-login-box-line ml-2"></i></a> -->
+                                      <a  href="#modal-disconnect"  data-toggle="modal" data-placement="top" title="" data-original-title="Disconnect" class="iq-waves-effect"><i class="ri-login-box-line iq-arrow-left"></i><span>Se Déconnecter</span></a>
+
                                   </div>
                                 </div>
                             </div>
@@ -488,6 +508,9 @@ function listeClick(){
           </div>
         </div>
         <!-- TOP Nav Bar END -->
+
+        <?php  include(APPPATH.'views/ModalDisconnect.php'); ?>
+
         <!-- Page Content  -->
         <div id="content-page" class="content-page">
           <div class="container-fluid">

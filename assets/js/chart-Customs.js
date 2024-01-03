@@ -6129,7 +6129,7 @@ if(jQuery('#chartdiv').length){
             data: countValidationsBABG,
 
             // data: [null, null, 15, 20, 30, 10, 20, 36],
-            color: '#00d0ff'
+            color: '#00b0ee'
         }],
 
         responsive: {
