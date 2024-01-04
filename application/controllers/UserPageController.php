@@ -254,4 +254,40 @@ class UserPageController extends CI_Controller {
 //        }  
 //   }  
 
+public function editpassword(){
+      $immatricule = $this->input->post('immatricule_c');
+      $oldPass = $this->input->post('oldPass');
+      $newPass = $this->input->post('newPass');
+
+      $oldPass_db = $this->comptablemodel->getOldPass($immatricule);
+
+      if($oldPass == $oldPass_db){
+          if($oldPass == $newPass){
+            $response['success'] = false;
+            $response['message'] = 'C\'est votre ancien mot de passe!!!';
+          }
+          else{
+            $change = $this->comptablemodel->updatePassword($immatricule, $newPass);
+            if($change){
+              $response['success'] = true;
+              $response['message'] = 'Mot de passe modifié!!!';
+            }
+            else{
+              $response['success'] = false;
+              $response['message'] = 'Un erreur lors de la modification!!!';
+            }
+          }
+      }
+      else{
+          $response['success'] = false;
+          $response['message'] = 'Mot de passe Incorrect!!!';
+          $response['oldPass'] = $oldPass;
+          $response['oldPass_db'] = $oldPass_db;
+
+      }
+
+    echo json_encode($response);
+
+}
+
 }

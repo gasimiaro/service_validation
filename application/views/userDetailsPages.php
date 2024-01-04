@@ -519,7 +519,7 @@ $(document).ready(function () {
             var formData = $(this).serialize();
             var row = $(this).closest('.row');
 
-        var im = $('.current-comptable-immat').text();
+            var im = $('.current-comptable-immat').text();
 
             $.ajax({
                 type: 'POST', // Use GET method

@@ -10,6 +10,8 @@
     $immatricule = $user['imUser']; 
     $fonction = $user['fonction'];   
     $image = $user['photo']; 
+    $pseudo = $user['pseudo']; 
+
 
     if ($image != "") {
         $imageUrl = base_url() . 'assets/template/images/user/' . $image;
@@ -18,7 +20,7 @@
     }
 ?>
 <div class="row profile-content">
-    <div class="col-12 col-md-12 col-lg-4">
+    <div class="col-12 col-md-12 col-lg-12">
         <div class="iq-card">
         <div class="iq-card-body profile-page">
             <div class="profile-header">
@@ -56,16 +58,21 @@
                       <h4><?php echo $prenom; ?></h4>
                       <p class="text-success h5">IM: <?php echo $immatricule; ?></p>
                       <p class="text-primary"><?php echo $fonction; ?></p>
+                      <p class="text-secondary"><?php echo $pseudo; ?> (pseudo)</p>
                     </div>
                     <div class="iq-social d-inline-block align-items-center">
-                    
+                      <button  class="text-primary">
+                      <a  href="#modal-password"  data-toggle="modal" data-placement="top" title="" data-original-title="change-password" class="iq-waves-effect"><span>Changer mot de passe</span></a>
+                        <!-- Changer mot de passe -->
+                      </button>
                     </div>
                 </div>
             </div>
         </div>
         </div>
     </div>
-    <div class="col-12 col-md-12 col-lg-8">
+
+    <!-- <div class="col-12 col-md-12 col-lg-8">
         
     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
         <div class="iq-card-header d-flex justify-content-between align-items-center mb-0">
@@ -199,8 +206,9 @@
             </ul>
         </div>
     </div>
-    </div>
-    <div class="col-sm-12">
+    </div> -->
+
+    <!-- <div class="col-sm-12">
     <div class="iq-card">
         <div class="iq-card-header d-flex justify-content-between">
           <div class="iq-header-title">
@@ -466,8 +474,11 @@
           </div>
         </div>
     </div>
-  </div>
+  </div> -->
 </div>
+
+<?php  include(APPPATH.'views/ModalChangePassword.php'); ?>
+
 
 <script>
     $(document).ready(function () {

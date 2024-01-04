@@ -5884,38 +5884,13 @@ if(jQuery('#chartdiv').length){
 
         chart.legend = new am4charts.Legend();
 
-        chart.data = [
-          {
-            country: "Lithuania",
-            litres: 501.9
-          },
-          {
-            country: "Germany",
-            litres: 165.8
-          },
-          {
-            country: "Australia",
-            litres: 139.9
-          },
-          {
-            country: "Austria",
-            litres: 128.3
-          },
-          {
-            country: "UK",
-            litres: 99
-          },
-          {
-            country: "Belgium",
-            litres: 60
-          }
-        ];
+        chart.data = numberPerCasExist;
 
         var series = chart.series.push(new am4charts.PieSeries3D());
         series.colors.list = [am4core.color("#ff4545"),am4core.color("#1ee2ac"),am4core.color("#ffdd31"),
         am4core.color("#ff7750"),am4core.color("#00d0ff"),am4core.color("#a09e9e")];
-        series.dataFields.value = "litres";
-        series.dataFields.category = "country";
+        series.dataFields.value = "nombre";
+        series.dataFields.category = "Cas";
 
         }); // end am4core.ready()
      }

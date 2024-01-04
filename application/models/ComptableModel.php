@@ -93,6 +93,27 @@ public function comptables(){
         return true; // Return true after successful update
     }
 
+    public function getOldPass($immatricule){
+        $sql = "SELECT passWord FROM user WHERE imUser = $immatricule";
+        $query = $this->db->query($sql);
+        // return $query->result();
+        $result = $query->row(); // Utiliser row() au lieu de result()
+    
+        if ($result) {
+            return $result->passWord;
+        } else {
+            return null; // Ou une valeur par défaut selon votre logique
+        }
+    }
 
+    public function updatePassword($immatricule, $pass) {
+        $data = array(
+            'passWord' => $pass
+        );
+        $this->db->where('imUser', $immatricule);
+        $this->db->update('user', $data);
+    
+        return true; // Return true after successful update
+    }
 
 }

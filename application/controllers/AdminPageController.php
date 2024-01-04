@@ -38,6 +38,7 @@ class AdminPageController extends CI_Controller {
         $data['countValidationsBG'] = $this->validationmodel->countValidationsByTypeBudget('BG');
         $data['countValidationsBA'] = $this->validationmodel->countValidationsByTypeBudget('BA');
         $data['countValidationsBABG'] = $this->validationmodel->countValidationsByTypeBudget('BABG');
+        $data['numberPerCasExist'] = $this->validationmodel->numberPerCasExist();
 
 
 

@@ -144,7 +144,7 @@
 </div> -->
 
 
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                   <div class="iq-card">
                      <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
@@ -158,35 +158,58 @@
                      <div class="iq-card-body">
                         <div id="apex-column"></div>
                         <script>
-   
-   var statCompleteValidation = <?php echo json_encode($statCompleteValidation); ?>;
-   var statPendingValidation = <?php echo json_encode($statPendingValidation); ?>;
-   var statePerMonthYear = new Date().getFullYear();
-   
+                            
+                            var statCompleteValidation = <?php echo json_encode($statCompleteValidation); ?>;
+                            var statPendingValidation = <?php echo json_encode($statPendingValidation); ?>;
+                            var statePerMonthYear = new Date().getFullYear();
+                            
 
 
-   //graph par type de budget par annee
-   var countValidationsByYear = <?php echo json_encode($countValidationsByYear); ?>;
-   var countValidationsBG = <?php echo json_encode($countValidationsBG); ?>;
-   var countValidationsBA = <?php echo json_encode($countValidationsBA); ?>;
-   var countValidationsBABG = <?php echo json_encode($countValidationsBABG); ?>;
+                            //graph par type de budget par annee
+                            var countValidationsByYear = <?php echo json_encode($countValidationsByYear); ?>;
+                            var countValidationsBG = <?php echo json_encode($countValidationsBG); ?>;
+                            var countValidationsBA = <?php echo json_encode($countValidationsBA); ?>;
+                            var countValidationsBABG = <?php echo json_encode($countValidationsBABG); ?>;
 
 
-   // console.log("statePerMonthYear: "+statePerMonthYear)
-   // console.log("BA : "+numberBAPerYearData)
-   // console.log("BABG : "+numberBAGPerYearData)
-   // console.log("countValidationsByYear: "+JSON.stringify(countValidationsByYear))
-   // console.log("countValidationsBG: "+JSON.stringify(countValidationsBG))
-   // console.log("countValidationsBA: "+JSON.stringify(countValidationsBA))
-   // console.log("countValidationsBABG: "+JSON.stringify(countValidationsBABG))
+                            // console.log("statePerMonthYear: "+statePerMonthYear)
+                            // console.log("BA : "+numberBAPerYearData)
+                            // console.log("BABG : "+numberBAGPerYearData)
+                            // console.log("countValidationsByYear: "+JSON.stringify(countValidationsByYear))
+                            // console.log("countValidationsBG: "+JSON.stringify(countValidationsBG))
+                            // console.log("countValidationsBA: "+JSON.stringify(countValidationsBA))
+                            // console.log("countValidationsBABG: "+JSON.stringify(countValidationsBABG))
 
 
 
- </script>
+                          </script>
                      </div>
                   </div>
                </div>
-               <div class="col-lg-7">
+
+
+               <div class="col-lg-6">
+                  <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                              <h4 class="card-title"> Demande Par Cas Existe</h4>
+                            </div>
+                        </div>
+                        <div class="iq-card-body">
+                            <div id="am-3dpie-chart" style="height: 365px;"></div>
+                            
+                            
+                        </div>
+                            <script>
+                              //numberPerCasExist.map(item => item.nombre)
+                              var numberPerCasExist = <?php echo json_encode($numberPerCasExist); ?>;
+                            </script>
+                        
+                      </div>
+                </div>
+
+
+               <div class="col-lg-12">
                   <div class="iq-card">
                      <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">

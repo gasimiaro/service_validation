@@ -501,6 +501,19 @@ public function getListFullValidation($imComptable) {
     }
 }
 
+public function numberPerCasExist(){
+    $sql = "SELECT Cas, COUNT(*) as number FROM `validation` GROUP BY Cas ORDER BY number DESC;";
+    $query = $this->db->query($sql);
+    $result = $query->result();
+    $data = array();
+    foreach ($result as $row) {
+        $data[] = array(
+            'Cas' => $row->Cas,
+            'nombre' => $row->number
+        );
+    }
+    return $data;
+}
 
 
 }
