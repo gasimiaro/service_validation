@@ -362,7 +362,7 @@ function listeClick(){
 
                                             $.ajax({
                                                 type: "POST",
-                                                url: "<?php echo site_url('backend/updateNotification') ?>",
+                                                url: "<?php echo site_url('adminpagecontroller/updateNotification') ?>",
                                                 dataType: "JSON",
                                                 data: {immatricule:immatricule, view:view},
                                                 success: function(data){
@@ -431,33 +431,33 @@ function listeClick(){
                           </div>
                       </li>
                       <?php
-          if ($this->session->flashdata('success')) {
-              $checkColor = 'green';
-              $progressColor = 'green';
-          }elseif ($this->session->flashdata('warning')) {
-              $checkColor = 'orange';
-              $progressColor = 'orange';
-          } elseif ($this->session->flashdata('error')) {
-              $checkColor = 'red';
-              $progressColor = 'red';
-          }
+          // if ($this->session->flashdata('success')) {
+          //     $checkColor = 'green';
+          //     $progressColor = 'green';
+          // }elseif ($this->session->flashdata('warning')) {
+          //     $checkColor = 'orange';
+          //     $progressColor = 'orange';
+          // } elseif ($this->session->flashdata('error')) {
+          //     $checkColor = 'red';
+          //     $progressColor = 'red';
+          // }
           ?>
 
 
           <style>
-          .toaste-content .check {
+          /* .toaste-content .check {
             background-color: <?php echo $checkColor; ?>;
           }
 
           .toaste .progress:before {
             background-color: <?php echo $progressColor; ?>;
-          }
+          } */
           </style>
 
           <?php
-          if($this->session->flashdata('success')){
+          // if($this->session->flashdata('success')){
           ?>
-          <div class="toaste active">
+          <!-- <div class="toaste active">
             <div class="toaste-content">
               <i class="fa fa-check check"></i>
               <div class="message">
@@ -468,11 +468,11 @@ function listeClick(){
             </div>
             <i class="fa fa-times close"></i>
             <div class="progress active"></div>
-          </div>
+          </div> -->
           <?php
-          } elseif ($this->session->flashdata('error')){
+          // } elseif ($this->session->flashdata('error')){
           ?>
-          <div class="toaste active">
+          <!-- <div class="toaste active">
             <div class="toaste-content">
               <i class="fa fa-times check"></i>
               <div class="message">
@@ -483,11 +483,11 @@ function listeClick(){
             </div>
             <i class="fa fa-times close"></i>
             <div class="progress active"></div>
-          </div>
+          </div> -->
           <?php
-          } elseif ($this->session->flashdata('warning')){
+          // } elseif ($this->session->flashdata('warning')){
           ?>
-          <div class="toaste active">
+          <!-- <div class="toaste active">
           <div class="toaste-content">
             <i class="fa fa-info check"></i>
             <div class="message">
@@ -498,9 +498,9 @@ function listeClick(){
           </div>
           <i class="fa fa-times close"></i>
           <div class="progress active"></div>
-        </div>
+        </div> -->
         <?php
-        }
+        // }
         ?>
                     </ul>
                 </div>

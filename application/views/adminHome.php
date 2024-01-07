@@ -6,6 +6,13 @@
         redirect('/');
     }
 ?>
+<script>
+  var countFullTreat = <?php echo json_encode($countFullTreat); ?>;
+
+  console.log("nombre bien traite : "+ countFullTreat);
+  // console.log("bien traite : "+ countFullTreat1);
+
+  </script>
 
 <div id="resultPage"></div>
 
@@ -14,7 +21,7 @@
       <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
         <div class="iq-card-body">
             <div class="d-flex align-items-center justify-content-between">
-              <h6>Demade reçus</h6>
+              <h6>Demande reçue</h6>
               <span class="iq-icon"><i class="ri-information-fill"></i></span>
             </div>
             <div class="iq-customer-box d-flex align-items-center justify-content-between mt-3">
@@ -29,14 +36,14 @@
                     } 
                      ?>
                   </span></h2>
-                  <div class="rounded-circle iq-card-icon iq-bg-primary ml-3"> <i class="ri-device-line"></i></div>
+                  <div class="rounded-circle iq-card-icon iq-bg-primary ml-3"> <i class="ri-inbox-fill"></i></div>
               </div>
             </div>
         </div>
       </div>
   </div>
   
-  <div class="col-sm-6 col-md-6 col-lg-3">
+  <!-- <div class="col-sm-6 col-md-6 col-lg-3">
       <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
         <div class="iq-card-body">
             <div class="d-flex align-items-center justify-content-between">
@@ -60,18 +67,18 @@
             </div>
         </div>
       </div>
-  </div>
+  </div> -->
  
   <div class="col-sm-6 col-md-6 col-lg-3">
       <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
         <div class="iq-card-body">
             <div class="d-flex align-items-center justify-content-between">
-              <h6>En attente</h6>
-              <span class="iq-icon"><i class="ri-information-fill"></i></span>
+            <h6>Demande En attente</h6>
+            <span class="iq-icon"><i class="ri-information-fill"></i></span>
             </div>
             <div class="iq-customer-box d-flex align-items-center justify-content-between mt-3">
-              <div class="iq-map text-info font-size-32"><i class="ri-bar-chart-grouped-line"></i></div>
-              <div class="d-flex align-items-center">
+                  <div class="iq-map text-danger font-size-32"><i class="ri-bar-chart-grouped-line"></i></div>
+                  <div class="d-flex align-items-center">
               <h2><span class="counter" style="visibility: visible;">
               <?php
               if ($countWait<=9) {
@@ -81,17 +88,38 @@
               }
               ?>
               </span></h2>
-                  <div class="rounded-circle iq-card-icon iq-bg-info ml-3"><i class="ri-information-fill h2"></i></div>
+              <div class="rounded-circle iq-card-icon iq-bg-danger ml-3"><i class="ion-alert"></i></div>
               </div>
             </div>
         </div>
       </div>
   </div>
   <div class="col-sm-6 col-md-6 col-lg-3">
+         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+            <div class="iq-card-body">
+               <div class="d-flex align-items-center justify-content-between">
+                  <h6>Avoir Anomalie</h6>
+                  <span class="iq-icon"><i class="ri-information-fill"></i></span>
+               </div>
+               <div class="iq-customer-box d-flex align-items-center justify-content-between mt-3">
+                  <div class="iq-map text-warning font-size-32"><i class="ri-bar-chart-grouped-line"></i></div>
+                  <div class="d-flex align-items-center">
+                     <h2>
+                        <span class="counter">
+                           <?php echo 2; ?>
+                        </span>
+                     </h2>
+                     <div class="rounded-circle iq-card-icon iq-bg-warning ml-3"><i class="ri-refund-line"></i></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+  <div class="col-sm-6 col-md-6 col-lg-3">
       <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
         <div class="iq-card-body">
             <div class="d-flex align-items-center justify-content-between">
-              <h6>Traitée </h6>
+            <h6>Demande Traité</h6>
               <span class="iq-icon"><i class="ri-information-fill"></i></span>
             </div>
             <div class="iq-customer-box d-flex align-items-center justify-content-between mt-3">
@@ -99,14 +127,14 @@
               <div class="d-flex align-items-center">
               <h2><span class="counter" style="visibility: visible;">
               <?php
-              if ($countTraite<=9) {
-                echo '0'.$countTraite;
+              if ($countFullTreat<=9) {
+                echo '0'.$countFullTreat;
               }else {
-                echo $countTraite;
+                echo $countFullTreat;
               }
               ?>
               </span></h2>
-                  <div class="rounded-circle iq-card-icon iq-bg-success ml-3"><i class="ri-check-line h1"></i></div>
+              <div class="rounded-circle iq-card-icon iq-bg-success ml-3"><i class="la la-check"></i></div>
               </div>
             </div>
         </div>
@@ -226,7 +254,7 @@
 
 
 
-  <div class="col-lg-12">
+  <!-- <div class="col-lg-12">
     <div class="iq-card">
         <div class="iq-card-header d-flex justify-content-between align-items-center">
           <div class="iq-header-title">
@@ -238,19 +266,20 @@
         </div>
         <div class="iq-card-body">
           <ul class="list-unstyled row  feature-album iq-box-hover mb-0">
-          <?php foreach ($comptable as $comptab){ 
-            $imat = $comptab->imUser; 
-            $nom = $comptab->nom; 
-            $prenom = $comptab->prenom; 
-            $image = $comptab->photo; 
-            $fonction = $comptab->fonction; 
-            $statut = $comptab->statut; 
+          <?php
+          //  foreach ($comptable as $comptab){ 
+          //   $imat = $comptab->imUser; 
+          //   $nom = $comptab->nom; 
+          //   $prenom = $comptab->prenom; 
+          //   $image = $comptab->photo; 
+          //   $fonction = $comptab->fonction; 
+          //   $statut = $comptab->statut; 
 
-            if ($image != "") {
-                $imageUrl = base_url() . 'assets/template/images/user/' . $image;
-            } else {
-            $imageUrl = base_url() . 'assets/template/images/user/whatsapp-dp-for-boys.webp';
-            }
+          //   if ($image != "") {
+          //       $imageUrl = base_url() . 'assets/template/images/user/' . $image;
+          //   } else {
+          //   $imageUrl = base_url() . 'assets/template/images/user/whatsapp-dp-for-boys.webp';
+          //   }
 
           ?>
               <li class="col-lg-6  iq-music-box">
@@ -277,11 +306,13 @@
                     </div>
                 </div>
               </li>
-          <?php } ?>
+          <?php 
+        // } 
+        ?>
           </ul>
         </div>
     </div>
-  </div>
+  </div> -->
 
 </div>
           <script>

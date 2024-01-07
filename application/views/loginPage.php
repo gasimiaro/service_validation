@@ -41,13 +41,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <span class="typed-text h3"></span><span class="cursor" style="display: inline-block; background-color: #ccc; margin-left: 0.1rem; width: 3px; animation: blink 2s infinite;">&nbsp;</span></h3>
 						
         <?php
-          if ($this->session->flashdata('success')) {
-              $checkColor = 'green';
-              $progressColor = 'green';
-          } else {
-              $checkColor = 'red';
-              $progressColor = 'red';
-          }
+        //   if ($this->session->flashdata('success')) {
+        //       $checkColor = 'green';
+        //       $progressColor = 'green';
+        //   } else {
+        //       $checkColor = 'red';
+        //       $progressColor = 'red';
+        //   }
           ?>
 
 
@@ -61,8 +61,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           }
           </style>
 
-          <?php
-          if($this->session->flashdata('success')){
+          <!-- <?php
+        //   if($this->session->flashdata('success')){
           ?>
           <div class="toaste active">
             <div class="toaste-content">
@@ -77,7 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="progress active"></div>
           </div>
           <?php
-          } elseif ($this->session->flashdata('error')){
+        //   } elseif ($this->session->flashdata('error')){
           ?>
           <div class="toaste active">
             <div class="toaste-content">
@@ -92,8 +92,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="progress active"></div>
           </div>
           <?php
-          }
-          ?>
+        //   }
+          ?> -->
                 <!-- <form class="login-form" action="<?php echo base_url(); ?>logincontroller/login" method="post"> -->
                 <form class="login-form" id="login-form">
 
@@ -130,7 +130,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     $image = $user->photo;
                                     $fonction = $user->fonction;
                                     if ($image != "") {
-                                        $imageUrl = base_url() . 'assets/images/profile/' . $image;
+                                        $imageUrl = base_url() . 'assets/template/images/user/' . $image;
                                     } else {
                                     $imageUrl = base_url() . 'assets/template/images/user/whatsapp-dp-for-boys.webp';
                                     }
@@ -167,13 +167,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </a>
                         </div>
                     </div>
-
-
-
-
-
-
-                    
                 </div>
             </div>
         </div>

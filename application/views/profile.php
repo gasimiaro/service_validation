@@ -35,23 +35,7 @@
                       </div>
                     </div>
 
-<!-- 
-                    <div class="container">  
-                        <br /><br /><br />  
-                        <form method="post" id="upload_form" align="center" enctype="multipart/form-data">  
-                              <input type="file" name="image_file" id="image_file" />  
-                              <br />  
-                              <br />  
-                              <input type="hidden" name="immatricule" value="<?php echo $immatricule ?>" >
-                              <input type="submit" name="upload" id="upload" value="Upload" class="btn btn-info" />  
-                        </form>  
-                        <br />  
-                        <br />  
-                        <div id="uploaded_image">  
-                        </div>  
-                    </div>   -->
 
-                    <!-- <input type="button" id="upload_page" value="next" > -->
 
                     <div class="profile-detail mt-3">
                       <h3><?php echo $nom; ?></h3>
@@ -85,11 +69,11 @@
             <li>
                 <div class="iq-details mb-2">
                     <span class="title"><span><?php
-                    if ($count<=9) {
-                      echo '0'.$count;
-                    }else {
-                      echo $count;
-                    } 
+                    // if ($count<=9) {
+                    //   echo '0'.$count;
+                    // }else {
+                    //   echo $count;
+                    // } 
                     ?> </span>Demande</span>
                     <div class="percentage float-right text-info">100 <span>%</span></div>
                     <div class="iq-progress-bar-linear d-inline-block w-100">
@@ -102,14 +86,14 @@
             <li>
                 <div class="iq-details mb-2">
                     <span class="title"><span><?php
-                    if ($countWait<=9) {
-                        echo '0'.$countWait;
-                    }else {
-                        echo $countWait;
-                    }
+                    // if ($countWait<=9) {
+                    //     echo '0'.$countWait;
+                    // }else {
+                    //     echo $countWait;
+                    // }
                     
-                    $waitPercent = ($countWait * 100)/$count;
-                    $waitPercents = sprintf("%.2f", $waitPercent);
+                    // $waitPercent = ($countWait * 100)/$count;
+                    // $waitPercents = sprintf("%.2f", $waitPercent);
                     ?> 
                     </span>En attente</span>
                     <div class="percentage float-right text-danger"><?php echo $waitPercents?> <span>%</span></div>
@@ -124,13 +108,13 @@
                 <div class="iq-details mb-2">
                 <span>
                 <?php
-                    if ($countTraite<=9) {
-                        echo '0'.$countTraite;
-                    }else {
-                        echo $countTraite;
-                    }
-                    $traitePercent = ($countTraite * 100)/$count;
-                    $traitePercents = sprintf("%.2f", $traitePercent);
+                    // if ($countTraite<=9) {
+                    //     echo '0'.$countTraite;
+                    // }else {
+                    //     echo $countTraite;
+                    // }
+                    // $traitePercent = ($countTraite * 100)/$count;
+                    // $traitePercents = sprintf("%.2f", $traitePercent);
                     ?> 
                     </span><span>Traitée</span>
                     <div class="percentage float-right text-success"><?php echo $traitePercents; ?> <span>%</span></div>
@@ -145,13 +129,13 @@
                 <div class="iq-details mb-2">
                     <span class="title">
                 <?php
-                    if ($countYear<=9) {
-                        echo '0'.$countYear;
-                    }else {
-                        echo $countYear;
-                    }
-                    $traitePercent = ($countTraite * 100)/$count;
-                    $annee = date("Y");
+                    // if ($countYear<=9) {
+                    //     echo '0'.$countYear;
+                    // }else {
+                    //     echo $countYear;
+                    // }
+                    // $traitePercent = ($countTraite * 100)/$count;
+                    // $annee = date("Y");
                     ?> 
                     </span><span>Demande du l'année <?php echo $annee; ?></span>
                     <div class="percentage float-right text-dark">100 <span>%</span></div>
@@ -166,13 +150,13 @@
             <li>
                 <div class="iq-details mb-2">
                     <span class="title"><span><?php
-                    if ($countWaitYear<=9) {
-                        echo '0'.$countWaitYear;
-                    }else {
-                        echo $countWaitYear;
-                    }
-                    $waitYearPercent = ($countWaitYear * 100)/$countYear;
-                    $waitYearPercents = sprintf("%.2f", $waitYearPercent);
+                    // if ($countWaitYear<=9) {
+                    //     echo '0'.$countWaitYear;
+                    // }else {
+                    //     echo $countWaitYear;
+                    // }
+                    // $waitYearPercent = ($countWaitYear * 100)/$countYear;
+                    // $waitYearPercents = sprintf("%.2f", $waitYearPercent);
                     ?> 
                     </span>En attente du l'année <?php echo $annee; ?></span>
                     <div class="percentage float-right text-dangeer"><?php echo $waitYearPercents;?> <span>%</span></div>
@@ -186,13 +170,13 @@
             <li>
                 <div class="iq-details">
                     <span class="title"><span><?php
-                    if ($countTraiteYear<=9) {
-                        echo '0'.$countTraiteYear;
-                    }else {
-                        echo $countTraiteYear;
-                    }
-                    $traiteYearPercent = ($countTraiteYear * 100)/$countYear;
-                    $traiteYearPercents = sprintf("%.2f", $traiteYearPercent);
+                    // if ($countTraiteYear<=9) {
+                    //     echo '0'.$countTraiteYear;
+                    // }else {
+                    //     echo $countTraiteYear;
+                    // }
+                    // $traiteYearPercent = ($countTraiteYear * 100)/$countYear;
+                    // $traiteYearPercents = sprintf("%.2f", $traiteYearPercent);
                     ?> 
                     </span>Traitée du l'année <?php echo $annee; ?></span>
                     <div class="percentage float-right text-success"><?php echo $traiteYearPercents; ?> <span>%</span></div>
@@ -242,31 +226,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                      <?php foreach ($listValidation as $validation){ 
-                      $id = $validation->id;
-                      $immatricule = $validation->immatricule;
-                      $nom = $validation->NOM;
-                      $prenom = $validation->PRENOMS;
-                      $duDateVal = $validation->DuDateValidation;
-                      $auDateVal = $validation->AuDateValidation;
-                      $cas = $validation->Cas; 
-                      $typeBudget = $validation->typeBudget;
-                      $dateArrive = $validation->dateArrive;
-                      $comImmatricule = $validation->comptable;
-                      $comPrenom = $validation->prenom;
+                      <?php 
+                      // foreach ($listValidation as $validation){ 
+                      // $id = $validation->id;
+                      // $immatricule = $validation->immatricule;
+                      // $nom = $validation->NOM;
+                      // $prenom = $validation->PRENOMS;
+                      // $duDateVal = $validation->DuDateValidation;
+                      // $auDateVal = $validation->AuDateValidation;
+                      // $cas = $validation->Cas; 
+                      // $typeBudget = $validation->typeBudget;
+                      // $dateArrive = $validation->dateArrive;
+                      // $comImmatricule = $validation->comptable;
+                      // $comPrenom = $validation->prenom;
 
-                      $elemDate = explode("-", $dateArrive);
-                      $dateArrives = implode("-", array_reverse($elemDate));
+                      // $elemDate = explode("-", $dateArrive);
+                      // $dateArrives = implode("-", array_reverse($elemDate));
 
-                      if ($duDateVal == "" && $auDateVal == "") {
-                        $statut = '<span class="badge badge-danger">En attente</span>';
-                        $delButton = '<a href="#myModal'.$id.'" class="bg-primary"  data-toggle="modal" data-original-title="Supprimer"><i class="ri-delete-bin-line"></i></a>';
-                      }
-                      else{
-                        $statut = '<span class="badge badge-success">Traitée</span>';
-                        $delButton = '<a href="#'.$id.'" class="bg-secondary disabled"><i class="ri-delete-bin-line"></i></a>';
+                      // if ($duDateVal == "" && $auDateVal == "") {
+                      //   $statut = '<span class="badge badge-danger">En attente</span>';
+                      //   $delButton = '<a href="#myModal'.$id.'" class="bg-primary"  data-toggle="modal" data-original-title="Supprimer"><i class="ri-delete-bin-line"></i></a>';
+                      // }
+                      // else{
+                      //   $statut = '<span class="badge badge-success">Traitée</span>';
+                      //   $delButton = '<a href="#'.$id.'" class="bg-secondary disabled"><i class="ri-delete-bin-line"></i></a>';
 
-                      }
+                      // }
                       
                     ?>
                     <div id="myModal<?php echo $id; ?>" class="modal fade">
@@ -323,7 +308,9 @@
                     </tr>
                     
                     
-                    <?php } ?>
+                    <?php
+                  //  }
+                    ?>
                 </tbody>
               </table>
           </div>
@@ -346,27 +333,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                      <?php foreach ($completeValidation as $validation){ 
-                      $immatricule = $validation->immatricule;
-                      $nom = $validation->NOM;
-                      $prenom = $validation->PRENOMS;
-                      $duDateVal = $validation->DuDateValidation;
-                      $auDateVal = $validation->AuDateValidation;
-                      $cas = $validation->Cas; 
-                      $typeBudget = $validation->typeBudget;
-                      $dateArrive = $validation->dateArrive;
-                      $comImmatricule = $validation->comptable;
-                      $comPrenom = $validation->prenom;
+                      <?php 
+                      // foreach ($completeValidation as $validation){ 
+                      // $immatricule = $validation->immatricule;
+                      // $nom = $validation->NOM;
+                      // $prenom = $validation->PRENOMS;
+                      // $duDateVal = $validation->DuDateValidation;
+                      // $auDateVal = $validation->AuDateValidation;
+                      // $cas = $validation->Cas; 
+                      // $typeBudget = $validation->typeBudget;
+                      // $dateArrive = $validation->dateArrive;
+                      // $comImmatricule = $validation->comptable;
+                      // $comPrenom = $validation->prenom;
 
-                      $elemDate = explode("-", $dateArrive);
-                      $dateArrives = implode("-", array_reverse($elemDate));
+                      // $elemDate = explode("-", $dateArrive);
+                      // $dateArrives = implode("-", array_reverse($elemDate));
 
-                      if ($duDateVal == "" && $auDateVal == "") {
-                        $statut = '<span class="badge badge-danger">En attente</span>';
-                      }
-                      else{
-                        $statut = '<span class="badge badge-success">Traitée</span>';
-                      }
+                      // if ($duDateVal == "" && $auDateVal == "") {
+                      //   $statut = '<span class="badge badge-danger">En attente</span>';
+                      // }
+                      // else{
+                      //   $statut = '<span class="badge badge-success">Traitée</span>';
+                      // }
                       
                     ?>
                     <tr>
@@ -395,7 +383,9 @@
                           </div>
                         </td>
                     </tr>
-                    <?php } ?>
+                    <?php 
+                  //}
+                   ?>
                 </tbody>
               </table>
           </div>

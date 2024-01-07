@@ -135,15 +135,16 @@ class UserPageController extends CI_Controller {
           $immatricule = $user['imUser'];
           $data['number'] = $this->validationmodel->Notification($immatricule);
           $data['newValidation'] = $this->validationmodel->NewValidation($immatricule);
-          $data['count'] = $this->validationmodel->TotalNbValidationByComp($immatricule);
-          $data['countYear'] = $this->validationmodel->YearNbValidationByCom($immatricule);
-          $data['countTraite'] = $this->validationmodel->NbTraiteValidationByCom($immatricule);
-          $data['countWait'] = $this->validationmodel->NbWaitValidationByCom($immatricule);
-          $data['countTraiteYear'] = $this->validationmodel->NbTraiteValYearByCom($immatricule);
-          $data['countWaitYear'] = $this->validationmodel->NbWaitValYearByCom($immatricule);
-          $data['listValidation'] = $this->validationmodel->allValidationByComptable($immatricule);
-          $data['completeValidation'] = $this->validationmodel->completeValidationByComptable($immatricule);
-          $data['pendingValidation'] = $this->validationmodel->pendingValidationByComptable($immatricule);
+          // $data['count'] = $this->validationmodel->TotalNbValidationByComp($immatricule);
+          // $data['countYear'] = $this->validationmodel->YearNbValidationByCom($immatricule);
+          // $data['countTraite'] = $this->validationmodel->NbTraiteValidationByCom($immatricule);
+          // $data['countWait'] = $this->validationmodel->NbWaitValidationByCom($immatricule);
+          // $data['countTraiteYear'] = $this->validationmodel->NbTraiteValYearByCom($immatricule);
+          // $data['countWaitYear'] = $this->validationmodel->NbWaitValYearByCom($immatricule);
+          // $data['listValidation'] = $this->validationmodel->allValidationByComptable($immatricule);
+          // $data['completeValidation'] = $this->validationmodel->completeValidationByComptable($immatricule);
+          // $data['pendingValidation'] = $this->validationmodel->pendingValidationByComptable($immatricule);
+
           $this->load->view('Header', $data);
           $this->load->view('profile', $data);
           $this->load->view('Footer');

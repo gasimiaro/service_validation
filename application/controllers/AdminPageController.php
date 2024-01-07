@@ -25,8 +25,13 @@ class AdminPageController extends CI_Controller {
         $data['count'] = $this->validationmodel->TotalNbValidation();
         $data['countYear'] = $this->validationmodel->YearNbValidation();
         $data['countTraite'] = $this->validationmodel->NbTraiteValidation();
+        $allVAlidationFullTreat =  $this->validationmodel->AllValidationFullTreat();
+        $data['countFullTreat'] = $allVAlidationFullTreat['count'];
+        $data['listFullTreat'] = $allVAlidationFullTreat['list'];
+
+
         $data['countWait'] = $this->validationmodel->NbWaitValidation();
-        $data['comptable'] = $this->comptablemodel->comptable();
+        // $data['comptable'] = $this->comptablemodel->comptable();
 
         $data['listValidation'] = $this->validationmodel->allValidation();
 

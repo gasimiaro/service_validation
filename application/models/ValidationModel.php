@@ -243,6 +243,19 @@ class ValidationModel extends CI_Model {
     }
     
 
+/* check if validation treatement well */
+
+public function checkTreatValidation(){
+
+    $this->db->from('validation'); 
+    $this->db->where("Poste != '' AND Direction != '' AND DuDateValidation != '' AND AuDateValidation != ''");
+    
+    return $this->db->get()->result();
+}
+
+/********************************************* */
+
+
     public function TotalNbValidation() {
         $this->db->from('validation'); 
         return $this->db->count_all_results();
@@ -375,6 +388,53 @@ public function completeValidationByComptable($imComptable){
             ORDER BY validation.id DESC";
     $query = $this->db->query($sql);
     return $query->result();
+}
+
+
+public function AllValidationFullTreat() {
+    $allTreatValidation = $this->checkTreatValidation();
+    $fullTreat = array();
+    if($allTreatValidation){
+        foreach( $allTreatValidation as $item){
+
+            $titularisationModel = new TitularisationModel();
+            $titularisationCheck = $titularisationModel->checkTreatTitularisation($item->immatricule);
+            if($titularisationCheck == 'Complete'){
+
+                if (strpos($item->Cas, 'EFA') !== false) {
+                    $veilleIntegre = new VeilleintegreModel();
+                    $veilleIntegreCheck = $veilleIntegre->checkTreatVeilleIntegre($item->immatricule);
+
+                    if($veilleIntegreCheck == 'Complete'){
+                        $priseService = new PriseServiceModel();
+                        $priseServiceCheck = $priseService->checkTreatPriseService($item->immatricule);
+                        if($priseServiceCheck == 'Complete'){
+                            $item->state = 'treated';
+
+                            $fullTreat[] = (array)$item;
+                        }
+                    }
+                }
+                if (strpos($item->Cas, 'ECD') !== false  || strpos($item->Cas, 'ServicePrive') !== false  ) {
+            //    if($item->Cas == 'ECD' | $item->Cas == 'ServicePrive'  ){
+                $cnaps = new CnapsModel();
+                $cnapsCheck = $cnaps->checkTreatCnaps($item->immatricule);
+                if($cnapsCheck == 'Complete'){
+                    // $fullTreat += $item ;
+                    $item->state = 'treated';
+                    $fullTreat[] = (array)$item;
+
+                }
+               }
+
+            }
+
+        }
+        return ['list' => $fullTreat, 'count' => count($fullTreat)];
+
+    }
+    return false;
+
 }
 
 public function completeValidationByComptab($imComptable) {
