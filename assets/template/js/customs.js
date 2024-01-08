@@ -176,6 +176,10 @@ Index Of Script
             $("#preload").css("display", "none");
         
           });
+          $("#incompleteButton").click(function(){
+            $("#preload").css("display", "none");
+        
+          });
           $("#pendingButton").click(function(){
             $("#preload").css("display", "none");
           });

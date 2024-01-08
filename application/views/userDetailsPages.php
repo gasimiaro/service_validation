@@ -28,53 +28,243 @@
     <div class="col-lg-12">
         <div class="iq-card">
             <div class="iq-card-body">
-            <div class="row">
-            <div class="col-lg-4">
-                <img src="<?php echo $imageUrl; ?>" class="img-fluid w-100" alt="">
-            </div>
-            <div class="col-lg-8">
-                <div class="d-flex align-items-top justify-content-between iq-music-play-detail">
-                    <div class="music-detail">
-                        <h3><?php echo $nom; ?></h3>
-                        <div class="prenom"><?php echo $prenom; ?></div>
-                        <p class="mb-0 current-comptable-immat"><?php echo $imat; ?></p>
-                        <span class="fonction"><?php echo $fonction; ?></span>
-                        <h6 style="display:none"><?php echo $statut; ?></h6>
+              <div class="row">
+                  <div class="col-lg-4">
+                   <img src="<?php echo $imageUrl; ?>" class="img-fluid w-100" alt="">
+                  </div>
+                  <div class="col-lg-4">
+                      <div class="d-flex align-items-top justify-content-between iq-music-play-detail">
+                           <div class="music-detail">
+                                <div class="music-right">
+                                    <div class="d-flex align-items-center">
+                                        <form id="switch-status-form">
+                                        <div class="iq-circle mr-2"  >
+                                                <input type="hidden" name="imat" value="<?php echo $imat; ?>"> 
+                                                <input type="hidden" id="lock-state-value-input" value="<?php echo $statut == "Blocké" ? "Deblocké" : "Blocké" ?>" name="statut">
+                                                <button type="submit" id="lock-state-div" style="display: <?php echo $statut == "Blocké" ? "inline-block" : "none" ?>; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 40px; font-size: 25px;"><i class="fa fa-lock text-primary"></i></button>
+                                                <button type="submit" id="unlock-state-div" style=" display: <?php  echo $statut == "Deblocké" ? "inline-block" : "none" ?>; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 40px; font-size: 25px;"><i class="fa fa-unlock text-info"></i></button>
+
+                                        </div>    
+                                        </form>
+
+                                    </div>
+                                </div>
+                              <h3><?php echo $nom; ?></h3>
+                              <div class="prenom"><?php echo $prenom; ?></div>
+                               <p class="mb-0 current-comptable-immat"><?php echo $imat; ?></p>
+                              <span class="fonction"><?php echo $fonction; ?></span>
+                               <h6 style="display:none"><?php echo $statut; ?></h6>
                         
-                        <div class="d-flex align-items-center">                                       
-                        <a href="javascript:void(0);" id="editButton" class="btn btn-success iq-play mr-2" data-toggle="modal" data-target="#editModal"><h4 class="text-white"><i class="las la-edit h4"></i> Modifier</h4></a>
+                              <div class="d-flex align-items-center">                                       
+                                <a href="javascript:void(0);" id="editButton" class="btn btn-success iq-play mr-2" data-toggle="modal" data-target="#editModal"><h4 class="text-white"><i class="las la-edit h4"></i> Modifier</h4></a>
+                              </div>
+                          </div>
+                          <!-- <div class="music-right">
+                              <div class="d-flex align-items-center">
+                                  <form id="switch-status-form">
+                                   <div class="iq-circle mr-2"  >
+                                        <input type="hidden" name="imat" value="<?php echo $imat; ?>"> 
+                                        <input type="hidden" id="lock-state-value-input" value="<?php echo $statut == "Blocké" ? "Deblocké" : "Blocké" ?>" name="statut">
+                                        <button type="submit" id="lock-state-div" style="display: <?php echo $statut == "Blocké" ? "inline-block" : "none" ?>; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 40px; font-size: 25px;"><i class="fa fa-lock text-primary"></i></button>
+                                        <button type="submit" id="unlock-state-div" style=" display: <?php  echo $statut == "Deblocké" ? "inline-block" : "none" ?>; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 40px; font-size: 25px;"><i class="fa fa-unlock text-info"></i></button>
+
+                                   </div>    
+                                  </form>
+
+                             </div>
+                          </div> -->
+                       </div>
+                  </div>
+                  <div class="col-lg-4">
+                        <!-- <div class="col-12 col-md-12 col-lg-8"> -->
+                            
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                            <div class="iq-card-header d-flex justify-content-between align-items-center mb-0">
+                                <div class="iq-header-title">
+                                <h4 class="card-title mb-0">Evaluation</h4>
+                                </div>
+                            </div>
+                            <div class="iq-card-body">
+                                <ul class="list-inline p-0 mb-0">
+                                <li>
+                                    <div class="iq-details mb-2">
+                                        <span class="title"><span><?php
+                                        if ($count<=9) {
+                                          echo '0'.$count;
+                                        }else {
+                                          echo $count;
+                                        } 
+                                        ?> </span>Demande</span>
+                                        <div class="percentage float-right text-info">100 <span>%</span></div>
+                                        <div class="iq-progress-bar-linear d-inline-block w-100">
+                                            <div class="iq-progress-bar">
+                                            <span class="bg-info" data-percent="100"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="iq-details mb-2">
+                                        <span class="title"><span><?php
+                                        if ($countWait<=9) {
+                                            echo '0'.$countWait;
+                                        }else {
+                                            echo $countWait;
+                                        }
+                                        
+                                        $waitPercent = ($countWait * 100)/($count != 0 ? $count : 1);
+                                        $waitPercents = sprintf("%.2f", $waitPercent);
+                                        ?> 
+                                        </span>En attente</span>
+                                        <div class="percentage float-right text-danger"><?php echo $waitPercents?> <span>%</span></div>
+                                        <div class="iq-progress-bar-linear d-inline-block w-100">
+                                            <div class="iq-progress-bar">
+                                            <span class="bg-danger" data-percent="<?php echo $waitPercents?>"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="iq-details mb-2">
+                                    <span>
+                                    <?php
+                                        if ($countTraite<=9) {
+                                            echo '0'.$countTraite;
+                                        }else {
+                                            echo $countTraite;
+                                        }
+                                        $traitePercent = ($countTraite * 100)/($count != 0 ? $count : 1);
+                                        $traitePercents = sprintf("%.2f", $traitePercent);
+                                        ?> 
+                                        </span><span>Traitée</span>
+                                        <div class="percentage float-right text-success"><?php echo $traitePercents; ?> <span>%</span></div>
+                                        <div class="iq-progress-bar-linear d-inline-block w-100">
+                                            <div class="iq-progress-bar">
+                                            <span class="bg-success" data-percent="<?php echo $traitePercents; ?>"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="iq-details mb-2">
+                                    <span>
+                                    <?php
+                                        if ($countAnomalie<=9) {
+                                            echo '0'.$countAnomalie;
+                                        }else {
+                                            echo $countAnomalie;
+                                        }
+                                        $anomaliePercent = ($countAnomalie * 100)/($count != 0 ? $count : 1);
+                                        $anomaliePercents = sprintf("%.2f", $anomaliePercent);
+                                        ?> 
+                                        </span><span>Anomalie</span>
+                                        <div class="percentage float-right text-warning"><?php echo $anomaliePercents; ?> <span>%</span></div>
+                                        <div class="iq-progress-bar-linear d-inline-block w-100">
+                                            <div class="iq-progress-bar">
+                                            <span class="bg-warning" data-percent="<?php echo $anomaliePercents; ?>"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="iq-details mb-2">
+                                        <span class="title">
+                                    <?php
+                                        if ($countYear<=9) {
+                                            echo '0'.$countYear;
+                                        }else {
+                                            echo $countYear;
+                                        }
+                                        $traitePercent = ($countTraite * 100)/($count != 0 ? $count : 1);
+                                        $annee = date("Y");
+                                        ?> 
+                                        </span><span>Demande du l'année <?php echo $annee; ?></span>
+                                        <div class="percentage float-right text-dark">100 <span>%</span></div>
+                                        <div class="iq-progress-bar-linear d-inline-block w-100">
+                                            <div class="iq-progress-bar">
+                                            <span class="bg-dark" data-percent="100"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                                <li>
+                                    <div class="iq-details mb-2">
+                                        <span class="title"><span><?php
+                                        if ($countWaitYear<=9) {
+                                            echo '0'.$countWaitYear;
+                                        }else {
+                                            echo $countWaitYear;
+                                        }
+                                        $waitYearPercent = ($countWaitYear * 100)/($countYear != 0 ? $countYear : 1);
+                                        $waitYearPercents = sprintf("%.2f", $waitYearPercent);
+                                        ?> 
+                                        </span>En attente du l'année <?php echo $annee; ?></span>
+                                        <div class="percentage float-right text-dangeer"><?php echo $waitYearPercents;?> <span>%</span></div>
+                                        <div class="iq-progress-bar-linear d-inline-block w-100">
+                                            <div class="iq-progress-bar">
+                                            <span class="bg-danger" data-percent="<?php echo $waitYearPercents;?>"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="iq-details">
+                                        <span class="title"><span><?php
+                                        if ($countAnomalieYear<=9) {
+                                            echo '0'.$countAnomalieYear;
+                                        }else {
+                                            echo $countAnomalieYear;
+                                        }
+                                        $anomalieYearPercent = ($countAnomalieYear * 100)/($countYear != 0 ? $countYear : 1);
+                                        $anomalieYearPercents = sprintf("%.2f", $anomalieYearPercent);
+                                        ?> 
+                                        </span>Anomalie de l'année <?php echo $annee; ?></span>
+                                        <div class="percentage float-right text-warning"><?php echo $anomalieYearPercents; ?> <span>%</span></div>
+                                        <div class="iq-progress-bar-linear d-inline-block w-100">
+                                            <div class="iq-progress-bar">
+                                            <span class="bg-warning" data-percent="<?php echo $anomalieYearPercents; ?>"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="iq-details">
+                                        <span class="title"><span><?php
+                                        if ($countTraiteYear<=9) {
+                                            echo '0'.$countTraiteYear;
+                                        }else {
+                                            echo $countTraiteYear;
+                                        }
+                                        $traiteYearPercent = ($countTraiteYear * 100)/($countYear != 0 ? $countYear : 1);
+                                        $traiteYearPercents = sprintf("%.2f", $traiteYearPercent);
+                                        ?> 
+                                        </span>Traitée du l'année <?php echo $annee; ?></span>
+                                        <div class="percentage float-right text-success"><?php echo $traiteYearPercents; ?> <span>%</span></div>
+                                        <div class="iq-progress-bar-linear d-inline-block w-100">
+                                            <div class="iq-progress-bar">
+                                            <span class="bg-success" data-percent="<?php echo $traiteYearPercents; ?>"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="music-right">
-                        <div class="d-flex align-items-center">
-                           <!-- <div class="iq-circle" id="lock-state-div" style="display : <?php $statut == "Blocké" ? "" : "none" ?> ">
-                                <form id="switch-status-form">
+                        <!-- </div> -->
 
-                                    <input type="hidden" name="imat" value="<?php echo $imat; ?>"> 
-                                    <input type="hidden" value="Deblocké" name="statut">
-                                    <button type="submit" style="display: inline-block; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 40px; font-size: 25px;"><i class="fa fa-lock text-primary"></i></button>
-                                </form>
-                            </div> -->
-                            <form id="switch-status-form">
-                            <div class="iq-circle mr-2"  >
+                  </div>
 
-                                    <input type="hidden" name="imat" value="<?php echo $imat; ?>"> 
-                                    <input type="hidden" id="lock-state-value-input" value="<?php echo $statut == "Blocké" ? "Deblocké" : "Blocké" ?>" name="statut">
-                                    <button type="submit" id="lock-state-div" style="display: <?php echo $statut == "Blocké" ? "inline-block" : "none" ?>; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 40px; font-size: 25px;"><i class="fa fa-lock text-primary"></i></button>
-                                    <button type="submit" id="unlock-state-div" style=" display: <?php  echo $statut == "Deblocké" ? "inline-block" : "none" ?>; background: rgba(255, 255, 255, 0.5); border-radius: 50%; height: 40px; width: 40px; line-height: 40px; font-size: 25px;"><i class="fa fa-unlock text-info"></i></button>
 
-                                </div>    
-                            </form>
 
-                        </div>
-                    </div>
-                    </div>
-                </div>
+
+
+
+              </div>
             </div>
         </div>
+      <?php } ?>
     </div>
-<?php } ?>
-</div>
 
 
 <!-- The Modal -->
@@ -216,6 +406,7 @@
                 <thead>
                     <tr>
                     <th></th>
+                    <th>N° Dossier</th>
                     <th width="2%">Immatricule</th>
                     <th>Nom et Prenom</th>
                     <th>Cas</th>
@@ -228,16 +419,29 @@
                 </thead>
                 <tbody>
                       <?php foreach ($byComptable as $validation){ 
-                      $id = $validation->id;
-                      $immatricule = $validation->immatricule;
-                      $nom = $validation->NOM;
-                      $prenom = $validation->PRENOMS;
-                      $duDateVal = $validation->DuDateValidation;
-                      $auDateVal = $validation->AuDateValidation;
-                      $cas = $validation->Cas; 
-                      $typeBudget = $validation->typeBudget;
-                      $dateArrive = $validation->dateArrive;
-                      $comImmatricule = $validation->comptable;
+                    //   $id = $validation->id;
+                    //   $immatricule = $validation->immatricule;
+                    //   $nom = $validation->NOM;
+                    //   $prenom = $validation->PRENOMS;
+                    //   $duDateVal = $validation->DuDateValidation;
+                    //   $auDateVal = $validation->AuDateValidation;
+                    //   $cas = $validation->Cas; 
+                    //   $typeBudget = $validation->typeBudget;
+                    //   $dateArrive = $validation->dateArrive;
+                    //   $comImmatricule = $validation->comptable;
+                                            $id = $validation['id'];
+                        $numDossier = $validation['numDossier'];
+                        $immatricule = $validation['immatricule'];
+                        $nom = $validation['NOM'];
+                        $prenom = $validation['PRENOMS'];
+                        $duDateVal = $validation['DuDateValidation'];
+                        $auDateVal = $validation['AuDateValidation'];
+                        $cas = $validation['Cas'];
+                        $typeBudget = $validation['typeBudget'];
+                        $dateArrive = $validation['dateArrive'];
+                        $comImmatricule = $validation['comptable'];
+                        $state = $validation['state'];
+                        $comPrenom = $validation['prenom'];
 
                       $elemDate = explode("-", $dateArrive);
                       $dateArrives = implode("-", array_reverse($elemDate));
@@ -254,6 +458,16 @@
                         $delButton = '<a href="#'.$id.'" class="bg-secondary disabled"><i class="ri-delete-bin-line"></i></a>';
 
                       }
+
+                        if ($state == "incomplete") {
+                            $statut = '<span class="badge badge-warning">Anomalie</span>';
+                        }
+                        else if ($state == "treated") {
+                            $statut = '<span class="badge badge-success">Traitée</span>';
+                        }
+                        else if ($state == "pending") {
+                            $statut = '<span class="badge badge-danger">En attente</span>';
+                        }
                       
                     ?>
                     <!-- <div id="myModal<?php echo $id; ?>" class="modal fade">
@@ -358,6 +572,7 @@
 <!-- -->
                 <tr id="line-delete-<?php echo $id; ?>">
                       <td></td>
+                      <td><?php echo $numDossier; ?></td>
                         <td><?php echo $immatricule; ?></td>
                         <td><?php echo $nom.' '.$prenom; ?></td>
                         <td>

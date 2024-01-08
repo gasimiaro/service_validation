@@ -90,15 +90,28 @@ class ValidationModel extends CI_Model {
 
 
     public function pendingValidation(){
-        $sql = "SELECT validation.id,validation.numDossier,validation.immatricule, agent.NOM, agent.PRENOMS, 
+        $sql = "SELECT validation.id, validation.numDossier, validation.immatricule, agent.NOM, agent.PRENOMS, 
                 validation.DuDateValidation, validation.AuDateValidation, 
                 validation.Cas, validation.typeBudget, validation.dateArrive, 
-                validation.comptable, user.prenom FROM validation, agent, user 
+                validation.comptable, user.prenom, 'pending' AS state 
+                FROM validation, agent, user 
                 WHERE validation.immatricule = agent.imatricule 
-                AND validation.comptable = user.imUser AND validation.DuDateValidation = '' AND validation.AuDateValidation = '' ORDER BY validation.id DESC";
+                AND validation.comptable = user.imUser 
+                AND validation.DuDateValidation = '' 
+                AND validation.AuDateValidation = '' 
+                ORDER BY validation.id DESC";
+        
         $query = $this->db->query($sql);
-        return $query->result();
+        $result = $query->result();
+    
+        // Add the state column to each result item
+        foreach ($result as &$item) {
+            $item->state = 'pending';
+        }
+    
+        return $result;
     }
+    
 
     public function validationStatePendingPerMonth($annee) {
         $result = array_fill(1, 12, 0); // Initialiser le tableau avec des zéros pour chaque mois
@@ -291,10 +304,17 @@ class ValidationModel extends CI_Model {
 
 public function checkTreatValidation($comptable){
 
+
     $this->db->from('validation'); 
+    $this->db->select('validation.numDossier, validation.id,validation.immatricule, agent.NOM, agent.PRENOMS, 
+    validation.DuDateValidation, validation.AuDateValidation, 
+    validation.Cas, validation.typeBudget, validation.dateArrive, 
+    validation.comptable, user.prenom'); 
+    $this->db->join("agent"," validation.immatricule = agent.imatricule","left");
+    $this->db->join("user"," validation.comptable = user.imUser","left");
     $this->db->where("Poste != '' AND Direction != '' AND DuDateValidation != '' AND AuDateValidation != ''");
     if($comptable != ''){
-        $this->db->where('comptable', $comptable);
+        $this->db->where('validation.comptable', $comptable);
     }
     
     return $this->db->get()->result();
@@ -314,7 +334,15 @@ public function reCheckTreatValidation($imAgent){
 public function checkIncompleteValidation($comptable){
 
     $this->db->from('validation'); 
+    $this->db->select('validation.numDossier, validation.id,validation.immatricule, agent.NOM, agent.PRENOMS, 
+    validation.DuDateValidation, validation.AuDateValidation, 
+    validation.Cas, validation.typeBudget, validation.dateArrive, 
+    validation.comptable, user.prenom'); 
+    $this->db->join("agent"," validation.immatricule = agent.imatricule","left");
+    $this->db->join("user"," validation.comptable = user.imUser","left");
     $this->db->where("DuDateValidation != '' AND AuDateValidation != ''");
+    // $this->db->from('validation'); 
+    // $this->db->where("DuDateValidation != '' AND AuDateValidation != ''");
     if($comptable != ''){
         $this->db->where('comptable', $comptable);
     }
@@ -502,7 +530,7 @@ public function AllValidationFullTreat($comptable) {
         return ['list' => $fullTreat, 'count' => count($fullTreat)];
 
     }
-    return false;
+    return ['list' => [], 'count' => 0];
 
 }
 
@@ -564,7 +592,7 @@ public function AllValidationIncompleteTreat($comptable) {
         return ['list' => $incompleteTreat, 'count' => count($incompleteTreat)];
 
     }
-    return false;
+    return ['list' => [], 'count' => 0];
 
 }
 /***************************************** */
@@ -672,14 +700,19 @@ public function completeValidationByComptab($imComptable) {
 }
 
 public function pendingValidationByComptable($imComptable){
-    $sql = "SELECT validation.immatricule, agent.NOM, agent.PRENOMS, 
-            validation.DuDateValidation, validation.AuDateValidation, 
-            validation.Cas, validation.typeBudget, validation.dateArrive, 
-            validation.comptable, user.prenom FROM validation, agent, user 
+    $sql = "SELECT validation.*, agent.NOM, agent.PRENOMS,  user.prenom FROM validation, agent, user 
             WHERE validation.immatricule = agent.imatricule 
             AND validation.comptable = user.imUser AND validation.DuDateValidation = '' AND validation.AuDateValidation = '' AND validation.comptable = '$imComptable' ORDER BY validation.id DESC";
     $query = $this->db->query($sql);
-    return $query->result();
+    // return $query->result();
+    $result = $query->result();
+
+    // Add the state column to each result item
+    foreach ($result as &$item) {
+        $item->state = 'pending';
+    }
+
+    return $result;
 }
 
 public function getListFullValidation($imComptable) {

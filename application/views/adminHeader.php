@@ -166,11 +166,21 @@ $(document).ready(function() {
   $("#allButton").click(function(){
     $("#allList").css("display", "block");
     $("#completeList").css("display", "none");
+    $("#incompleteList").css("display", "none");
     $("#pendingList").css("display", "none");
   });
   $("#completeButton").click(function(){
     $("#allList").css("display", "none");
     $("#completeList").css("display", "block");
+    $("#incompleteList").css("display", "none");
+    $("#pendingList").css("display", "none");
+    $("#imComplete").css("width", "2%");
+
+  });
+  $("#incompleteButton").click(function(){
+    $("#allList").css("display", "none");
+    $("#completeList").css("display", "none");
+    $("#incompleteList").css("display", "block");
     $("#pendingList").css("display", "none");
     $("#imComplete").css("width", "2%");
 
@@ -178,6 +188,7 @@ $(document).ready(function() {
   $("#pendingButton").click(function(){
     $("#allList").css("display", "none");
     $("#completeList").css("display", "none");
+    $("#incompleteList").css("display", "none");
     $("#pendingList").css("display", "block");
     $("#imPendig").css("width", "2%");
   });
@@ -271,7 +282,7 @@ function listeClick(){
                       <ul id="demande" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                           <li id="adminAllList"><a href="<?php echo base_url(); ?>adminpagecontroller/listRequestAdmin"><i class="ri-inbox-fill"></i>Demande reçue</a></li>
                           <li id="adminPendingList"><a href="<?php echo base_url(); ?>adminpagecontroller/listPendingAdmin"><i class="ion-alert"></i>Demande En attente</a></li>
-                          <li id="AdminHome"><a href="<?php echo base_url(); ?>index.php/backend/AdminPageHome"><i class="">?</i>Avoir d'anomalie</a></li>
+                          <li id="AdminHome"><a href="<?php echo base_url(); ?>adminpagecontroller/listIncompleteAdmin"><i class="">?</i>Avoir d'anomalie</a></li>
                           <li id="adminCompleteList"><a href="<?php echo base_url(); ?>adminpagecontroller/listCompleteAdmin"><i class="fa fa-check-circle"></i>Demande Traité</a></li>
                          
                       </ul>

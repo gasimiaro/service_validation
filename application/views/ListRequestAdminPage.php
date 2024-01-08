@@ -19,8 +19,9 @@
                     <div class="iq-card-header-toolbar d-flex align-items-center">
                         <div class="btn-group">
                         <a href="#allList" class="btn btn-link" id="allButton" >Tous les demandes</a>
-                        <a href="#completeList" class="btn btn-success" id="completeButton" >Traitée</a>
                         <a href="#pendingList" class="btn btn-danger" id="pendingButton" >En attente</a>
+                        <a href="#incompleteList" class="btn btn-warning" id="incompleteButton" >Anomalie</a>
+                        <a href="#completeList" class="btn btn-success" id="completeButton" >Traitée</a>
                     </div> 
                     
                 </div>
@@ -45,18 +46,38 @@
                     </thead>
                     <tbody>
                         <?php foreach ($listValidation as $validation){ 
-                        $id = $validation->id;
-                        $numDossier = $validation->numDossier;
-                        $immatricule = $validation->immatricule;
-                        $nom = $validation->NOM;
-                        $prenom = $validation->PRENOMS;
-                        $duDateVal = $validation->DuDateValidation;
-                        $auDateVal = $validation->AuDateValidation;
-                        $cas = $validation->Cas; 
-                        $typeBudget = $validation->typeBudget;
-                        $dateArrive = $validation->dateArrive;
-                        $comImmatricule = $validation->comptable;
-                        $comPrenom = $validation->prenom;
+
+
+                        // if (is_object($validation)) {
+                        //     $id = $validation->id;
+                        //     $numDossier = $validation->numDossier;
+                        //     $immatricule = $validation->immatricule;
+                        //     $nom = $validation->NOM;
+                        //     $prenom = $validation->PRENOMS;
+                        //     $duDateVal = $validation->DuDateValidation;
+                        //     $auDateVal = $validation->AuDateValidation;
+                        //     $cas = $validation->Cas; 
+                        //     $typeBudget = $validation->typeBudget;
+                        //     $dateArrive = $validation->dateArrive;
+                        //     $comImmatricule = $validation->comptable;
+                        //     $state = $validation->state;
+                        //     $comPrenom = $validation->prenom;
+                        // } elseif (is_array($validation) && isset($validation['id'])) {
+                            $id = $validation['id'];
+                            $numDossier = $validation['numDossier'];
+                            $immatricule = $validation['immatricule'];
+                            $nom = $validation['NOM'];
+                            $prenom = $validation['PRENOMS'];
+                            $duDateVal = $validation['DuDateValidation'];
+                            $auDateVal = $validation['AuDateValidation'];
+                            $cas = $validation['Cas'];
+                            $typeBudget = $validation['typeBudget'];
+                            $dateArrive = $validation['dateArrive'];
+                            $comImmatricule = $validation['comptable'];
+                            $state = $validation['state'];
+                            $comPrenom = $validation['prenom'];
+                        // }
+
 
                         $elemDate = explode("-", $dateArrive);
                         $dateArrives = implode("-", array_reverse($elemDate));
@@ -72,7 +93,15 @@
                             $delButton = '<a href="#'.$id.'" class="bg-secondary disabled"><i class="ri-delete-bin-line"></i></a>';
 
                         }
-                        
+                        if ($state == "incomplete") {
+                            $statut = '<span class="badge badge-warning">Anomalie</span>';
+                        }
+                        else if ($state == "treated") {
+                            $statut = '<span class="badge badge-success">Traitée</span>';
+                        }
+                        else if ($state == "pending") {
+                            $statut = '<span class="badge badge-danger">Traitée</span>';
+                        }
                         ?>
                            <tr id="line-delete-<?php echo $id; ?>">
                         <td></td>
@@ -178,6 +207,7 @@
               </div>
             </div>
             <?php  include(APPPATH.'views/CompleteAdminList.php'); ?>
+            <?php  include(APPPATH.'views/incompleteAdminList.php'); ?>
 
 
             <?php  include(APPPATH.'views/PendingAdminList.php'); ?>

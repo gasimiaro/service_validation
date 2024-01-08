@@ -1,4 +1,4 @@
-<div class="iq-card-body" id="completeList" style="display:none">
+<div class="iq-card-body" id="incompleteList" style="display:none">
             <div class="table-responsive">
                 <table id="Complete" class="data-tables table table-striped table-bordered" style="width:100%">
                     <thead>
@@ -21,15 +21,12 @@
                      <script>
                             
 
-                            //graph par type de budget par annee
-
-
 
                           </script>
                         <?php
                         // var_dump($completeValidation);
 
-                        foreach ($completeValidation as $validation){ 
+                        foreach ($incompleteValidation as $validation){ 
                             // $id = $validation->id;
                             // $numDossier = $validation->numDossier;
                             // $immatricule = $validation->immatricule;
@@ -53,18 +50,25 @@
                         $typeBudget = $validation['typeBudget'];
                         $dateArrive = $validation['dateArrive'];
                         $comImmatricule = $validation['comptable'];
+                        $state = $validation['state'];
                         $comPrenom = $validation['prenom'];
 
                         $elemDate = explode("-", $dateArrive);
                         $dateArrives = implode("-", array_reverse($elemDate));
-
-                        if ($duDateVal == "" && $auDateVal == "") {
-                            $statut = '<span class="badge badge-danger">En attente</span>';
+                        
+                        
+                        // if ($duDateVal == "" && $auDateVal == "") {
+                        //     $statut = '<span class="badge badge-danger">En attente</span>';
+                        // }
+                        // else{
+                        //     $statut = '<span class="badge badge-success">Traitée</span>';
+                        // }
+                        if ($state == "incomplete") {
+                            $statut = '<span class="badge badge-warning">Anomalie</span>';
                         }
-                        else{
+                        else if ($state == "treated") {
                             $statut = '<span class="badge badge-success">Traitée</span>';
                         }
-                        
                         ?>
                         <tr id="line-delete-<?php echo $id; ?>">
                         <td></td>

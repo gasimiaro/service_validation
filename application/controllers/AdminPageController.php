@@ -105,11 +105,32 @@ class AdminPageController extends CI_Controller {
     $data['countTraite'] = $this->validationmodel->NbTraiteValidationByCom($immatricule);
     $data['countWait'] = $this->validationmodel->NbWaitValidationByCom($immatricule);
     // $data['validationData'] = $this->validationmodel->allBudgetValidationByCompt($immatricule);
-    $data['listValidation'] = $this->validationmodel->allValidation();
-    $data['completeValidation'] = $this->validationmodel->completeValidation();
+    // $data['listValidation'] = $this->validationmodel->allValidation();
+    // $data['completeValidation'] = $this->validationmodel->completeValidation();
+
+    
+    $allVAlidationFullTreat =  $this->validationmodel->AllValidationFullTreat('');
+    $data['completeValidation'] = $allVAlidationFullTreat['list'];
+
+    $allVAlidationIncompleteTreat =  $this->validationmodel->AllValidationIncompleteTreat('');
+    $data['incompleteValidation'] = $allVAlidationIncompleteTreat['list'];
     $data['pendingValidation'] = $this->validationmodel->pendingValidation();
 
+    // Convert objects to arrays
+    $pendingArray = array_map(function($obj) {
+      return (array)$obj;
+    }, $data['pendingValidation']);
 
+
+    $data['listValidation'] = array_merge(
+      $pendingArray,
+      $data['completeValidation'],
+      $data['incompleteValidation']
+  );
+
+  usort($data['listValidation'], function($a, $b) {
+    return $b['id'] - $a['id'];
+});
 
     $data['comptable'] = $this->comptablemodel->comptable();
 
@@ -169,7 +190,12 @@ class AdminPageController extends CI_Controller {
     $data['countTraite'] = $this->validationmodel->NbTraiteValidationByCom($immatricule);
     $data['countWait'] = $this->validationmodel->NbWaitValidationByCom($immatricule);
     // $data['validationData'] = $this->validationmodel->allBudgetValidationByCompt($immatricule);
-    $data['completeValidation'] = $this->validationmodel->completeValidation();
+
+    $allVAlidationFullTreat =  $this->validationmodel->AllValidationFullTreat('');
+    // $data['countFullTreat'] = $allVAlidationFullTreat['count'];
+    $data['completeValidation'] = $allVAlidationFullTreat['list'];
+
+    // $data['completeValidation'] = $this->validationmodel->completeValidation();
     $data['comptable'] = $this->comptablemodel->comptable();
 
 
@@ -182,6 +208,41 @@ class AdminPageController extends CI_Controller {
         } elseif ($user['fonction'] == 'Chef de Bureau') {
           $this->load->view('adminHeader', $data);
           $this->load->view('CompleteAdminPage', $data);
+          $this->load->view('Footer');
+        }
+    } else {
+        redirect('/login');
+    }
+  }
+
+  public function listIncompleteAdmin(){
+    $user = $this->session->userdata('user');
+    $immatricule = $user['imUser'];
+    $data['number'] = $this->validationmodel->Notification($immatricule);
+    $data['newValidation'] = $this->validationmodel->NewValidation($immatricule);
+    $data['count'] = $this->validationmodel->TotalNbValidationByComp($immatricule);
+    $data['countYear'] = $this->validationmodel->YearNbValidationByCom($immatricule);
+    $data['countTraite'] = $this->validationmodel->NbTraiteValidationByCom($immatricule);
+    $data['countWait'] = $this->validationmodel->NbWaitValidationByCom($immatricule);
+    // $data['validationData'] = $this->validationmodel->allBudgetValidationByCompt($immatricule);
+
+    $allVAlidationIncompleteTreat =  $this->validationmodel->AllValidationIncompleteTreat('');
+    // $data['countFullTreat'] = $allVAlidationFullTreat['count'];
+    $data['incompleteValidation'] = $allVAlidationIncompleteTreat['list'];
+
+    // $data['completeValidation'] = $this->validationmodel->completeValidation();
+    $data['comptable'] = $this->comptablemodel->comptable();
+
+
+  
+    if($user && isset($user['fonction'])){ 
+        if($user['fonction'] == 'Comptable'){
+            $this->load->view('Header', $data);
+            $this->load->view('incompleteAdminPage', $data);
+            $this->load->view('Footer');
+        } elseif ($user['fonction'] == 'Chef de Bureau') {
+          $this->load->view('adminHeader', $data);
+          $this->load->view('incompleteAdminPage', $data);
           $this->load->view('Footer');
         }
     } else {
@@ -257,9 +318,80 @@ public function userDetails(){
       $data['number'] = $this->validationmodel->Notification($immatricule);
 
       $data['results'] = $this->agentmodel->checkComptable($immatricule);
-      $data['byComptable'] = $this->agentmodel->byComptableValidation($immatricule);
+
+
+
+      $allVAlidationFullTreat =  $this->validationmodel->AllValidationFullTreat($immatricule);
+      $data['completeValidation'] = $allVAlidationFullTreat['list'];
+  
+      $allVAlidationIncompleteTreat =  $this->validationmodel->AllValidationIncompleteTreat($immatricule);
+      $data['incompleteValidation'] = $allVAlidationIncompleteTreat['list'];
+      $data['pendingValidation'] = $this->validationmodel->pendingValidationByComptable($immatricule);
+  
+      // Convert objects to arrays
+      $pendingArray = array_map(function($obj) {
+        return (array)$obj;
+      }, $data['pendingValidation']);
+  
+  
+      $data['byComptable'] = array_merge(
+        $pendingArray,
+        $data['completeValidation'],
+        $data['incompleteValidation']
+    );
+  
+    usort($data['byComptable'], function($a, $b) {
+      return $b['id'] - $a['id'];
+    });
+
       $data['comptable'] = $this->comptablemodel->comptable();
 
+
+                $data['count'] = $this->validationmodel->TotalNbValidationByComp($immatricule);
+          $data['countYear'] = $this->validationmodel->YearNbValidationByCom($immatricule);
+          
+
+          $allVAlidationFullTreat =  $this->validationmodel->AllValidationFullTreat($immatricule);
+          $data['countTraite'] = $allVAlidationFullTreat['count'];
+          // $data['countTraite'] = $this->validationmodel->NbTraiteValidationByCom($immatricule);
+
+          $allVAlidationIncompleteTreat =  $this->validationmodel->AllValidationIncompleteTreat($immatricule);
+          $data['countAnomalie'] = $allVAlidationIncompleteTreat['count'];
+
+          $data['countWait'] = $this->validationmodel->NbWaitValidationByCom($immatricule);
+
+
+          $allVAlidationFullTreat =  $this->validationmodel->AllValidationFullTreat($immatricule);
+          $filteredResults = [];
+          foreach ($allVAlidationFullTreat['list'] as $validation) {
+            // Assuming dateArrive is a valid date field in your data
+            $year = date('Y', strtotime($validation['dateArrive']));
+        
+            if ($year == date('Y')) {
+                $filteredResults[] = $validation;
+            }
+        }
+        $data['countTraiteYear'] = count($filteredResults);
+
+        $allVAlidationIncompleteTreat =  $this->validationmodel->AllValidationIncompleteTreat($immatricule);
+        $filteredResults1 = [];
+          foreach ($allVAlidationIncompleteTreat['list'] as $validation) {
+            // Assuming dateArrive is a valid date field in your data
+            $year = date('Y', strtotime($validation['dateArrive']));
+        
+            if ($year == date('Y')) {
+                $filteredResults1[] = $validation;
+            }
+        }
+        $data['countAnomalieYear'] = count($filteredResults1);
+
+          // $data['countTraiteYear'] = $this->validationmodel->NbTraiteValYearByCom($immatricule);
+
+          $data['countWaitYear'] = $this->validationmodel->NbWaitValYearByCom($immatricule);
+
+          $data['listValidation'] = $this->validationmodel->allValidationByComptable($immatricule);
+          $data['completeValidation'] = $this->validationmodel->completeValidationByComptable($immatricule);
+          $data['pendingValidation'] = $this->validationmodel->pendingValidationByComptable($immatricule);
 
       $this->load->view('adminHeader',$data);
       $this->load->view('userDetailsPages', $data);
