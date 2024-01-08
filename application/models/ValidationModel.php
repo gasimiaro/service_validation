@@ -120,25 +120,69 @@ class ValidationModel extends CI_Model {
         return $result;
     }
 
+    // public function validationStateCompletePerMonth($annee) {
+    //     $result = array_fill(1, 12, 0); // Initialiser le tableau avec des zéros pour chaque mois
+
+    //     $this->db->select('MONTH(dateArrive) as mois, COUNT(*) as nombre_complete');
+    //     $this->db->from('validation');
+    //     $this->db->where('YEAR(dateArrive)', $annee);
+    //     $this->db->where('DuDateValidation !=', '');
+    //     $this->db->where('AuDateValidation !=', '');
+    //     $this->db->group_by('mois');
+
+    //     $query = $this->db->get();
+
+    //     foreach ($query->result() as $row) {
+    //         $result[$row->mois] = $row->nombre_complete;
+    //     }
+    //     $result = array_values($result);
+
+    //     return $result;
+    // }
+
     public function validationStateCompletePerMonth($annee) {
-        $result = array_fill(1, 12, 0); // Initialiser le tableau avec des zéros pour chaque mois
+        $listTreat = $this->AllValidationFullTreat('');
+                $allTreatValidation = $listTreat['list'];
 
-        $this->db->select('MONTH(dateArrive) as mois, COUNT(*) as nombre_complete');
-        $this->db->from('validation');
-        $this->db->where('YEAR(dateArrive)', $annee);
-        $this->db->where('DuDateValidation !=', '');
-        $this->db->where('AuDateValidation !=', '');
-        $this->db->group_by('mois');
 
-        $query = $this->db->get();
+        $result = array_fill(1, 12, 0);
+    
+        foreach ($allTreatValidation as $item) {
+            $year = date('Y', strtotime($item['dateArrive'])); // Extract year from the date
+            $month = date('n', strtotime($item['dateArrive'])); // Extract month from the date
+    
+            // if ($month >= 1 && $month <= 12 && $item['DuDateValidation'] != '' && $item['AuDateValidation'] != '') {
+                if ($year == $annee && $month >= 1 && $month <= 12 ) {
 
-        foreach ($query->result() as $row) {
-            $result[$row->mois] = $row->nombre_complete;
+                $result[$month]++;
+            }
         }
-        $result = array_values($result);
-
-        return $result;
+    
+        return array_values($result);
     }
+    
+    public function validationStateIncompletePerMonth($annee) {
+        $listIncomplete = $this->AllValidationIncompleteTreat('');
+                $allIncompleteValidation = $listIncomplete['list'];
+
+
+        $result = array_fill(1, 12, 0);
+    
+        foreach ($allIncompleteValidation as $item) {
+            $year = date('Y', strtotime($item['dateArrive'])); // Extract year from the date
+            $month = date('n', strtotime($item['dateArrive'])); // Extract month from the date
+    
+            // if ($month >= 1 && $month <= 12 && $item['DuDateValidation'] != '' && $item['AuDateValidation'] != '') {
+                if ($year == $annee && $month >= 1 && $month <= 12) {
+
+                $result[$month]++;
+            }
+        }
+    
+        return array_values($result);
+    }
+
+    
 
 
     public function countValidationsByYear() {
@@ -245,14 +289,38 @@ class ValidationModel extends CI_Model {
 
 /* check if validation treatement well */
 
-public function checkTreatValidation(){
+public function checkTreatValidation($comptable){
 
     $this->db->from('validation'); 
     $this->db->where("Poste != '' AND Direction != '' AND DuDateValidation != '' AND AuDateValidation != ''");
+    if($comptable != ''){
+        $this->db->where('comptable', $comptable);
+    }
     
     return $this->db->get()->result();
 }
 
+public function reCheckTreatValidation($imAgent){
+
+    $this->db->from('validation'); 
+    $this->db->where("Poste != '' AND Direction != '' AND DuDateValidation != '' AND AuDateValidation != ''");
+    $this->db->where("immatricule =".$imAgent);
+    $result = $this->db->get()->row_array();
+
+    return $result ? 'Complete' : 'Empty';
+
+}
+
+public function checkIncompleteValidation($comptable){
+
+    $this->db->from('validation'); 
+    $this->db->where("DuDateValidation != '' AND AuDateValidation != ''");
+    if($comptable != ''){
+        $this->db->where('comptable', $comptable);
+    }
+    
+    return $this->db->get()->result();
+}
 /********************************************* */
 
 
@@ -390,9 +458,10 @@ public function completeValidationByComptable($imComptable){
     return $query->result();
 }
 
+/*** get the list of full reat validation */
 
-public function AllValidationFullTreat() {
-    $allTreatValidation = $this->checkTreatValidation();
+public function AllValidationFullTreat($comptable) {
+    $allTreatValidation = $this->checkTreatValidation($comptable);
     $fullTreat = array();
     if($allTreatValidation){
         foreach( $allTreatValidation as $item){
@@ -436,6 +505,69 @@ public function AllValidationFullTreat() {
     return false;
 
 }
+
+public function AllValidationIncompleteTreat($comptable) {
+    $allIncompleteValidation = $this->checkIncompleteValidation($comptable);
+    $incompleteTreat = array();
+    if($allIncompleteValidation){
+        foreach( $allIncompleteValidation as $item){
+
+            $validationReCheck = $this->reCheckTreatValidation($item->immatricule);
+            if($validationReCheck == 'Complete'){
+                $titularisationModel = new TitularisationModel();
+                $titularisationCheck = $titularisationModel->checkTreatTitularisation($item->immatricule);
+                if($titularisationCheck == 'Complete'){
+    
+                    if (strpos($item->Cas, 'EFA') !== false) {
+                        $veilleIntegre = new VeilleintegreModel();
+                        $veilleIntegreCheck = $veilleIntegre->checkTreatVeilleIntegre($item->immatricule);
+    
+                        if($veilleIntegreCheck == 'Complete'){
+                            $priseService = new PriseServiceModel();
+                            $priseServiceCheck = $priseService->checkTreatPriseService($item->immatricule);
+                            if($priseServiceCheck == 'Empty'){
+                                $item->state = 'incomplete';
+    
+                                $incompleteTreat[] = (array)$item;
+                            }
+                        }
+                        else{
+                            $item->state = 'incomplete';
+                            $incompleteTreat[] = (array)$item;
+                        }
+                    }
+                    if (strpos($item->Cas, 'ECD') !== false  || strpos($item->Cas, 'ServicePrive') !== false  ) {
+                    $cnaps = new CnapsModel();
+                    $cnapsCheck = $cnaps->checkTreatCnaps($item->immatricule);
+                    if($cnapsCheck == 'Empty'){
+                        // $fullTreat += $item ;
+                        $item->state = 'incomplete';
+                        $incompleteTreat[] = (array)$item;
+    
+                    }
+                   }
+    
+                }
+                else{
+                    $item->state = 'incomplete';
+                    $incompleteTreat[] = (array)$item;
+                }
+    
+            }
+            else{
+                $item->state = 'incomplete';
+                $incompleteTreat[] = (array)$item;
+            }
+
+
+        }
+        return ['list' => $incompleteTreat, 'count' => count($incompleteTreat)];
+
+    }
+    return false;
+
+}
+/***************************************** */
 
 public function completeValidationByComptab($imComptable) {
     // Appel de la fonction getListFullValidation

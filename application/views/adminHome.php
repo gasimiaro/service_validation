@@ -11,7 +11,9 @@
 
   console.log("nombre bien traite : "+ countFullTreat);
   // console.log("bien traite : "+ countFullTreat1);
+  var countIncompleteTreat = <?php echo json_encode($countIncompleteTreat); ?>;
 
+  console.log("nombre incomplete traite : "+ countIncompleteTreat);
   </script>
 
 <div id="resultPage"></div>
@@ -106,8 +108,15 @@
                   <div class="d-flex align-items-center">
                      <h2>
                         <span class="counter">
-                           <?php echo 2; ?>
-                        </span>
+                        
+                        <?php
+                            if ($countIncompleteTreat<=9) {
+                              echo '0'.$countIncompleteTreat;
+                            }else {
+                              echo $countIncompleteTreat;
+                            }
+                            ?>
+                         </span>
                      </h2>
                      <div class="rounded-circle iq-card-icon iq-bg-warning ml-3"><i class="ri-refund-line"></i></div>
                   </div>
@@ -119,7 +128,7 @@
       <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
         <div class="iq-card-body">
             <div class="d-flex align-items-center justify-content-between">
-            <h6>Demande Traité</h6>
+            <h6>Demande Traitée</h6>
               <span class="iq-icon"><i class="ri-information-fill"></i></span>
             </div>
             <div class="iq-customer-box d-flex align-items-center justify-content-between mt-3">
@@ -188,26 +197,9 @@
                         <script>
                             
                             var statCompleteValidation = <?php echo json_encode($statCompleteValidation); ?>;
+                            var statIncompleteValidation = <?php echo json_encode($statIncompleteValidation); ?>;
                             var statPendingValidation = <?php echo json_encode($statPendingValidation); ?>;
                             var statePerMonthYear = new Date().getFullYear();
-                            
-
-
-                            //graph par type de budget par annee
-                            var countValidationsByYear = <?php echo json_encode($countValidationsByYear); ?>;
-                            var countValidationsBG = <?php echo json_encode($countValidationsBG); ?>;
-                            var countValidationsBA = <?php echo json_encode($countValidationsBA); ?>;
-                            var countValidationsBABG = <?php echo json_encode($countValidationsBABG); ?>;
-
-
-                            // console.log("statePerMonthYear: "+statePerMonthYear)
-                            // console.log("BA : "+numberBAPerYearData)
-                            // console.log("BABG : "+numberBAGPerYearData)
-                            // console.log("countValidationsByYear: "+JSON.stringify(countValidationsByYear))
-                            // console.log("countValidationsBG: "+JSON.stringify(countValidationsBG))
-                            // console.log("countValidationsBA: "+JSON.stringify(countValidationsBA))
-                            // console.log("countValidationsBABG: "+JSON.stringify(countValidationsBABG))
-
 
 
                           </script>
@@ -246,7 +238,17 @@
                      </div>
                      <div class="iq-card-body">
 
-                     
+                     <script>
+                            
+
+                            //graph par type de budget par annee
+                            var countValidationsByYear = <?php echo json_encode($countValidationsByYear); ?>;
+                            var countValidationsBG = <?php echo json_encode($countValidationsBG); ?>;
+                            var countValidationsBA = <?php echo json_encode($countValidationsBA); ?>;
+                            var countValidationsBABG = <?php echo json_encode($countValidationsBABG); ?>;
+
+
+                          </script>
                         <div id="high-basicline-chart"></div>
                      </div>
                   </div>
@@ -364,8 +366,11 @@ $(document).ready(function () {
                 chart.updateSeries([{
                     data: response.statPendingValidation
                 }, {
+                    data: response.statIncompleteValidation
+                }, {
                     data: response.statCompleteValidation
-                }]);
+                }
+              ]);
                 chart.updateOptions({
                     yaxis: {
                         title: {

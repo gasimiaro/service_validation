@@ -3417,10 +3417,12 @@ if(jQuery('#chartdiv').length){
                 data: statPendingValidation
 
             },
-            //  {
-            //     name: 'Anomalie',
-            //     data: [76, 85, 0, 98, 87, 105, 56, 51, 34, 8, 55, 12]
-            // }, 
+             {
+                name: 'Anomalie',
+                // data: [76, 85, 0, 98, 87, 105, 56, 51, 34, 8, 55, 12]
+                data: statIncompleteValidation
+
+            }, 
             {
                 name: 'Traité',
                 // data: [35, 41, 0, 26, 45, 48, 12, 34, 26, 27, 29, 46]

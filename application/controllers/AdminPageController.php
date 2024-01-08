@@ -25,9 +25,13 @@ class AdminPageController extends CI_Controller {
         $data['count'] = $this->validationmodel->TotalNbValidation();
         $data['countYear'] = $this->validationmodel->YearNbValidation();
         $data['countTraite'] = $this->validationmodel->NbTraiteValidation();
-        $allVAlidationFullTreat =  $this->validationmodel->AllValidationFullTreat();
+        $allVAlidationFullTreat =  $this->validationmodel->AllValidationFullTreat('');
         $data['countFullTreat'] = $allVAlidationFullTreat['count'];
-        $data['listFullTreat'] = $allVAlidationFullTreat['list'];
+        // $data['listFullTreat'] = $allVAlidationFullTreat['list'];
+
+        $allValidationIncompleteTreat =  $this->validationmodel->AllValidationIncompleteTreat('');
+        $data['countIncompleteTreat'] = $allValidationIncompleteTreat['count'];
+        // $data['listIncompleteTreat'] = $allValidationIncompleteTreat['list'];
 
 
         $data['countWait'] = $this->validationmodel->NbWaitValidation();
@@ -38,7 +42,12 @@ class AdminPageController extends CI_Controller {
         $data['completeValidation'] = $this->validationmodel->completeValidation();
        //for graph
         $data['statCompleteValidation'] = $this->validationmodel->validationStateCompletePerMonth(date('Y'));
+        $data['statIncompleteValidation'] = $this->validationmodel->validationStateIncompletePerMonth(date('Y'));
+
+        // $validationStatePerMonth = $this->validationStateCompletePerMonth($annee);
+
         $data['statPendingValidation'] = $this->validationmodel->validationStatePendingPerMonth(date('Y'));
+
         $data['countValidationsByYear'] = $this->validationmodel->countValidationsByYear();
         $data['countValidationsBG'] = $this->validationmodel->countValidationsByTypeBudget('BG');
         $data['countValidationsBA'] = $this->validationmodel->countValidationsByTypeBudget('BA');
@@ -70,11 +79,13 @@ class AdminPageController extends CI_Controller {
     $selectedYearRange = $this->input->post('selectedYearRange');
 
     // Appeler les méthodes du modèle avec la bonne variable
+    $statIncompleteValidation = $this->validationmodel->validationStateIncompletePerMonth($selectedYearRange);
     $statCompleteValidation = $this->validationmodel->validationStateCompletePerMonth($selectedYearRange);
     $statPendingValidation = $this->validationmodel->validationStatePendingPerMonth($selectedYearRange);
 
     // Préparer la réponse JSON
     $response['success'] = true;
+    $response['statIncompleteValidation'] = $statIncompleteValidation;
     $response['statCompleteValidation'] = $statCompleteValidation;
     $response['statPendingValidation'] = $statPendingValidation;
 
