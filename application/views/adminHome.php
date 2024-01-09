@@ -57,11 +57,11 @@
               <div class="d-flex align-items-center">
               <h2><span class="counter" style="visibility: visible;">
               <?php
-              if ($countYear<=9) {
-                echo '0'.$countYear;
-              }else {
-                echo $countYear;
-              }
+              // if ($countYear<=9) {
+              //   echo '0'.$countYear;
+              // }else {
+              //   echo $countYear;
+              // }
               ?>
               </span></h2>
                   <div class="rounded-circle iq-card-icon iq-bg-danger ml-3"><i class="ri-calendar-fill"></i></div>

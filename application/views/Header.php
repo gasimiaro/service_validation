@@ -157,7 +157,32 @@
 <script>
 $(document).ready(function() {
   
-  $('#All').DataTable( {
+//   $('#All').DataTable( {
+//       responsive: true,
+//       scrollX:false,
+//       language: {
+//         url: '<?php echo base_url()?>assets/datatable/fr-FR.json',
+//       }
+//   } );
+//   $('#Complete').DataTable( {
+//       responsive: true,
+//       scrollX:false,
+//       language: {
+//         url: '<?php echo base_url()?>assets/datatable/fr-FR.json',
+//       }
+//   } );
+//   $('#Pending').DataTable( {
+//       responsive: true,
+//       scrollX:false,
+//       language: {
+//         url: '<?php echo base_url()?>assets/datatable/fr-FR.json',
+//       }
+//   } );
+  
+
+// } );
+
+$('#All').DataTable( {
       responsive: true,
       scrollX:false,
       language: {
@@ -179,7 +204,35 @@ $(document).ready(function() {
       }
   } );
   
+  $("#allButton").click(function(){
+    $("#allList").css("display", "block");
+    $("#completeList").css("display", "none");
+    $("#incompleteList").css("display", "none");
+    $("#pendingList").css("display", "none");
+  });
+  $("#completeButton").click(function(){
+    $("#allList").css("display", "none");
+    $("#completeList").css("display", "block");
+    $("#incompleteList").css("display", "none");
+    $("#pendingList").css("display", "none");
+    $("#imComplete").css("width", "2%");
 
+  });
+  $("#incompleteButton").click(function(){
+    $("#allList").css("display", "none");
+    $("#completeList").css("display", "none");
+    $("#incompleteList").css("display", "block");
+    $("#pendingList").css("display", "none");
+    $("#imComplete").css("width", "2%");
+
+  });
+  $("#pendingButton").click(function(){
+    $("#allList").css("display", "none");
+    $("#completeList").css("display", "none");
+    $("#incompleteList").css("display", "none");
+    $("#pendingList").css("display", "block");
+    $("#imPendig").css("width", "2%");
+  });
 } );
 
 function listeClick(){
@@ -250,7 +303,7 @@ function listeClick(){
                       <ul id="demande" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                           <li id="adminAllList"><a href="<?php echo base_url(); ?>adminpagecontroller/listRequestAdmin"><i class="ri-inbox-fill"></i>Demande reçue</a></li>
                           <li id="adminPendingList"><a href="<?php echo base_url(); ?>adminpagecontroller/listPendingAdmin"><i class="ion-alert"></i>Demande En attente</a></li>
-                          <li id="AdminHome"><a href="<?php echo base_url(); ?>index.php/backend/AdminPageHome"><i class="">?</i>Avoir d'anomalie</a></li>
+                          <li id="AdminHome"><a href="<?php echo base_url(); ?>adminpagecontroller/listIncompleteAdmin"><i class="">?</i>Avoir d'anomalie</a></li>
                           <li id="adminCompleteList"><a href="<?php echo base_url(); ?>adminpagecontroller/listCompleteAdmin"><i class="fa fa-check-circle"></i>Demande Traité</a></li>
                          
                       </ul>
@@ -269,7 +322,7 @@ function listeClick(){
                      <!-- <li>
                         <a href="#pages" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="las la-user-tie iq-arrow-left"></i><span>Mes Apropos</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                         <ul id="pages" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle"> -->
-                            <li><a href="<?php echo base_url(); ?>userpagecontroller/Profile"><i class="las la-id-card-alt"></i>Mon Profile</a></li>
+                            <li id="myProfile"><a href="<?php echo base_url(); ?>userpagecontroller/Profile"><i class="las la-id-card-alt"></i>Mon Profile</a></li>
                             <!-- <li><a href="profile-edit.html"><i class="las la-edit"></i>Modification</a></li>
                         </ul>
                      </li> -->
@@ -398,7 +451,9 @@ function listeClick(){
                                       <h5 class="mb-0 text-white line-height"> <?php echo $user['prenom']; ?></h5>
                                       <span class="text-white font-size-45">IM: <?php echo $user['imUser']; ?></span>
                                   </div>
-                                  <a href="profile.html" class="iq-sub-card iq-bg-primary-hover">
+                                  <a href="<?php echo base_url(); ?>userpagecontroller/Profile" class="iq-sub-card iq-bg-primary-hover">
+                                  <!-- <li><a href="<?php echo base_url(); ?>userpagecontroller/Profile"><i class="las la-id-card-alt"></i>Mon Profile</a></li> -->
+
                                       <div class="media align-items-center">
                                         <div class="rounded iq-card-icon iq-bg-primary">
                                             <i class="ri-file-user-line"></i>

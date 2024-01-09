@@ -292,6 +292,7 @@ function listeClick(){
                       <a href="<?php echo base_url(); ?>adminpagecontroller/gererUser" class="iq-waves-effect"><i class="las la-user-tie iq-arrow-left"></i><span>Utilisateur</span></a>
                       
                     </li>
+                    <li id="myProfile"><a href="<?php echo base_url(); ?>userpagecontroller/Profile"><i class="las la-id-card-alt"></i>Mon Profile</a></li>
                     <li >
                       <!-- <a href="<?php echo base_url(); ?>" class="iq-waves-effect"><i class="ri-login-box-line iq-arrow-left"></i><span>Se Déconnecter</span></a> -->
                       <a  href="#modal-disconnect"  data-toggle="modal" data-placement="top" title="" data-original-title="Disconnect" class="iq-waves-effect"><i class="ri-login-box-line iq-arrow-left"></i><span>Se Déconnecter</span></a>
@@ -432,7 +433,7 @@ function listeClick(){
                                       <h5 class="mb-0 text-white line-height">Chef <?php echo $user['prenom']; ?></h5>
                                       <span class="text-white font-size-45">IM: <?php echo $user['imUser']; ?></span>
                                   </div>
-                                  <a href="profile.html" class="iq-sub-card iq-bg-primary-hover">
+                                  <a href="<?php echo base_url(); ?>userpagecontroller/Profile" class="iq-sub-card iq-bg-primary-hover">
                                       <div class="media align-items-center">
                                         <div class="rounded iq-card-icon iq-bg-primary">
                                             <i class="ri-file-user-line"></i>

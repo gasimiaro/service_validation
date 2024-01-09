@@ -108,7 +108,46 @@ class AdminPageController extends CI_Controller {
     // $data['listValidation'] = $this->validationmodel->allValidation();
     // $data['completeValidation'] = $this->validationmodel->completeValidation();
 
-    
+
+
+    $data['comptable'] = $this->comptablemodel->comptable();
+
+
+  
+    if($user && isset($user['fonction'])){ 
+        if($user['fonction'] == 'Comptable'){
+
+
+          $allVAlidationFullTreat =  $this->validationmodel->AllValidationFullTreat($immatricule);
+          $data['completeValidation'] = $allVAlidationFullTreat['list'];
+      
+          $allVAlidationIncompleteTreat =  $this->validationmodel->AllValidationIncompleteTreat($immatricule);
+          $data['incompleteValidation'] = $allVAlidationIncompleteTreat['list'];
+          $data['pendingValidation'] = $this->validationmodel->pendingValidationByComptable($immatricule);
+      
+          // Convert objects to arrays
+          $pendingArray = array_map(function($obj) {
+            return (array)$obj;
+          }, $data['pendingValidation']);
+      
+      
+          $data['listValidation'] = array_merge(
+            $pendingArray,
+            $data['completeValidation'],
+            $data['incompleteValidation']
+        );
+      
+        usort($data['listValidation'], function($a, $b) {
+          return $b['id'] - $a['id'];
+      });
+
+
+            $this->load->view('Header', $data);
+            $this->load->view('listRequestUserPage', $data);
+            $this->load->view('Footer');
+        } elseif ($user['fonction'] == 'Chef de Bureau') {
+
+              
     $allVAlidationFullTreat =  $this->validationmodel->AllValidationFullTreat('');
     $data['completeValidation'] = $allVAlidationFullTreat['list'];
 
@@ -132,16 +171,6 @@ class AdminPageController extends CI_Controller {
     return $b['id'] - $a['id'];
 });
 
-    $data['comptable'] = $this->comptablemodel->comptable();
-
-
-  
-    if($user && isset($user['fonction'])){ 
-        if($user['fonction'] == 'Comptable'){
-            $this->load->view('Header', $data);
-            $this->load->view('listRequestAdminPage', $data);
-            $this->load->view('Footer');
-        } elseif ($user['fonction'] == 'Chef de Bureau') {
           $this->load->view('adminHeader', $data);
           $this->load->view('listRequestAdminPage', $data);
           $this->load->view('Footer');
@@ -161,17 +190,20 @@ class AdminPageController extends CI_Controller {
     $data['countTraite'] = $this->validationmodel->NbTraiteValidationByCom($immatricule);
     $data['countWait'] = $this->validationmodel->NbWaitValidationByCom($immatricule);
     // $data['validationData'] = $this->validationmodel->allBudgetValidationByCompt($immatricule);
-    $data['pendingValidation'] = $this->validationmodel->pendingValidation();
+    // $data['pendingValidation'] = $this->validationmodel->pendingValidation();
     $data['comptable'] = $this->comptablemodel->comptable();
 
 
   
     if($user && isset($user['fonction'])){ 
         if($user['fonction'] == 'Comptable'){
+          $data['pendingValidation'] = $this->validationmodel->pendingValidationByComptable($immatricule);
             $this->load->view('Header', $data);
-            $this->load->view('PendingAdminPage', $data);
+            $this->load->view('PendingUserPage', $data);
             $this->load->view('Footer');
         } elseif ($user['fonction'] == 'Chef de Bureau') {
+          $data['pendingValidation'] = $this->validationmodel->pendingValidation();
+
           $this->load->view('adminHeader', $data);
           $this->load->view('PendingAdminPage', $data);
           $this->load->view('Footer');
@@ -191,9 +223,6 @@ class AdminPageController extends CI_Controller {
     $data['countWait'] = $this->validationmodel->NbWaitValidationByCom($immatricule);
     // $data['validationData'] = $this->validationmodel->allBudgetValidationByCompt($immatricule);
 
-    $allVAlidationFullTreat =  $this->validationmodel->AllValidationFullTreat('');
-    // $data['countFullTreat'] = $allVAlidationFullTreat['count'];
-    $data['completeValidation'] = $allVAlidationFullTreat['list'];
 
     // $data['completeValidation'] = $this->validationmodel->completeValidation();
     $data['comptable'] = $this->comptablemodel->comptable();
@@ -202,10 +231,20 @@ class AdminPageController extends CI_Controller {
   
     if($user && isset($user['fonction'])){ 
         if($user['fonction'] == 'Comptable'){
+
+          
+    $allVAlidationFullTreat =  $this->validationmodel->AllValidationFullTreat($immatricule);
+    // $data['countFullTreat'] = $allVAlidationFullTreat['count'];
+    $data['completeValidation'] = $allVAlidationFullTreat['list'];
             $this->load->view('Header', $data);
-            $this->load->view('CompleteAdminPage', $data);
+            $this->load->view('CompleteUserPage', $data);
             $this->load->view('Footer');
         } elseif ($user['fonction'] == 'Chef de Bureau') {
+
+          
+    $allVAlidationFullTreat =  $this->validationmodel->AllValidationFullTreat('');
+    // $data['countFullTreat'] = $allVAlidationFullTreat['count'];
+    $data['completeValidation'] = $allVAlidationFullTreat['list'];
           $this->load->view('adminHeader', $data);
           $this->load->view('CompleteAdminPage', $data);
           $this->load->view('Footer');
@@ -226,9 +265,6 @@ class AdminPageController extends CI_Controller {
     $data['countWait'] = $this->validationmodel->NbWaitValidationByCom($immatricule);
     // $data['validationData'] = $this->validationmodel->allBudgetValidationByCompt($immatricule);
 
-    $allVAlidationIncompleteTreat =  $this->validationmodel->AllValidationIncompleteTreat('');
-    // $data['countFullTreat'] = $allVAlidationFullTreat['count'];
-    $data['incompleteValidation'] = $allVAlidationIncompleteTreat['list'];
 
     // $data['completeValidation'] = $this->validationmodel->completeValidation();
     $data['comptable'] = $this->comptablemodel->comptable();
@@ -237,10 +273,21 @@ class AdminPageController extends CI_Controller {
   
     if($user && isset($user['fonction'])){ 
         if($user['fonction'] == 'Comptable'){
+
+          $allVAlidationIncompleteTreat =  $this->validationmodel->AllValidationIncompleteTreat($immatricule);
+          // $data['countFullTreat'] = $allVAlidationFullTreat['count'];
+          $data['incompleteValidation'] = $allVAlidationIncompleteTreat['list'];
+      
+
             $this->load->view('Header', $data);
-            $this->load->view('incompleteAdminPage', $data);
+            $this->load->view('incompleteUserPage', $data);
             $this->load->view('Footer');
         } elseif ($user['fonction'] == 'Chef de Bureau') {
+
+          $allVAlidationIncompleteTreat =  $this->validationmodel->AllValidationIncompleteTreat('');
+          // $data['countFullTreat'] = $allVAlidationFullTreat['count'];
+          $data['incompleteValidation'] = $allVAlidationIncompleteTreat['list'];
+      
           $this->load->view('adminHeader', $data);
           $this->load->view('incompleteAdminPage', $data);
           $this->load->view('Footer');

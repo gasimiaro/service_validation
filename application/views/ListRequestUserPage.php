@@ -38,7 +38,7 @@
                         <th>Cas</th>
                         <th>Budget</th>
                         <th>Date Arrivée</th>
-                        <th>Traité par</th>
+                        <!-- <th>Traité par</th> -->
                         <th>Status</th>
                         <th>Action</th>
                             
@@ -83,12 +83,12 @@
                         $dateArrives = implode("-", array_reverse($elemDate));
 
                         if ($duDateVal == "" && $auDateVal == "") {
-                            $statut = '<span class="badge badge-danger">En attente</span>';
+                            // $statut = '<span class="badge badge-danger">En attente</span>';
                             $editButton = ' <a  href="#modal-edit-'.$id.'" class="bg-primary" data-toggle="modal" data-placement="top" title="" data-original-title="Edit"><i class="ri-pencil-line"></i></a>';
                             $delButton = '<a href="#myModal'.$id.'" class="bg-primary" data-id="'.$id.'" data-toggle="modal" data-original-title="Supprimer"><i class="ri-delete-bin-line"></i></a>';
                         }
                         else{
-                            $statut = '<span class="badge badge-success">Traitée</span>';
+                            // $statut = '<span class="badge badge-success">Traitée</span>';
                             $editButton = ' <a class="bg-secondary disabled" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line"></i></a>';
                             $delButton = '<a href="#'.$id.'" class="bg-secondary disabled"><i class="ri-delete-bin-line"></i></a>';
 
@@ -100,7 +100,7 @@
                             $statut = '<span class="badge badge-success">Traitée</span>';
                         }
                         else if ($state == "pending") {
-                            $statut = '<span class="badge badge-danger">Traitée</span>';
+                            $statut = '<span class="badge badge-danger">En attente</span>';
                         }
                         ?>
                            <tr id="line-delete-<?php echo $id; ?>" data-state="<?php echo $state; ?>">
@@ -117,9 +117,9 @@
                             <td>
                             <p class="mb-0"><?php echo $dateArrives; ?></p>
                             </td>
-                            <td>
+                            <!-- <td>
                             <p class="mb-0" id="comptable-im-<?php echo $id ?>"><?php echo $comPrenom; ?></p>
-                            </td>
+                            </td> -->
                             <td>
                             <p class="mb-0"><?php echo $statut; ?></p>
                             </td>
@@ -206,11 +206,13 @@
                 
               </div>
             </div>
-            <?php  include(APPPATH.'views/CompleteAdminList.php'); ?>
-            <?php  include(APPPATH.'views/incompleteAdminList.php'); ?>
+
+            <?php  include(APPPATH.'views/CompleteUserList.php'); ?>
+            <?php  include(APPPATH.'views/incompleteUserList.php'); ?>
 
 
-            <?php  include(APPPATH.'views/PendingAdminList.php'); ?>
+            <?php  include(APPPATH.'views/PendingUserList.php'); ?>
+
 
 
 
@@ -227,46 +229,37 @@ $(document).ready(function () {
 
     document.getElementById('adminAllList').classList.add("active");
 
-//    /**************************************************************************************** */
+    /**************************************************************************************** */
 
-//         // Fonction pour afficher les lignes en fonction de l'état
-//         function filterTableRows(state) {
-//             $('#All tbody tr').hide(); // Masquer toutes les lignes du tableau
-//             $('#All tbody tr[data-state="' + state + '"]').show(); // Afficher les lignes correspondantes à l'état
-//         }
+        // // Fonction pour afficher les lignes en fonction de l'état
+        // function filterTableRows(state) {
+        //     $('#All tbody tr').hide(); // Masquer toutes les lignes du tableau
+        //     $('#All tbody tr[data-state="' + state + '"]').show(); // Afficher les lignes correspondantes à l'état
+        // }
 
-//         // Gérer le clic sur le bouton "Tous les demandes"
-//         $('#allButtonA').click(function () {
-//             $('#All tbody tr').show(); 
-//         });
+        // // Gérer le clic sur le bouton "Tous les demandes"
+        // $('#allButton').click(function () {
+        //     $('#All tbody tr').show(); 
+        // });
 
-//         // Gérer le clic sur le bouton "En attente"
-//         $('#pendingButtonA').click(function () {
-//             filterTableRows('pending');
-//         });
+        // // Gérer le clic sur le bouton "En attente"
+        // $('#pendingButton').click(function () {
+        //     filterTableRows('pending');
+        // });
 
-//         // Gérer le clic sur le bouton "Anomalie"
-//         $('#incompleteButtonA').click(function () {
-//             filterTableRows('incomplete');
-//         });
+        // // Gérer le clic sur le bouton "Anomalie"
+        // $('#incompleteButton').click(function () {
+        //     filterTableRows('incomplete');
+        // });
 
-//         // Gérer le clic sur le bouton "Traitée"
-//         // $('#completeButtonA').click(function () {
-//         //     filterTableRows('treated');
-//         // });
-//         $('#completeButtonA').click(function () {
-//     filterTableRows('treated');
+        // // Gérer le clic sur le bouton "Traitée"
+        // $('#completeButton').click(function () {
+        //     filterTableRows('treated');
+        // });
 
-//     // Show all rows in the DataTable (disable pagination)
-//     $('#All').DataTable().paging = false;
-//     $('#All').DataTable().draw();
-// });
-//         // Par défaut, afficher toutes les lignes au chargement de la page
-//         $('#All tbody tr').show(); 
-
-
+        // // Par défaut, afficher toutes les lignes au chargement de la page
+        // $('#All tbody tr').show(); 
 /******************************************************************************************************** */
-
         // Add an event listener for the form submission
         $('#edit-comptable-form').submit(function (e) {
             e.preventDefault(); // Prevent the default form submission

@@ -515,7 +515,7 @@ public function AllValidationFullTreat($comptable) {
                 if (strpos($item->Cas, 'ECD') !== false  || strpos($item->Cas, 'ServicePrive') !== false  ) {
             //    if($item->Cas == 'ECD' | $item->Cas == 'ServicePrive'  ){
                 $cnaps = new CnapsModel();
-                $cnapsCheck = $cnaps->checkTreatCnaps($item->immatricule);
+                $cnapsCheck = $cnaps->checkTreatCnaps($item->immatricule, $item->Cas);
                 if($cnapsCheck == 'Complete'){
                     // $fullTreat += $item ;
                     $item->state = 'treated';
@@ -566,7 +566,7 @@ public function AllValidationIncompleteTreat($comptable) {
                     }
                     if (strpos($item->Cas, 'ECD') !== false  || strpos($item->Cas, 'ServicePrive') !== false  ) {
                     $cnaps = new CnapsModel();
-                    $cnapsCheck = $cnaps->checkTreatCnaps($item->immatricule);
+                    $cnapsCheck = $cnaps->checkTreatCnaps($item->immatricule, $item->Cas);
                     if($cnapsCheck == 'Empty'){
                         // $fullTreat += $item ;
                         $item->state = 'incomplete';

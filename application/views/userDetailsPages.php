@@ -128,27 +128,6 @@
                                     <div class="iq-details mb-2">
                                     <span>
                                     <?php
-                                        if ($countTraite<=9) {
-                                            echo '0'.$countTraite;
-                                        }else {
-                                            echo $countTraite;
-                                        }
-                                        $traitePercent = ($countTraite * 100)/($count != 0 ? $count : 1);
-                                        $traitePercents = sprintf("%.2f", $traitePercent);
-                                        ?> 
-                                        </span><span>Traitée</span>
-                                        <div class="percentage float-right text-success"><?php echo $traitePercents; ?> <span>%</span></div>
-                                        <div class="iq-progress-bar-linear d-inline-block w-100">
-                                            <div class="iq-progress-bar">
-                                            <span class="bg-success" data-percent="<?php echo $traitePercents; ?>"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="iq-details mb-2">
-                                    <span>
-                                    <?php
                                         if ($countAnomalie<=9) {
                                             echo '0'.$countAnomalie;
                                         }else {
@@ -168,6 +147,27 @@
                                 </li>
                                 <li>
                                     <div class="iq-details mb-2">
+                                    <span>
+                                    <?php
+                                        if ($countTraite<=9) {
+                                            echo '0'.$countTraite;
+                                        }else {
+                                            echo $countTraite;
+                                        }
+                                        $traitePercent = ($countTraite * 100)/($count != 0 ? $count : 1);
+                                        $traitePercents = sprintf("%.2f", $traitePercent);
+                                        ?> 
+                                        </span><span>Traitée</span>
+                                        <div class="percentage float-right text-success"><?php echo $traitePercents; ?> <span>%</span></div>
+                                        <div class="iq-progress-bar-linear d-inline-block w-100">
+                                            <div class="iq-progress-bar">
+                                            <span class="bg-success" data-percent="<?php echo $traitePercents; ?>"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="iq-details mb-2">
                                         <span class="title">
                                     <?php
                                         if ($countYear<=9) {
@@ -178,7 +178,7 @@
                                         $traitePercent = ($countTraite * 100)/($count != 0 ? $count : 1);
                                         $annee = date("Y");
                                         ?> 
-                                        </span><span>Demande du l'année <?php echo $annee; ?></span>
+                                        </span><span>Demande de l'année <?php echo $annee; ?></span>
                                         <div class="percentage float-right text-dark">100 <span>%</span></div>
                                         <div class="iq-progress-bar-linear d-inline-block w-100">
                                             <div class="iq-progress-bar">
@@ -199,7 +199,7 @@
                                         $waitYearPercent = ($countWaitYear * 100)/($countYear != 0 ? $countYear : 1);
                                         $waitYearPercents = sprintf("%.2f", $waitYearPercent);
                                         ?> 
-                                        </span>En attente du l'année <?php echo $annee; ?></span>
+                                        </span>En attente de l'année <?php echo $annee; ?></span>
                                         <div class="percentage float-right text-dangeer"><?php echo $waitYearPercents;?> <span>%</span></div>
                                         <div class="iq-progress-bar-linear d-inline-block w-100">
                                             <div class="iq-progress-bar">
@@ -239,7 +239,7 @@
                                         $traiteYearPercent = ($countTraiteYear * 100)/($countYear != 0 ? $countYear : 1);
                                         $traiteYearPercents = sprintf("%.2f", $traiteYearPercent);
                                         ?> 
-                                        </span>Traitée du l'année <?php echo $annee; ?></span>
+                                        </span>Traitée de l'année <?php echo $annee; ?></span>
                                         <div class="percentage float-right text-success"><?php echo $traiteYearPercents; ?> <span>%</span></div>
                                         <div class="iq-progress-bar-linear d-inline-block w-100">
                                             <div class="iq-progress-bar">
@@ -387,7 +387,9 @@
 <?php foreach ($results as $info){ 
     $prenom = $info->prenom;
     $fonction = $info->fonction;
-    if ($fonction == "Comptable") {
+    // if ($fonction == "Comptable") {
+        if ($fonction) {
+
     
     
 ?>

@@ -472,6 +472,8 @@
 
 <script>
     $(document).ready(function () {
+      document.getElementById('myProfile').classList.add("active");
+
         // Gérez le changement de fichier
         $('#file-upload').change(function () {
           var fileInput = document.getElementById('file-upload');

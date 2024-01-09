@@ -24,12 +24,22 @@ class UserPageController extends CI_Controller {
         $data['newValidation'] = $this->validationmodel->NewValidation($immatricule);
         $data['count'] = $this->validationmodel->TotalNbValidationByComp($immatricule);
         $data['countYear'] = $this->validationmodel->YearNbValidationByCom($immatricule);
-        $data['countTraite'] = $this->validationmodel->NbTraiteValidationByCom($immatricule);
+        // $data['countTraite'] = $this->validationmodel->NbTraiteValidationByCom($immatricule);
+
+        $allVAlidationFullTreat =  $this->validationmodel->AllValidationFullTreat($immatricule);
+        $data['countTraite'] = $allVAlidationFullTreat['count'];
+
         $data['countWait'] = $this->validationmodel->NbWaitValidationByCom($immatricule);
+
+        
+        $allValidationIncompleteTreat =  $this->validationmodel->AllValidationIncompleteTreat($immatricule);
+        $data['countIncompleteTreat'] = $allValidationIncompleteTreat['count'];
+
         $data['listValidation'] = $this->validationmodel->allValidationByComptable($immatricule);
         $data['validationData'] = $this->validationmodel->completeValidationByComptab($immatricule);
         $data['pendingValidation'] = $this->validationmodel->pendingValidationByComptable($immatricule);
       
+
         if($user && isset($user['fonction'])){ 
             if($user['fonction'] == 'Comptable'){
                 $this->load->view('Header',$data);
@@ -126,15 +136,19 @@ class UserPageController extends CI_Controller {
       $user = $this->session->userdata('user');
       
       if($user && isset($user['fonction'])){ 
+        $immatricule = $user['imUser'];
+        $data['number'] = $this->validationmodel->Notification($immatricule);
+        $data['newValidation'] = $this->validationmodel->NewValidation($immatricule);
+
         if($user['fonction'] == 'Chef de Bureau'){
-          $this->load->view('adminHeader');
-          $this->load->view('profile');
+          $this->load->view('adminHeader', $data);
+          $this->load->view('profile', $data);
           $this->load->view('Footer');
           
         } elseif ($user['fonction'] == 'Comptable') {
-          $immatricule = $user['imUser'];
-          $data['number'] = $this->validationmodel->Notification($immatricule);
-          $data['newValidation'] = $this->validationmodel->NewValidation($immatricule);
+          // $immatricule = $user['imUser'];
+          // $data['number'] = $this->validationmodel->Notification($immatricule);
+          // $data['newValidation'] = $this->validationmodel->NewValidation($immatricule);
           // $data['count'] = $this->validationmodel->TotalNbValidationByComp($immatricule);
           // $data['countYear'] = $this->validationmodel->YearNbValidationByCom($immatricule);
           // $data['countTraite'] = $this->validationmodel->NbTraiteValidationByCom($immatricule);

@@ -19,10 +19,16 @@ class CnapsModel extends CI_Model {
     }
 
 
-    public function checkTreatCnaps($imAgent){
+    public function checkTreatCnaps($imAgent,$cas){
 
         $this->db->from('cnaps'); 
-        $this->db->where("DuDateCNaPS != '' AND AuDateCNaPS != '' AND Montant != '' ");
+        $this->db->where("DuDateCNaPS != '' AND AuDateCNaPS != '' ");
+        if (strpos($cas, 'ECD') !== false  ) {
+            $this->db->where(" MontantECD != '0' ");
+        }
+        if (strpos($cas, 'ServicePrive') !== false  ) {
+            $this->db->where(" MontantPrive != '0' ");
+        }
         $this->db->where("immatricule =".$imAgent);
         $result = $this->db->get()->row_array();
         // $number =  $this->db->count_all_results();
