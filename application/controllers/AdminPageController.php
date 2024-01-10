@@ -467,4 +467,55 @@ public function userDetails(){
 
   }
 
+//show form with data
+  public function updateRequest(){
+    $immatricule = $this->input->post('immatricule'); 
+    $comptable = $this->input->post('comptable'); 
+
+    $data['results'] = $this->validationmodel->pendingValidationInfo($immatricule);
+    $data['showComptable'] = $this->comptablemodel->showComptable($comptable);
+    $data['showOtherComptable'] = $this->comptablemodel->showOtherComptable($comptable);
+    $data['comptable'] = $this->comptablemodel->comptable();
+    $this->load->view('updateRequestForm', $data);
+  }
+
+  //request to update
+  public function updateValidation() {
+    $immatricule = $this->input->post('immatricule');
+    $typeBudget = $this->input->post('typeBudget');
+    $cas = $this->input->post('cas');
+    $comptable = $this->input->post('comptable');
+    $comptableInfo = $this->comptablemodel->checkComptable($comptable);
+    $comptableName = $comptableInfo[0]->prenom;
+    
+    // Appel de la méthode du modèle pour modifier l'information à la table validation
+    $updated = $this->validationmodel->updateValidation($immatricule, $cas, $typeBudget, $comptable);
+
+    if ($updated) {
+        // $this->session->set_flashdata('success', 'Modification avec succes, ');
+        // redirect('liste-en-attente-demande');
+        $response['success'] = true;
+        $response['immatricule'] = $immatricule;
+        $response['typeBudget'] = $typeBudget;
+        $response['cas'] = $cas;
+
+        $response['comptableName'] = $comptableName;
+
+        // $data['pendingValidation'] = $this->validationmodel->pendingValidation();
+        // $pendingValidation = $this->validationmodel->pendingValidation();
+
+        // $response['list'] = $pendingValidation ;
+
+        // $this->load->view('PendingAdminList', $data);
+
+
+    } else {
+        // Gérer l'erreur d'insertion
+        $response['success'] = false;
+        $response['message'] = 'Erreur lors du changement';
+    }
+    echo json_encode($response);
+
+  }
+
 }

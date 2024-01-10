@@ -740,5 +740,25 @@ public function numberPerCasExist(){
     return $data;
 }
 
+public function pendingValidationInfo($immatricule){
+    $sql = "SELECT validation.immatricule, agent.NOM, agent.PRENOMS, 
+            validation.Cas, validation.typeBudget, validation.comptable, 
+            validation.dateArrive FROM validation, agent 
+            WHERE validation.immatricule = agent.imatricule AND immatricule = $immatricule";
+    $query = $this->db->query($sql);
+    return $query->result();
+}
 
+public function updateValidation($immatricule, $cas, $typeBudget,$comptable) {
+    $data = array(
+        'immatricule' => $immatricule,
+        'cas' => $cas,
+        'typeBudget' => $typeBudget,
+        'comptable' => $comptable
+    );
+
+    $this->db->where('immatricule', $immatricule);
+
+    return $this->db->update('validation', $data);
+}
 }

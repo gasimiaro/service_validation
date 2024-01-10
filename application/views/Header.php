@@ -310,7 +310,7 @@ function listeClick(){
                     </li>
 
 
-                     <li>
+                     <!-- <li>
                         <a href="#Validations" class="active iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-download"></i><span>Etat de Decompte </span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                         <ul id="Validations" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                             <li class="active"><a href="<?php echo base_url(); ?>index.php/backend/"><i class="ri-arrow-right-line"></i> Tous les Budgets</a></li>
@@ -318,7 +318,7 @@ function listeClick(){
                             <li><a href="<?php echo base_url(); ?>index.php/backend/receivedValidationPage"><i class="ri-arrow-right-line"></i> Budget Autonome</a></li>
                             <li><a href="<?php echo base_url(); ?>index.php/backend/receivedValidationPage"><i class="ri-arrow-right-line"></i> Budget Autonome-Général</a></li>
                         </ul>
-                     </li>
+                     </li> -->
                      <!-- <li>
                         <a href="#pages" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="las la-user-tie iq-arrow-left"></i><span>Mes Apropos</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                         <ul id="pages" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle"> -->

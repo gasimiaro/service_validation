@@ -8,6 +8,7 @@
 ?>
 
 <div id="resultPage"></div>
+<div id="UpdatePage"></div>
 
 <div class="row" id="startPage">
     <div class="col-sm-12">
@@ -84,7 +85,9 @@
 
                         if ($duDateVal == "" && $auDateVal == "") {
                             $statut = '<span class="badge badge-danger">En attente</span>';
-                            $editButton = ' <a  href="#modal-edit-'.$id.'" class="bg-primary" data-toggle="modal" data-placement="top" title="" data-original-title="Edit"><i class="ri-pencil-line"></i></a>';
+                            // $editButton = ' <a  href="#modal-edit-'.$id.'" class="bg-primary" data-toggle="modal" data-placement="top" title="" data-original-title="Edit"><i class="ri-pencil-line"></i></a>';
+                            $editButton = '<input type="hidden" value="'.$comImmatricule.'" name="comptable" class="" id="comptable'.$immatricule.'">
+                            <a  class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier" style="cursor:pointer" id="'.$immatricule.'" onclick="updateDemande('.$immatricule.')"><i class="ri-pencil-line"></i></a>';
                             $delButton = '<a href="#myModal'.$id.'" class="bg-primary" data-id="'.$id.'" data-toggle="modal" data-original-title="Supprimer"><i class="ri-delete-bin-line"></i></a>';
                         }
                         else{
@@ -100,7 +103,7 @@
                             $statut = '<span class="badge badge-success">Traitée</span>';
                         }
                         else if ($state == "pending") {
-                            $statut = '<span class="badge badge-danger">Traitée</span>';
+                            $statut = '<span class="badge badge-danger">En attente</span>';
                         }
                         ?>
                            <tr id="line-delete-<?php echo $id; ?>" data-state="<?php echo $state; ?>">
@@ -109,16 +112,20 @@
                             <td><?php echo $immatricule; ?></td>
                             <td><?php echo $nom.' '.$prenom; ?></td>
                             <td>
-                            <p class="mb-0"><?php echo $cas; ?></p>
+                            <!-- <p class="mb-0"><?php echo $cas; ?></p> -->
+                            <p class="mb-0 cas-update-<?php echo $immatricule ?>"><?php echo $cas; ?></p>
+
                             </td>
                             <td>
-                            <p class="mb-0"><?php echo $typeBudget; ?></p>
+                            <!-- <p class="mb-0"><?php echo $typeBudget; ?></p> -->
+                            <p class="mb-0 type-budget-update-<?php echo $immatricule ?>"><?php echo $typeBudget; ?></p>
                             </td>
                             <td>
                             <p class="mb-0"><?php echo $dateArrives; ?></p>
                             </td>
                             <td>
-                            <p class="mb-0" id="comptable-im-<?php echo $id ?>"><?php echo $comPrenom; ?></p>
+                            <!-- <p class="mb-0" id="comptable-im-<?php echo $id ?>"><?php echo $comPrenom; ?></p> -->
+                            <p class="mb-0 comptable-im-<?php echo $immatricule ?>"><?php echo $comPrenom; ?></p>
                             </td>
                             <td>
                             <p class="mb-0"><?php echo $statut; ?></p>
@@ -268,52 +275,73 @@ $(document).ready(function () {
 /******************************************************************************************************** */
 
         // Add an event listener for the form submission
-        $('#edit-comptable-form').submit(function (e) {
-            e.preventDefault(); // Prevent the default form submission
+        // $('#edit-comptable-form').submit(function (e) {
+        //     e.preventDefault(); // Prevent the default form submission
 
-            // Get form data
-            var formData = $(this).serialize();
+        //     // Get form data
+        //     var formData = $(this).serialize();
 
 
+        //     $.ajax({
+        //         type: 'POST', // Use GET method
+        //         url: '<?php echo base_url("validationcontroller/editValidationComptable"); ?>' , // Append form data to the URL
+        //         data: formData, // Use the data option for POST requests
+        //         dataType: 'json',
+        //         success: function (response) {
+        //             // Check the response
+        //             if (response.success) {
+        //                 // Update the UI with the new data (you need to implement this part)
+        //                 var selectElement = document.getElementById('select-id'); // Remplacez 'yourId' par l'ID de votre select
+        //                 var desiredValue = response.comptable; // Remplacez 'VotreValeur' par la valeur de l'option dont vous voulez obtenir le texte
+
+        //                 for (var i = 0; i < selectElement.options.length; i++) {
+        //                     if (selectElement.options[i].value == desiredValue) {
+        //                         var selectedText = selectElement.options[i].text;
+        //                         // console.log("Texte sélectionné : " + selectedText);
+        //                         $('#comptable-im-' + response.id).text(selectedText);
+        //                         break;
+        //                     }
+        //                 }
+        //                 $('#modal-edit-' + response.id).modal('hide');
+        //                 swal("Edition avec succès", "","success");
+        //                 setTimeout(function(){
+        //                     swal.close();
+        //                 }, 2000);
+        //                 // Display a success message (you need to implement this part)
+        //                 // alert(JSON.stringify(response));
+        //             } else {
+        //                 // Display an error message (you need to implement this part)
+        //                 alert(response.message);
+        //             }
+        //         },
+        //         error: function () {
+        //             // Handle AJAX error (you need to implement this part)
+        //             alert('Error during AJAX request');
+        //         }
+        //     });
+        // });
+        function updateDemande(immatricule) {
+            var UpdatePage = $('#UpdatePage');
+            var startPage = $('#startPage');
+            var comptable = $('#comptable'+immatricule).val();
+            console.log('immatricule:', immatricule);
+            console.log('comptable:', comptable);
+            // Envoie de la requête AJAX
             $.ajax({
-                type: 'POST', // Use GET method
-                url: '<?php echo base_url("validationcontroller/editValidationComptable"); ?>' , // Append form data to the URL
-                data: formData, // Use the data option for POST requests
-                dataType: 'json',
-                success: function (response) {
-                    // Check the response
-                    if (response.success) {
-                        // Update the UI with the new data (you need to implement this part)
-                        var selectElement = document.getElementById('select-id'); // Remplacez 'yourId' par l'ID de votre select
-                        var desiredValue = response.comptable; // Remplacez 'VotreValeur' par la valeur de l'option dont vous voulez obtenir le texte
-
-                        for (var i = 0; i < selectElement.options.length; i++) {
-                            if (selectElement.options[i].value == desiredValue) {
-                                var selectedText = selectElement.options[i].text;
-                                // console.log("Texte sélectionné : " + selectedText);
-                                $('#comptable-im-' + response.id).text(selectedText);
-                                break;
-                            }
-                        }
-                        $('#modal-edit-' + response.id).modal('hide');
-                        swal("Edition avec succès", "","success");
-                        setTimeout(function(){
-                            swal.close();
-                        }, 2000);
-                        // Display a success message (you need to implement this part)
-                        // alert(JSON.stringify(response));
-                    } else {
-                        // Display an error message (you need to implement this part)
-                        alert(response.message);
-                    }
+                type: 'POST',
+                url: '<?php echo base_url()?>adminpagecontroller/updateRequest', // Assurez-vous d'ajuster l'URL en conséquence
+                data: { immatricule: immatricule, comptable:comptable },
+                success: function (data) {
+                    UpdatePage.show();
+                    startPage.hide();
+                    UpdatePage.html(data);
+                    
                 },
-                error: function () {
-                    // Handle AJAX error (you need to implement this part)
-                    alert('Error during AJAX request');
+                error: function (error) {
+                    console.log(error);
                 }
             });
-        });
-
+        }
 
         $('#delete-validation-form').submit(function (e) {
             e.preventDefault(); // Prevent the default form submission

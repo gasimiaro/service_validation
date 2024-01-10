@@ -116,4 +116,17 @@ public function comptables(){
         return true; // Return true after successful update
     }
 
+    public function showComptable($comptable){
+        $sql = "SELECT * FROM user WHERE fonction = 'Comptable' AND imUser = $comptable";
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        return $result;
+    }
+    public function showOtherComptable($comptable){
+        $sql = "SELECT * FROM user WHERE fonction = 'Comptable' AND imUser != $comptable";
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        return $result;
+    }
+
 }

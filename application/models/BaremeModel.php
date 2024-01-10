@@ -34,7 +34,7 @@ class BaremeModel extends CI_Model {
     
         $res = $query->row_array();
     
-        if ($res['solde'] !== NULL) {
+        if ($res && $res['solde'] !== NULL) {
             return $res['solde'];
         } else {
             return false; 
