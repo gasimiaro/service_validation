@@ -27,7 +27,7 @@ class CnapsModel extends CI_Model {
             $this->db->where(" MontantECD != '0' ");
         }
         if (strpos($cas, 'ServicePrive') !== false  ) {
-            $this->db->where(" MontantPrive != '0' ");
+            $this->db->where(" MontantServPrive != '0' ");
         }
         $this->db->where("immatricule =".$imAgent);
         $result = $this->db->get()->row_array();
@@ -36,6 +36,23 @@ class CnapsModel extends CI_Model {
         return $result ? 'Complete' : 'Empty';
 
     }
+    
+
+    public function insertCNaPS($immatricule, $duDateCNaPS, $auDateCNaPS, $MontantPrive, $MontantECD, $Tx, $TxUn, $TxDeux){
+        $data = array(
+            'immatricule' => $immatricule,
+            'DuDateCNaPS' => $duDateCNaPS,
+            'AuDateCNaPS' => $auDateCNaPS,
+            'MontantServPrive' => $MontantPrive,
+            'MontantECD' => $MontantECD,
+            'Tx' => $Tx,
+            'TxUn' => $TxUn,
+            'TxDeux' => $TxDeux,
+        );
+        
+        return $this->db->insert('cnaps', $data);
+    }
+
     
     /********************************************* */
 

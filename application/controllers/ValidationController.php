@@ -7,6 +7,10 @@ class ValidationController extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');  // Load the URL Helper
         $this->load->model('validationmodel');
+        $this->load->model('titularisationmodel');
+        $this->load->model('veilleintegremodel');
+        $this->load->model('priseservicemodel');
+        $this->load->model('cnapsmodel');
 
         // $this->load->model('adminpagemodel');
         $this->load->library('session');
@@ -106,5 +110,89 @@ class ValidationController extends CI_Controller {
       }
     }
     
+    public function ValidationService(){
+    
+      $immatricule = $this->input->post('immatricule');
+      $cas = $this->input->post('cas');
+      //information sur table validation
+      $poste = $this->input->post('poste');
+      $direction = $this->input->post('direction');
+      $duDateValidation = $this->input->post('duDateValidation');
+      $auDateValidation = $this->input->post('auDateValidation');
+      $duDateRetard = $this->input->post('duDateRetard');
+      $auDateRetard = $this->input->post('auDateRetard');
+  
+      //information sur table titularisation
+      $Integre = $this->input->post('integre');
+      $dateTitularisation = $this->input->post('dateTitularisation');
+      $corpsTitularisation = $this->input->post('corpsTitularisation');
+      $gradeTitularisation = $this->input->post('gradeTitularisation');
+      $indiceTitularisation = $this->input->post('indiceTitularisation');
+      $categTitularisation = $this->input->post('categTitularisation');
+  
+      if($cas == "EFA" || $cas == "ELD-EFA" || $cas == "ServicePrive-ECD-ELD-EFA"){
+  
+        //information sur table veilleIntegre
+        $dateVeilleInteg = $this->input->post('dateVeilleIntegre');
+        $corpsVeilleInteg = $this->input->post('corpsVeilleIntegre');
+        $gradeVeilleInteg = $this->input->post('gradeVeilleIntegre');
+        $indiceVeilleInteg = $this->input->post('indiceVeilleIntegre');
+        $categVeilleInteg = $this->input->post('categVeilleIntegre');
+        
+        //information sur table PriseService
+        $datePriseService = $this->input->post('datePriseService');
+        $corpsPriseService = $this->input->post('corpsPriseService');
+        $gradePriseService = $this->input->post('gradePriseService');
+        $indicePriseService = $this->input->post('indicePriseService');
+        $categPriseService = $this->input->post('categPriseService');
+      }else{
+        //information sur table veilleIntegre
+        $dateVeilleInteg = "";
+        $corpsVeilleInteg = "";
+        $gradeVeilleInteg = "";
+        $indiceVeilleInteg = "";
+        $categVeilleInteg = "";
+  
+          //information sur table PriseService
+        $datePriseService = "";
+        $corpsPriseService = "";
+        $gradePriseService = "";
+        $indicePriseService = "";
+        $categPriseService = "";
+  
+      }
+  
+      if ($cas == "ServicePrive" || $cas == "ECD" || $cas == "ServicePrive-ECD" || $cas == "ServicePrive-ECD-ELD-EFA") {
+    
+        //information sur table CNaPS
+        $duDateCNaPS = $this->input->post('duDateCNaPS');
+        $auDateCNaPS = $this->input->post('auDateCNaPS');
+        $MontantPrive = $this->input->post('MontantPrive');
+        $MontantECD = $this->input->post('MontantECD');
+        $Tx = $this->input->post('Tx');
+        $TxUn = $this->input->post('TxUn');
+        $TxDeux = $this->input->post('TxDeux');
+      }else {
+        //information sur table CNaPS
+        $duDateCNaPS = "";
+        $auDateCNaPS = "";
+        $MontantPrive = "";
+        $MontantECD = "";
+        $Tx = "";
+        $TxUn = "";
+        $TxDeux = "";
+      }
+  
+      $ReUpdateValidation = $this->validationmodel->ReUpdateValidation($immatricule, $poste, $direction, $duDateValidation, $auDateValidation, $duDateRetard, $auDateRetard);
+      $insertTitularisation = $this->titularisationmodel->insertTitularisation($immatricule, $Integre, $dateTitularisation, $corpsTitularisation, $gradeTitularisation, $indiceTitularisation, $categTitularisation);
+      $insertVeilleIntegration = $this->veilleintegremodel->insertVeilleIntegration($immatricule, $dateVeilleInteg, $corpsVeilleInteg, $gradeVeilleInteg, $indiceVeilleInteg, $categVeilleInteg);
+      $insertPriseService = $this->priseservicemodel->insertPriseService($immatricule, $datePriseService, $corpsPriseService, $gradePriseService, $indicePriseService, $categPriseService);
+      $insertCNaPS = $this->cnapsmodel->insertCNaPS($immatricule, $duDateCNaPS, $auDateCNaPS, $MontantPrive, $MontantECD, $Tx, $TxUn, $TxDeux);
+  
+      if($ReUpdateValidation && $insertTitularisation && $insertVeilleIntegration && $insertPriseService && $insertCNaPS){
+        $this->session->set_flashdata('success', 'Bien Validée, ');
+        redirect('userpage');
+      }
+    }
 
 }

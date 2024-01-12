@@ -41,6 +41,18 @@ public function checkTreatVeilleIntegre($imAgent){
     
 }
 
+public function insertVeilleIntegration($immatricule, $dateVeilleInteg, $corpsVeilleInteg, $gradeVeilleInteg, $indiceVeilleInteg, $categVeilleInteg){
+    $data = array(
+        'immatricule' => $immatricule,
+        'Date' => $dateVeilleInteg,
+        'Corps' => $corpsVeilleInteg,
+        'Grade' => $gradeVeilleInteg,
+        'Indice' => $indiceVeilleInteg,
+        'Categorie' => $categVeilleInteg
+    );
+    
+    return $this->db->insert('veilleintegre', $data);
+}
 /********************************************* */
 
 }

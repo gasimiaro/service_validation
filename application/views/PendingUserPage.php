@@ -8,29 +8,31 @@
 ?>
 
 <div id="resultPage"></div>
-<div id="UpdatePage"></div>
-<div class="row" id="startPage">
-    <div class="col-sm-12">
-        <div class="iq-card">
-                <div class="iq-card-header d-flex justify-content-between">
-                    <div class="iq-header-title">
-                        <h4 class="card-title">Liste des Demandes en Attente</h4>
-                    </div>
-                  
-                    
+<!-- <div id="UpdatePage"></div> -->
+    <div class="row" id="startPage">
+            <div class="col-sm-12">
+                <div class="iq-card">
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title">Liste des Demandes en Attente</h4>
+                            </div>
+                        
+                            
+                        </div>
                 </div>
+
+                    <?php  include(APPPATH.'views/PendingUserList.php'); ?>
+
+
+                    
+
             </div>
-
-            <?php  include(APPPATH.'views/PendingUserList.php'); ?>
-
-
-            
-
-        </div>
     </div>
   
-    </div>
+<!-- </div> -->
 </div>
+<?php  include(APPPATH.'views/treatementValidation.php'); ?>
+
 <script>
 
 

@@ -326,7 +326,7 @@ function listeClick(){
                             <!-- <li><a href="profile-edit.html"><i class="las la-edit"></i>Modification</a></li>
                         </ul>
                      </li> -->
-
+                     <li id="guide"><a href=""><i class="las la-id-card-alt"></i>Guide</a></li>
                      <li >
                       <!-- <a href="<?php echo base_url(); ?>" class="iq-waves-effect"><i class="ri-login-box-line iq-arrow-left"></i><span>Se Déconnecter</span></a> -->
                       <a  href="#modal-disconnect"  data-toggle="modal" data-placement="top" title="" data-original-title="Disconnect" class="iq-waves-effect"><i class="ri-login-box-line iq-arrow-left"></i><span>Se Déconnecter</span></a>

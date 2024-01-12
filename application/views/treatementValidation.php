@@ -1,558 +1,1295 @@
-
-<div class="row" id="validationPage" style=" display:none">
-    <div class="col-sm-12 col-lg-12">
-        <div class="iq-card">
-            <div class="iq-card-header d-flex justify-content-between">
-                <div class="iq-header-title">
-                    <h4 class="card-title">Validation de demande</h4>
+<div class="col-sm-12 col-lg-12" id="traitement" style="display:none">
+            <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                    <div class="iq-header-title">
+                        <h4 class="card-title" >Traitement de de demande du Validation des services precaires</h4>
+                    
+                    </div>
                 </div>
-            </div>
-            <div class="iq-card-body">
-                <div id="form-wizard1" id="validationInput" class="text-center mt-4">
-                    <ul id="top-tab-list" class="p-0">
+                <div class="iq-card-body" id="Etat" style="display:none">
+                    <form id="form-wizard1" class="text-center mt-4" action="<?php echo base_url(); ?>validationcontroller/ValidationService" method="post">
+                        <ul id="top-tab-list" class="p-0">
+                        <!-- <li id="confirm"> -->
                         <li class="active" id="account">
-                            <a href="javascript:void();">
-                                <i class="ri-check-fill"></i><span>Validation</span>
-                            </a>
-                        </li>
-                        <li id="personal">
-                            <a href="javascript:void();">
-                                <i class="ri-award-fill"></i><span>Titularisation</span>
-                            </a>
+                        <a href="javascript:void();">
+                        <i class="ri-check-fill"></i><span>Prise de Service</span>
+                        </a>
                         </li>
                         <li id="payment">
-                            <a href="javascript:void();">
-                            <i class="ri-terminal-window-line"></i><span id="stepHeader"></span>
-                            </a>
+                        <a href="javascript:void();">
+                        <i class="ri-camera-fill"></i><span>Veille d'Integration</span>
+                        </a>
                         </li>
+                        
+                        <!-- <li class="active" id="account"> -->
+                        <li id="personal">
+                        <a href="javascript:void();">
+                        <i class="ri-user-fill"></i><span>Titularisation</span>
+                        </a>
+                        </li>
+
                         <li id="confirm">
-                            <a href="javascript:void();">
-                                <i id="iconVeille" ></i><span id="veuille">Veille d'Integration</span>
-                            </a>
+                        <a href="javascript:void();">
+                        <i class="ri-lock-unlock-line"></i><span>Validation</span>
+                        </a>
                         </li>
-                    </ul>
-                    <!-- fieldsets -->
-                    <form class="was-validated" action="<?php echo base_url(); ?>index.php/backend/traiteValidation" method="post">
-                        
+
+                        </ul>
+                        <!-- fieldsets -->
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h3 class="mb-4 text-left">Information sur Prise de Service:</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Etape 1 - 4</h2>
+                                    </div>
+                                </div>
                             
-                        <fieldset>
-                            <div class="form-card">
-                            <div class="row text-left">
-                                <div class="col-7">
-                                    <h3 class="mb-4">Information sur la Validation:</h3>
-                                </div>
-                                <div class="col-5">
-                                    <h2 class="steps" id="step1">Etape 1 - 4</h2>
+                                <div class="row" id="infoPriseService">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>DATE DU PRISE DE SERVICE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">D</span>
+                                                </div>
+                                                <input type="date" name="datePriseService" class="form-control" id="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>CORPS: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">C</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="corpsPriseService" name="corpsPriseService" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>GRADE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="gradePriseService" name="gradePriseService" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>INDICE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="indicePriseService" name="indicePriseService" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>CATEGORIE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="categPriseService" name="categPriseService" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class=" col-md-6">
-                                    
-                                    <input type="hidden" name="immatricule" id="imInptut">
-                                    <input type="hidden" name="cas" id="casInptut">
-                                    <div class="form-group">
-                                        <label>POSTE DE TRAVAIL: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">P</span>
+                            <!-- <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary float-right" >Valider </button>
+                            <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Précédent</button> -->
+                            <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" >Suivant</button>
+                            <button type="button" name="cancel" class="btn btn-secondary cancel action-button float-right" value="Cancel" onclick="cancelValidation()">Annuler</button>
+                        </fieldset>
+ 
+                        <fieldset>
+                            <div class="form-card text-left">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h3 class="mb-4">Information sur Veille d'Integration:</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Etape 2 - 4</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>DATE DU VEILLE D'INTEGRATION: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">D</span>
+                                                </div>
+                                                <input type="date" name="dateVeilleIntegre" class="form-control" id="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
-                                            <input type="text" class="form-control" name="poste" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>CORPS: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="corpsVeilleIntegre" id="corpsVeilleIntegre" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>GRADE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="gradeVeilleIntegre" id="gradeVeilleIntegre" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>INDICE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="indiceVeilleIntegre" id="indiceVeilleIntegre" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>CATEGORIE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="categVeilleIntegre" id="categVeilleIntegre" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>DIRECTION DE TRAVAIL: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">D</span>
+                            </div>
+                            <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" >Suivant</button>
+                            <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Précédent</button>
+                            <button type="button" name="cancel" class="btn btn-secondary cancel action-button float-right" value="Cancel" onclick="cancelValidation()">Annuler</button>
+
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card text-left">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h3 class="mb-4">Information sur Titularisation:</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Etape 3 - 4</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>INTEGRE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">i</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="integre" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
-                                            <input type="text" class="form-control" name="direction" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>DATE DE TITULARISATION: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">D</span>
+                                                </div>
+                                                <input type="date" name="dateTitularisation" class="form-control" id="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>CORPS: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="corpsTitularisation" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>GRADE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="gradeTitularisation" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>INDICE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="indiceTitularisation" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>CATEGORIE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="categTitularisation" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>DATE DE VALIDATION: *</label>
-                                        <button type="button" id="btnValM" class="btn btn-primary mb-1"><i class="fa fa-minus pr-0"></i></button>
-                                        <button type="button" id="btnValP" class="btn btn-primary mb-1"><i class="fa fa-plus pr-0"></i></button>
+                            </div>
+                            <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" >Suivant</button>
+                            <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Précédent</button>
+                            <button type="button" name="cancel" class="btn btn-secondary cancel action-button float-right" value="Cancel" onclick="cancelValidation()">Annuler</button>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row text-left">
+                                    <div class="col-7">
+                                        <h3 class="mb-4">Information sur la Validation:</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps" id="step1">Etape 4 - 4</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class=" col-md-6">
                                         
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">DU</span>
+                                        <input type="hidden" name="immatricule" id="imInptutEtat">
+                                        <input type="hidden" name="cas" id="casInptutEtat">
+                                        <div class="form-group">
+                                            <label>POSTE DE TRAVAIL: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="poste" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
-                                            <input type="date" name="duDateValidation1" class="form-control" id="" value=" ">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">AU</span>
-                                            </div>
-                                            <input type="date" name="auDateValidation1" class="form-control" id="">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>DATE RETARD DU VALIDATION: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">DU</span>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>DIRECTION DE TRAVAIL: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">D</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="direction" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
-                                            <input type="date" name="duDateRetard" class="form-control" id="exampleInputdate">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">AU</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>DATE DE VALIDATION: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">DU</span>
+                                                </div>
+                                                <input type="date" name="duDateValidation" class="form-control" id="">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">AU</span>
+                                                </div>
+                                                <input type="date" name="auDateValidation" class="form-control" id="" >
                                             </div>
-                                            <input type="date" name="auDateRetard" class="form-control" id="exampleInputdate">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>DATE RETARD DU VALIDATION: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">DU</span>
+                                                </div>
+                                                <input type="date" name="duDateRetard" class="form-control" id="">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">AU</span>
+                                                </div>
+                                                <input type="date" name="auDateRetard" class="form-control" id="">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" >Suivant</button> -->
+                            <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary float-right" >Valider </button>
+                            <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Précédent</button>
+                            <button type="button" name="cancel" class="btn btn-secondary cancel action-button float-right" value="Cancel" onclick="cancelValidation()">Annuler</button>
+                        </fieldset>
+                        <div id="myModal" class="modal fade">
+                            <div class="modal-dialog modal-confirm">
+                                <div class="modal-content">
+                                    <div class="modal-header flex-column">
+                                        <div class="icon-box">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                        <h4 class="modal-title w-100">Confirmation</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Voullez-vous l'Inserer ?</p>
+                                        
+                                    </div>
+                                    <div class="modal-footer justify-content-center">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">NON</button>
+                                        <button type="submit" class="btn btn-danger">OUI</button>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="iq-card-body" id="Prive" style="display:none">
+                    <form id="form-wizard1" class="text-center mt-4 was-validated" action="<?php echo base_url(); ?>validationcontroller/ValidationService" method="post">
+                        <ul id="top-tab-list" class="p-0">
+                        </li>
+                            <!-- <li id="confirm"> -->
+                            <li class="active" id="account">
+                            <a href="javascript:void();">
+                            <i class="ri-check-fill"></i><span>CNaPS</span>
+                            </a>
+                            </li>
+                            <li id="personal">
+                            <a href="javascript:void();">
+                            <i class="ri-user-fill"></i><span>Titularisation</span>
+                            </a>
+                            </li>
+
+                            <!-- <li class="active" id="account"> -->
+                            <li id="confirm">
+                            <a href="javascript:void();">
+                            <i class="ri-lock-unlock-line"></i><span>Validation</span>
+                            </a>
+                            </li>
+                        </ul>
+                        <!-- fieldsets -->
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h3 class="mb-4 text-left">Information sur CNaPS:</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Etape 1 - 3</h2>
+                                    </div>
+                                </div>
+                                <div class="row" id="infoTransfertCNaPS">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>DATE DE TRANSFERT CNaPS: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">DU</span>
+                                                </div>
+                                                <input type="date" name="duDateCNaPS" class="form-control" id="" value=" ">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">AU</span>
+                                                </div>
+                                                <input type="date" name="auDateCNaPS" class="form-control" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6" id="MontantPrive">
+                                        <div class="form-group">
+                                            <label>MONTANT CNaPS (Service Privé): *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">C</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="MontantPrive" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" id="MontantECD">
+                                        <div class="form-group">
+                                            <label>MONTANT CNaPS (ECD): *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">C</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="MontantECD"  placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Taux CNaPS : *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">%</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="Tx" id="Tx"  placeholder="Tx">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Taux CNaPS PI: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">%</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="TxUn" id="TxUn" placeholder="Tx1">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Taux CNaPS PP: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">%</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="TxDeux" id="TxDeux" placeholder="Tx2">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <button type="button" data-toggle="modal" data-target="#myModalPrive" class="btn btn-primary float-right">Valider</button>
+                            <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Précédent</button> -->
                             <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" >Suivant</button>
+                            <button type="button" name="cancel" class="btn btn-secondary cancel action-button float-right" value="Cancel" onclick="cancelValidation()">Annuler</button>
                         </fieldset>
                         <fieldset>
-                            <div class="form-card ">
-                            <div class="row text-left">
-                                <div class="col-7">
-                                    <h3 class="mb-4">Information sur la Tutilarisation:</h3>
+                            <div class="form-card text-left">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h3 class="mb-4">Information sur Titularisation:</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Etape 2 - 3</h2>
+                                    </div>
                                 </div>
-                                <div class="col-5">
-                                    <h2 class="steps" id="step2">Etape 2 - 4</h2>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>INTEGRE: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">i</span>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>INTEGRE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">i</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="integre" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
-                                            <input type="text" class="form-control" name="integre" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>DATE DE TITULARISATION: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">D</span>
+                                                </div>
+                                                <input type="date" name="dateTitularisation" class="form-control" id="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>CORPS: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">C</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="corpsTitularisation" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>GRADE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">G</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="gradeTitularisation" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>INDICE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">i</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="indiceTitularisation" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>CATEGORIE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">Cat</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="categTitularisation" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>DATE D'INTEGRATION: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">D</span>
-                                            </div>
-                                            <input type="date" name="dateIntegration" class="form-control" id="exampleInputdate">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>CORPS: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">P</span>
-                                            </div>
-                                            <input type="text" class="form-control" name="corpsIntegration" id="corpsIntegration" required placeholder="">
-                                            <div id="verification"></div>
-                                            
-                                            <div id="default" class="invalid-feedback">Veillez remplir le champ.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>GRADE: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">P</span>
-                                            </div>
-                                            <input type="text" class="form-control" name="gradeIntegration" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>INDICE: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">P</span>
-                                            </div>
-                                            <input type="text" class="form-control" name="indiceIntegration" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>CATEGORIE: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">P</span>
-                                            </div>
-                                            <input type="text" class="form-control" name="categIntegration" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             </div>
                             <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" >Suivant</button>
                             <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Précédent</button>
-                        </fieldset>
-                        <fieldset>
-                            <div class="form-card ">
-                            <div class="row text-left">
-                                <div class="col-7">
-                                    <h3 class="mb-4" id="titleStep3"></h3>
-                                </div>
-                                <div class="col-5">
-                                    <h2 class="steps" id="step3"></h2>
-                                </div>
-                            </div>
-                            <div class="row" id="infoPriseService">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>DATE DU PRISE DE SERVICE: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">D</span>
-                                            </div>
-                                            <input type="date" name="datePriseService" class="form-control" id="exampleInputdate">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>CORPS: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">C</span>
-                                            </div>
-                                            <input type="text" class="form-control" name="corpsPriseService" id="corpsPriseService" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>GRADE: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">P</span>
-                                            </div>
-                                            <input type="text" class="form-control" name="gradePriseService" id="gradePriseService" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>INDICE: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">P</span>
-                                            </div>
-                                            <input type="text" class="form-control" name="indicePriseService" id="indicePriseService" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>CATEGORIE: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">P</span>
-                                            </div>
-                                            <input type="text" class="form-control" name="categPriseService" id="categPriseService" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" id="infoTransfertCNaPS">
-                                
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>DATE DE TRANSFERT CNaPS: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">DU</span>
-                                            </div>
-                                            <input type="date" name="duDateCNaPS" class="form-control" id="exampleInputdate" value=" ">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">AU</span>
-                                            </div>
-                                            <input type="date" name="auDateCNaPS" class="form-control" id="exampleInputdate">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>MONTANT CNaPS: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">C</span>
-                                            </div>
-                                            <input type="text" class="form-control" name="Montant" id="Montant" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            <button type="button" name="next" id="buttonStep3" class="btn btn-primary next action-button float-right" value="Next" >Suivant</button>
-                            <button type="button" data-toggle="modal" id="openModalStep3" data-target="#myModal" class="btn btn-primary float-right">Valider </button>
-                            <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Précédent</button>
-                        
+                            <button type="button" name="cancel" class="btn btn-secondary cancel action-button float-right" value="Cancel" onclick="cancelValidation()">Annuler</button>
+
                         </fieldset>
                         <fieldset>
                             <div class="form-card">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h3 class="mb-4 text-left">Information sur la Veille d'Integration:</h3>
-                                </div>
-                                <div class="col-5">
-                                    <h2 class="steps">Etape 4 - 4</h2>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>DATE DU VEILLE D'INTEGRATION: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">D</span>
-                                            </div>
-                                            <input type="date" name="dateVeilleIntegre" class="form-control" id="exampleInputdate">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
-                                        </div>
+                                <div class="row text-left">
+                                    <div class="col-7">
+                                        <h3 class="mb-4">Information sur la Validation:</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps" id="step1">Etape 3 - 3</h2>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>CORPS: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">P</span>
+                                <div class="row">
+                                    <div class=" col-md-6">
+                                        
+                                        <input type="hidden" name="immatricule" id="imInptutPrive">
+                                        <input type="hidden" name="cas" id="casInptutPrive">
+                                        <div class="form-group">
+                                            <label>POSTE DE TRAVAIL: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="poste" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
-                                            <input type="text" class="form-control" name="corpsVeilleIntegre" id="corpsVeilleIntegre" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>GRADE: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">P</span>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>DIRECTION DE TRAVAIL: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">D</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="direction" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
-                                            <input type="text" class="form-control" name="gradeVeilleIntegre" id="gradeVeilleIntegre" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>INDICE: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">P</span>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>DATE DE VALIDATION: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">DU</span>
+                                                </div>
+                                                <input type="date" name="duDateValidation" class="form-control" id="">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">AU</span>
+                                                </div>
+                                                <input type="date" name="auDateValidation" class="form-control" id="" >
                                             </div>
-                                            <input type="text" class="form-control" name="indiceVeilleIntegre" id="indiceVeilleIntegre" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>CATEGORIE: *</label>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text bg-primary">P</span>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>DATE RETARD DU VALIDATION: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">DU</span>
+                                                </div>
+                                                <input type="date" name="duDateRetard" class="form-control" id="">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">AU</span>
+                                                </div>
+                                                <input type="date" name="auDateRetard" class="form-control" id="">
                                             </div>
-                                            <input type="text" class="form-control" name="categVeilleIntegre" id="categVeilleIntegre" required placeholder="">
-                                            <div class="valid-feedback">Remplit.</div>
-                                            <div class="invalid-feedback">Veillez remplir le champ.</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>
-                            <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary float-right">Valider </button>
+                            <!-- <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" >Suivant</button> -->
+                            <button type="button" data-toggle="modal" data-target="#myModalPrive" class="btn btn-primary float-right">Valider</button>
                             <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Précédent</button>
-                            </div>
+                            <button type="button" name="cancel" class="btn btn-secondary cancel action-button float-right" value="Cancel" onclick="cancelValidation()">Annuler</button>
                         </fieldset>
-                            <div id="myModal" class="modal fade">
-                                <div class="modal-dialog modal-confirm">
-                                    <div class="modal-content">
-                                        <div class="modal-header flex-column">
-                                            <div class="icon-boxe">
-                                                <i class="fa fa-check"></i>
+
+                        <div id="myModalPrive" class="modal fade">
+                            <div class="modal-dialog modal-confirm">
+                                <div class="modal-content">
+                                    <div class="modal-header flex-column">
+                                        <div class="icon-box">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                        <h4 class="modal-title w-100">Confirmation</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Voullez-vous l'Inserer ?</p>
+                                        
+                                    </div>
+                                    <div class="modal-footer justify-content-center">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">NON</button>
+                                        <button type="submit" class="btn btn-danger">OUI</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="iq-card-body" id="EtatPrive" style="display:none">
+                    <form id="form-wizard1" class="text-center mt-4" action="<?php echo base_url(); ?>validationcontroller/ValidationService" method="post">
+                        <ul id="top-tab-list" class="p-0">
+                                 <!-- <li id="confirms" style="display:none"> -->
+                                 <li class="active" id="accounts">
+                                    <a href="javascript:void();">
+                                        <i class="ri-check-fill"></i><span>CNaPS</span>
+                                    </a>
+                                </li>
+                                <li id="paymentss">
+                                    <a href="javascript:void();">
+                                        <i class="ri-camera-fill"></i><span>Prise de Service</span>
+                                    </a>
+                                </li>
+                                <li id="payments">
+                                    <a href="javascript:void();">
+                                        <i class="ri-camera-fill"></i><span>Veille d'Integration</span>
+                                    </a>
+                                </li>
+                                <li id="personals">
+                                    <a href="javascript:void();">
+                                        <i class="ri-user-fill"></i><span>Titularisation</span>
+                                    </a>
+                                </li>
+
+                                <!-- <li class="active" id="accounts"> -->
+                                <li id="confirms" style="display:none">
+                                    <a href="javascript:void();">
+                                        <i class="ri-lock-unlock-line"></i><span>Validation</span>
+                                    </a>
+                                </li>
+
+                        </ul>
+                        
+                        <!-- fieldsets -->
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h3 class="mb-4 text-left">Information sur CNaPS:</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Etape 1 - 5</h2>
+                                    </div>
+                                </div>
+                                <div class="row" id="infoTransfertCNaPS">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>DATE DE TRANSFERT CNaPS: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">DU</span>
+                                                </div>
+                                                <input type="date" name="duDateCNaPS" class="form-control" id="" value=" ">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">AU</span>
+                                                </div>
+                                                <input type="date" name="auDateCNaPS" class="form-control" id="">
                                             </div>
-                                            <h4 class="modal-title w-100">Confirmation</h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                         </div>
-                                        <div class="modal-body">
-                                            <p>Voullez-vous l'inserer ?</p>
-                                            
+                                    </div>
+                                    <div class="col-md-6" id="MontantPrive">
+                                        <div class="form-group">
+                                            <label>MONTANT CNaPS (Service Privé): *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">C</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="MontantPrive" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
                                         </div>
-                                        <div class="modal-footer justify-content-center">
-                                            
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">NON</button>
-                                            <button type="submit" class="btn btn-primary">OUI</button>
-                                            
+                                    </div>
+                                    <div class="col-md-6" id="MontantECD">
+                                        <div class="form-group">
+                                            <label>MONTANT CNaPS (ECD): *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">C</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="MontantECD"  placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Taux CNaPS : *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">%</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="Tx" id="Tx" placeholder="Tx">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Taux CNaPS PI: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">%</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="TxUn" id="TxUn" placeholder="Tx1">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Taux CNaPS PP: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">%</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="TxDeux" id="TxDeux" placeholder="Tx2">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- <button type="button" data-toggle="modal" data-target="#myModalEtatPrive" class="btn btn-primary float-right">Valider</button>
+                            <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Précédent</button> -->
+                            <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next">Suivant</button>
+                            <button type="button" name="cancel" class="btn btn-secondary cancel action-button float-right" value="Cancel" onclick="cancelValidation()">Annuler</button>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card text-left">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h3 class="mb-4">Information sur Prise de Service:</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Etape 2 - 5</h2>
+                                    </div>
+                                </div>
+                                <div class="row" id="infoPriseService">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>DATE DU PRISE DE SERVICE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">D</span>
+                                                </div>
+                                                <input type="date" name="datePriseService" class="form-control" id="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>CORPS: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">C</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="corpsPriseService" name="corpsPriseService" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>GRADE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="gradePriseService" name="gradePriseService" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>INDICE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="indicePriseService" name="indicePriseService" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>CATEGORIE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="categPriseService" name="categPriseService" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" >Suivant</button>
+                            <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Previous</button>
+                            <button type="button" name="cancel" class="btn btn-secondary cancel action-button float-right" value="Cancel" onclick="cancelValidation()">Annuler</button>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card text-left">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h3 class="mb-4">Information sur Veille d'Integration:</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Etape 3 - 5</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>DATE DU VEILLE D'INTEGRATION: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">D</span>
+                                                </div>
+                                                <input type="date" name="dateVeilleIntegre" class="form-control" id="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>CORPS: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="corpsVeilleIntegre" id="corpsVeilleIntegre" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>GRADE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="gradeVeilleIntegre" id="gradeVeilleIntegre" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>INDICE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="indiceVeilleIntegre" id="indiceVeilleIntegre" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>CATEGORIE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="categVeilleIntegre" id="categVeilleIntegre" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" >Suivant</button>
+                            <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Previous</button>
+                            <button type="button" name="cancel" class="btn btn-secondary cancel action-button float-right" value="Cancel" onclick="cancelValidation()">Annuler</button>
+                        </fieldset>
+
+                        <fieldset>
+                            <div class="form-card text-left">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h3 class="mb-4">Information sur Titularisation:</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Etape 4 - 5</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>INTEGRE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">i</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="integre" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>DATE DE TITULARISATION: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">D</span>
+                                                </div>
+                                                <input type="date" name="dateTitularisation" class="form-control" id="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>CORPS: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="corpsTitularisation" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>GRADE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="gradeTitularisation" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>INDICE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="indiceTitularisation" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>CATEGORIE: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="categTitularisation" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" onclick="validationHideCnapsShow()">Suivant</button>
+                            <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" onclick="validationShowCnapsHide()">Precedant</button>
+                            <button type="button" name="cancel" class="btn btn-secondary cancel action-button float-right" value="Cancel" onclick="cancelValidation()">Annuler</button>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row text-left">
+                                    <div class="col-7">
+                                        <h3 class="mb-4">Information sur la Validation:</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps" id="step1">Etape 5 - 5</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class=" col-md-6">
+                                        
+                                        <input type="hidden" name="immatricule" id="imInptutEtatPrive">
+                                        <input type="hidden" name="cas" id="casInptutEtatPrive">
+                                        <div class="form-group">
+                                            <label>POSTE DE TRAVAIL: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">P</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="poste" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>DIRECTION DE TRAVAIL: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">D</span>
+                                                </div>
+                                                <input type="text" class="form-control" name="direction" placeholder="">
+                                                <div class="valid-feedback">Remplit.</div>
+                                                <div class="invalid-feedback">Veillez remplir le champ.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>DATE DE VALIDATION: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">DU</span>
+                                                </div>
+                                                <input type="date" name="duDateValidation" class="form-control" id="">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">AU</span>
+                                                </div>
+                                                <input type="date" name="auDateValidation" class="form-control" id="" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>DATE RETARD DU VALIDATION: *</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">DU</span>
+                                                </div>
+                                                <input type="date" name="duDateRetard" class="form-control" id="">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary">AU</span>
+                                                </div>
+                                                <input type="date" name="auDateRetard" class="form-control" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next">Suivant</button> -->
+                            <button type="button" data-toggle="modal" data-target="#myModalEtatPrive" class="btn btn-primary float-right">Valider</button>
+                            <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Précédent</button>
+                            <button type="button" name="cancel" class="btn btn-secondary cancel action-button float-right" value="Cancel" onclick="cancelValidation()">Annuler</button>
+                        </fieldset>
+                        <div id="myModalEtatPrive" class="modal fade">
+                            <div class="modal-dialog modal-confirm">
+                                <div class="modal-content">
+                                    <div class="modal-header flex-column">
+                                        <div class="icon-box">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                        <h4 class="modal-title w-100">Confirmation</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Voullez-vous l'Inserer ?</p>
+                                        
+                                    </div>
+                                    <div class="modal-footer justify-content-center">
+                                        
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">NON</button>
+                                        <button type="submit" class="btn btn-danger">OUI</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    <script>
+        function validationShowCnapsHide() {
+            const Validation = document.getElementById('accounts');
+            const CNaPS = document.getElementById('confirms');
+            Validation.style.display = 'block';
+            CNaPS.style.display = 'none';
 
-
-<script>
-    
-    $("#corpsIntegration").on('input', function() {
-        var corpsIntegration = $(this).val();
-        
-        if (corpsIntegration.length === 0){
-            
-            $("#verification").addClass("invalid-feedback");
-            $('#verification').text("cette input doit contenir 4 caracteres");
-        }else if(corpsIntegration.length === 4){
-            $("#verification").addClass("valid-feedback");
-            $('#verification').text("Corps bien existe");
-            
-            /*$.ajax({
-                      type: 'POST',
-                      url: '<?php echo base_url(); ?>index.php/backend/searchCorps',
-                      data: { corpsIntegration: corpsIntegration },
-                      dataType: 'json',
-                      success: function(response) {
-                        if (response.exists) {
-                          
-                          $("#accept").addClass("valid-feedback");
-                          if (indiceTitularisation.length === 4) {
-                            $("#accept").addClass("valid-feedback");
-                            $('#accept').text("Corps bien existe");
-                          }
-                        } else {
-                            $("#refuse").addClass("invalid-feedback");
-                            $('#refuse').text("Corps n'existe pas");
-                            $("#accept").removeClass("valid-feedback");
-                            $('#accept').text("");
-                          if (indiceTitularisation.length === 4) {
-                            $("#refuse").addClass("invalid-feedback");
-                            $('#refuse').text("Corps n'existe pas");
-                            $("#accept").removeClass("valid-feedback");
-                            $('#accept').text("");
-                        }
-                        }
-                      }
-            });*/
-        }else if(corpsIntegration.length === 4){
-            $("#verification").addClass("invalid-feedback");
-            $('#verification').text("n'existe pas");
         }
-    });
-</script>
+        function validationHideCnapsShow() {
+            const Validation = document.getElementById('accounts');
+            const CNaPS = document.getElementById('confirms');
+            Validation.style.display = 'none';
+            CNaPS.style.display = 'block';
+        }
+        function test() {
+            document.getElementById('accounts').style.display = 'none';
+        }
+        function traitement(immatricule) {
+            const startPage = document.getElementById('startPage');
+            const traitement = document.getElementById('traitement');
+            const Etat = document.getElementById('Etat');
+            const Prive = document.getElementById('Prive');
+            const EtatPrive = document.getElementById('EtatPrive');
+            const cas = document.getElementById('Cas'+immatricule).value;
+            const imInptutEtat = document.getElementById('imInptutEtat');
+            const imInptutPrive = document.getElementById('imInptutPrive');
+            const imInptutEtatPrive = document.getElementById('imInptutEtatPrive');
+            const casInptutEtat = document.getElementById('casInptutEtat');
+            const casInptutPrive = document.getElementById('casInptutPrive');
+            const casInptutEtatPrive = document.getElementById('casInptutEtatPrive');
+            const MontantPrive = document.getElementById('MontantPrive');
+            const MontantECD = document.getElementById('MontantECD');
 
-<script>
-    function updateValueCasBG(value) {
-    const startPage = document.getElementById('startPage');
-    const validationPage = document.getElementById('validationPage');
-    const casInput = document.getElementById('casInptut');
-    
-   
-
-    var currentValue = casInput.value;
-    casInput.value = value;
-        if (casInput.value !== "") {
-            
             startPage.style.display = 'none';
-            validationPage.style.display = 'block';
-            if(casInput.value === "EFA"){
-                $('#validationPage span[id="stepHeader"]').text("Prise de Service");
-                $('#validationPage h3[id="titleStep3"]').text("Information sur le Prise de Service:");
-                $('#validationPage h2[id="step1"]').text("Etape 1 - 4");
-                $('#validationPage h2[id="step2"]').text("Etape 2 - 4");
-                $('#validationPage div[id="infoPriseService"]').show();
-                $('#validationPage div[id="infoTransfertCNaPS"]').hide();
-                $('#validationPage button[id="openModalStep3"]').hide();
-                $('#validationPage button[id="buttonStep3"]').show();
-                $('#validationPage i[id="iconVeille"]').show();
-                $('#validationPage span[id="veuille"]').show();
-                $('#validationPage i[id="iconVeille"]').addClass("ri-terminal-window-line");
-                $('#validationPage button[id="btnValM"]').hide();
-                $('#validationPage button[id="btnValP"]').hide();
+            traitement.style.display = 'block';
 
-                document.querySelector('#Montant').required = false;
+            if (cas === "EFA" || cas === "ELD-EFA") {
+                // startPage.style.display = 'none';
+                // traitement.style.display = 'block';
+                Etat.style.display = 'block';
+                imInptutEtat.value = immatricule;
+                casInptutEtat.value = cas;
+               
+            }else if(cas === "ServicePrive" || cas === "ECD" || cas === "ServicePrive-ECD"){
+                // startPage.style.display = 'none';
+                // traitement.style.display = 'block';
+                Prive.style.display = 'block';
+                imInptutPrive.value = immatricule;
+                casInptutPrive.value = cas;
+                if(cas === "ServicePrive"){
+                    MontantECD.style.display = 'none';
+                }else if(cas === "ECD"){
+                    MontantPrive.style.display = 'none';
+                }else if(cas === "ServicePrive-ECD"){
+                    MontantPrive.style.display = 'block';
+                    MontantECD.style.display = 'block';
+                }
             }else{
-                $('#validationPage span[id="stepHeader"]').text("Transfert CNaPS");
-                $('#validationPage h3[id="titleStep3"]').text("Information sur le Transfer CNaPS:");
-                $('#validationPage h2[id="step1"]').text("Etape 1 - 3");
-                $('#validationPage h2[id="step2"]').text("Etape 2 - 3");
-                $('#validationPage h2[id="step3"]').text("Etape 3 - 3");
-                $('#validationPage div[id="infoTransfertCNaPS"]').show();
-                $('#validationPage div[id="infoPriseService"]').hide();
-                $('#validationPage button[id="openModalStep3"]').show();
-                $('#validationPage button[id="buttonStep3"]').hide();
-                $('#validationPage span[id="veuille"]').hide();
-                $('#validationPage i[id="iconVeille"]').addClass("ri-terminal-windows-line bg-secondary");
-                $('#validationPage button[id="btnValM"]').show();
-                $('#validationPage button[id="btnValP"]').show();
-
-                document.querySelector('#corpsPriseService').required = false;
-                document.querySelector('#gradePriseService').required = false;
-                document.querySelector('#indicePriseService').required = false;
-                document.querySelector('#categPriseService').required = false;
-                document.querySelector('#corpsVeilleIntegre').required = false;
-                document.querySelector('#gradeVeilleIntegre').required = false;
-                document.querySelector('#indiceVeilleIntegre').required = false;
-                document.querySelector('#categVeilleIntegre').required = false;
-
-                
+                // startPage.style.display = 'none';
+                // traitement.style.display = 'block';
+                EtatPrive.style.display = 'block';
+                imInptutEtatPrive.value = immatricule;
+                casInptutEtatPrive.value = cas;
             }
-        }else if (casInput.value === "") {
-            startPage.style.display = 'block';
-            validationPage.style.display = 'none';
         }
-    }
-</script>
 
-<script>
-    $('.validateButton').click(function() {
+        function cancelValidation(){
+            // const startPage = document.getElementById('startPage');
+            // const traitement = document.getElementById('traitement');
+            // startPage.style.display = 'block';
+            // traitement.style.display = 'none';
+            location.reload();
+        }
+    </script>
 
-        var row = $(this).closest('tr');
-        var id = row.find('td:eq(0)').text();
-        var immatricule = row.find('td:eq(1)').text();
-
-
-        $('#validationPage input[name="immatricule"]').val(immatricule);
-    });
-</script>
-          
+              

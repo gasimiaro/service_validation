@@ -761,4 +761,19 @@ public function updateValidation($immatricule, $cas, $typeBudget,$comptable) {
 
     return $this->db->update('validation', $data);
 }
+public function ReUpdateValidation($immatricule, $poste, $direction,$duDateValidation, $auDateValidation, $duDateRetard, $auDateRetard) {
+    $data = array(
+        'immatricule' => $immatricule,
+        'Poste' => $poste,
+        'Direction' => $direction,
+        'DuDateValidation' => $duDateValidation,
+        'AuDateValidation' => $auDateValidation,
+        'DuDateRetard' => $duDateRetard,
+        'AuDateRetard' => $auDateRetard
+    );
+
+    $this->db->where('immatricule', $immatricule);
+
+    return $this->db->update('validation', $data);
+}
 }

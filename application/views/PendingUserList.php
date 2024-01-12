@@ -65,9 +65,10 @@
                             <td>
                             <div class="flex align-items-center list-user-action">
                             <!-- <a  href="#modal-edit2-<?php echo $id ?>" class="bg-primary" data-toggle="modal" data-placement="top" title="" data-original-title="Edit"><i class="ri-pencil-line"></i></a>                                 -->
-                            <input type="text" value="<?php echo $comptable; ?>" name="comptable" class="" id="comptable<?php echo $immatricule; ?>">
-                            <a class="bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier" style="cursor:pointer" id="<?php echo $immatricule; ?>" onclick="updateDemande('<?php echo $immatricule; ?>')"><i class="ri-pencil-line"></i></a>
-
+                            <!-- <input type="text" value="<?php echo $comptable; ?>" name="comptable" class="" id="comptable<?php echo $immatricule; ?>">
+                            <a class="bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier" style="cursor:pointer" id="<?php echo $immatricule; ?>" onclick="updateDemande('<?php echo $immatricule; ?>')"><i class="ri-pencil-line"></i></a> -->
+                            <input type="hidden" value="<?php echo $cas; ?>" name="Cas" id="Cas<?php echo $immatricule; ?>">
+                            <a class="bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier" style="cursor:pointer" id="<?php echo $immatricule; ?>" onclick="traitement('<?php echo $immatricule; ?>')"><i class="ri-pencil-line"></i></a>
                             <a href="#myModal2<?php echo $id ?>" class="bg-primary" data-id="'.$id.'" data-toggle="modal" data-original-title="Supprimer"><i class="ri-delete-bin-line"></i></a>                            </div>
                             </td>
                         </tr>
@@ -141,27 +142,29 @@
             </div>
             </div>
 
+
+
     <script>
-        function updateDemande(immatricule) {
-            var UpdatePage = $('#UpdatePage');
-            var startPage = $('#startPage');
-            var comptable = $('#comptable'+immatricule).val();
-            console.log('immatricule:', immatricule);
-            console.log('comptable:', comptable);
-            // Envoie de la requête AJAX
-            $.ajax({
-                type: 'POST',
-                url: '<?php echo base_url()?>adminpagecontroller/updateDemande', // Assurez-vous d'ajuster l'URL en conséquence
-                data: { immatricule: immatricule, comptable:comptable },
-                success: function (data) {
-                    UpdatePage.show();
-                    startPage.hide();
-                    UpdatePage.html(data);
+        // function updateDemande(immatricule) {
+        //     var UpdatePage = $('#UpdatePage');
+        //     var startPage = $('#startPage');
+        //     var comptable = $('#comptable'+immatricule).val();
+        //     console.log('immatricule:', immatricule);
+        //     console.log('comptable:', comptable);
+        //     // Envoie de la requête AJAX
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: '<?php echo base_url()?>adminpagecontroller/updateDemande', // Assurez-vous d'ajuster l'URL en conséquence
+        //         data: { immatricule: immatricule, comptable:comptable },
+        //         success: function (data) {
+        //             UpdatePage.show();
+        //             startPage.hide();
+        //             UpdatePage.html(data);
                     
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        }
+        //         },
+        //         error: function (error) {
+        //             console.log(error);
+        //         }
+        //     });
+        // }
     </script>

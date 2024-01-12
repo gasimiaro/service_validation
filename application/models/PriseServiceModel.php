@@ -42,6 +42,18 @@ public function checkTreatPriseService($imAgent){
     
 }
 
+public function insertPriseService($immatricule, $datePriseService, $corpsPriseService, $gradePriseService, $indicePriseService, $categPriseService){
+    $data = array(
+        'immatricule' => $immatricule,
+        'Date' => $datePriseService,
+        'Corps' => $corpsPriseService,
+        'Grade' => $gradePriseService,
+        'Indice' => $indicePriseService,
+        'Categorie' => $categPriseService
+    );
+    
+    return $this->db->insert('priseservice', $data);
+}
 /********************************************* */
 
 }

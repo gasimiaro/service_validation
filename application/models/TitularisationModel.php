@@ -38,7 +38,19 @@ class TitularisationModel extends CI_Model {
         // return "Complete";
     }
     
-
+    public function insertTitularisation($immatricule, $Integre, $dateTitularisation, $corpsTitularisation, $gradeTitularisation, $indiceTitularisation, $categTitularisation){
+        $data = array(
+            'immatricule' => $immatricule,
+            'integre' => $Integre,
+            'Date' => $dateTitularisation,
+            'Corps' => $corpsTitularisation,
+            'Grade' => $gradeTitularisation,
+            'Indice' => $indiceTitularisation,
+            'Categorie' => $categTitularisation
+        );
+        
+        return $this->db->insert('titularisation', $data);
+    }
 /********************************************* */
 
 }
