@@ -85,7 +85,8 @@
                         if ($duDateVal == "" && $auDateVal == "") {
                             // $statut = '<span class="badge badge-danger">En attente</span>';
                             // $editButton = ' <a  href="#modal-edit-'.$id.'" class="bg-primary" data-toggle="modal" data-placement="top" title="" data-original-title="Edit"><i class="ri-pencil-line"></i></a>';
-                             $editButton = ' <input type="hidden" value="'.$cas.'" name="Cas" id="Cas'.$immatricule.'">
+                             $editButton = '<input type="hidden" value="'.$state.'" name="state" id="state'.$immatricule.'">
+                              <input type="hidden" value="'.$cas.'" name="Cas" id="Cas'.$immatricule.'">
                             <a class="bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier" style="cursor:pointer" id="'.$immatricule.'" onclick="traitement('.$immatricule.')"><i class="ri-pencil-line"></i></a>';
                             $delButton = '<a href="#myModal'.$id.'" class="bg-primary" data-id="'.$id.'" data-toggle="modal" data-original-title="Supprimer"><i class="ri-delete-bin-line"></i></a>';
                         }

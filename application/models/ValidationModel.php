@@ -762,18 +762,34 @@ public function updateValidation($immatricule, $cas, $typeBudget,$comptable) {
     return $this->db->update('validation', $data);
 }
 public function ReUpdateValidation($immatricule, $poste, $direction,$duDateValidation, $auDateValidation, $duDateRetard, $auDateRetard) {
-    $data = array(
-        'immatricule' => $immatricule,
-        'Poste' => $poste,
-        'Direction' => $direction,
-        'DuDateValidation' => $duDateValidation,
-        'AuDateValidation' => $auDateValidation,
-        'DuDateRetard' => $duDateRetard,
-        'AuDateRetard' => $auDateRetard
-    );
+        $data = array(
+            'immatricule' => $immatricule,
+            'Poste' => $poste,
+            'Direction' => $direction,
+            'DuDateValidation' => $duDateValidation,
+            'AuDateValidation' => $auDateValidation,
+            'DuDateRetard' => $duDateRetard,
+            'AuDateRetard' => $auDateRetard
+        );
 
-    $this->db->where('immatricule', $immatricule);
+        $this->db->where('immatricule', $immatricule);
 
-    return $this->db->update('validation', $data);
+        return $this->db->update('validation', $data);
+    }
+
+    public function validationInfo($immatricule) {
+
+        $this->db->from('validation');
+        $this->db->where('immatricule', $immatricule);
+        $query = $this->db->get();
+    
+        if ($query->num_rows() > 0) {
+            // Assuming you want only the first row if there are multiple results
+            return $query->row_array();
+        } else {
+            return null; // or an empty array based on your preference
+        }
+    }
+
 }
-}
+

@@ -91,46 +91,5 @@ $(document).ready(function () {
         // });
 
 
-        $('#delete-validation-form').submit(function (e) {
-            e.preventDefault(); // Prevent the default form submission
-
-            // Get form data
-            var formData1 = $(this).serialize();
-            // Make a GET AJAX request
-            // setTimeout(function () {
-            $.ajax({
-                type: 'POST', // Use GET method
-                url: '<?php echo base_url("validationcontroller/delValidation"); ?>' , // Append form data to the URL
-                data: formData1, // Use the data option for POST requests
-                dataType: 'json',
-                success: function (response) {
-                    // Check the response
-                    if (response.success) {
-                        // Update the UI with the new data (you need to implement this part)
-                        var deletedRow = $('#line-delete-'+response.id);
-                        deletedRow.remove();
-
-                        // Optionally, you can also close the modal or show a success message.
-                        $('#myModal' + response.id).modal('hide');
-                        swal("Suppression avec succès", "", "success");
-                        setTimeout(function () {
-                            swal.close();
-                        }, 2000);
-
-
-
-                        // Display a success message (you need to implement this part)
-                        // alert(JSON.stringify(response));
-                    } else {
-                        // Display an error message (you need to implement this part)
-                        alert(response.message);
-                    }
-                },
-                error: function () {
-                    // Handle AJAX error (you need to implement this part)
-                    alert('Error during AJAX request');
-                }
-            });
-        });
     });
     </script>

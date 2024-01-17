@@ -206,6 +206,8 @@
                       $dateArrive = $validation->dateArrive;
                       $comImmatricule = $validation->comptable;
                       $comPrenom = $validation->prenom;
+                      $state = 'pending';
+
 
                       $elemDate = explode("-", $dateArrive);
                       $dateArrives = implode("-", array_reverse($elemDate));
@@ -238,6 +240,8 @@
                         <td>
                           <div class="flex align-items-center list-user-action">
                             <!-- <a class="bg-primary validateButton" data-toggle="tooltip"  title="" data-original-title="Valider" id="validationButton" onclick="updateValueCasBG('<?php echo $cas; ?>')"><i class="ri-pencil-line" style="width:750%"></i></a> -->
+                            <input type="hidden" value="<?php echo $state; ?>" name="state" id="state<?php echo $immatricule; ?>">
+
                             <input type="hidden" value="<?php echo $cas; ?>" name="Cas" id="Cas<?php echo $immatricule; ?>">
                                         <a class="bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier" style="cursor:pointer" id="<?php echo $immatricule; ?>" onclick="traitement('<?php echo $immatricule; ?>')"><i class="ri-pencil-line"></i></a>
                             <a class="bg-link text-info" data-toggle="tooltip"  title="" data-original-title="Affiche" ><i class="fa fa-eye" ></i></a>

@@ -18,6 +18,19 @@ class VeilleIntegreModel extends CI_Model {
         }
     }
 
+    public function veilleIntegreInfo($immatricule) {
+
+        $this->db->from('veilleintegre');
+        $this->db->where('immatricule', $immatricule);
+        $query = $this->db->get();
+    
+        if ($query->num_rows() > 0) {
+            // Assuming you want only the first row if there are multiple results
+            return $query->row_array();
+        } else {
+            return null; // or an empty array based on your preference
+        }
+    }
         /* check if validation treatement well */
 
 public function checkTreatVeilleIntegre($imAgent){
@@ -53,6 +66,56 @@ public function insertVeilleIntegration($immatricule, $dateVeilleInteg, $corpsVe
     
     return $this->db->insert('veilleintegre', $data);
 }
+
+// public function ReUpdateVeilleIntegre($immatricule,  $dateVeilleInteg, $corpsVeilleInteg, $gradeVeilleInteg, $indiceVeilleInteg, $categVeilleInteg){
+//     $data = array(
+//         'immatricule' => $immatricule,
+//         'Date' => $dateVeilleInteg,
+//         'Corps' => $corpsVeilleInteg,
+//         'Grade' => $gradeVeilleInteg,
+//         'Indice' => $indiceVeilleInteg,
+//         'Categorie' => $categVeilleInteg
+//     );
+
+//     $this->db->where('immatricule', $immatricule);
+
+//     return $this->db->update('veilleintegre', $data);
+// }
+public function insertOrUpdateVeilleIntegre($immatricule,$dateVeilleInteg, $corpsVeilleInteg, $gradeVeilleInteg, $indiceVeilleInteg, $categVeilleInteg){
+    // Vérifier si l'immatricule existe déjà
+    $existingData = $this->db->get_where('veilleintegre', array('immatricule' => $immatricule))->row_array();
+
+    // Si l'immatricule existe, effectuer une mise à jour
+    if ($existingData) {
+        $updateData = array(
+            'Date' => $dateVeilleInteg,
+            'Corps' => $corpsVeilleInteg,
+            'Grade' => $gradeVeilleInteg,
+            'Indice' => $indiceVeilleInteg,
+            'Categorie' => $categVeilleInteg
+        );
+
+        $this->db->where('immatricule', $immatricule);
+        $this->db->update('veilleintegre', $updateData);
+
+        return 'Mise à jour effectuée avec succès';
+    } else {
+        // Si l'immatricule n'existe pas, effectuer une insertion
+        $insertData = array(
+            'immatricule' => $immatricule,
+            'Date' => $dateVeilleInteg,
+            'Corps' => $corpsVeilleInteg,
+            'Grade' => $gradeVeilleInteg,
+            'Indice' => $indiceVeilleInteg,
+            'Categorie' => $categVeilleInteg
+        );
+
+        $this->db->insert('veilleintegre', $insertData);
+
+        return 'Insertion effectuée avec succès';
+    }
+}
+
 /********************************************* */
 
 }

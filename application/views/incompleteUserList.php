@@ -94,7 +94,10 @@
                             </td>
                             <td>
                             <div class="flex align-items-center list-user-action">
-                            <a class="bg-secondary disabled" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line"></i></a>                                
+                            <!-- <a class="bg-secondary disabled" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line"></i></a>                                 -->
+                            <input type="hidden" value="<?php echo $state; ?>" name="state" id="state<?php echo $immatricule; ?>">
+                            <input type="hidden" value="<?php echo $cas; ?>" name="Cas" id="Cas<?php echo $immatricule; ?>">
+                            <a class="bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier" style="cursor:pointer" id="<?php echo $immatricule; ?>" onclick="traitement('<?php echo $immatricule; ?>')"><i class="ri-pencil-line"></i></a>
                             <a href="#'.$id.'" class="bg-secondary disabled"><i class="ri-delete-bin-line"></i></a>
                             </div>
                             </td>

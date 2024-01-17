@@ -30,6 +30,8 @@
                         $dateArrive = $validation->dateArrive;
                         $comImmatricule = $validation->comptable;
                         $comPrenom = $validation->prenom;
+                        $state = 'pending';
+
 
                         $elemDate = explode("-", $dateArrive);
                         $dateArrives = implode("-", array_reverse($elemDate));
@@ -67,6 +69,7 @@
                             <!-- <a  href="#modal-edit2-<?php echo $id ?>" class="bg-primary" data-toggle="modal" data-placement="top" title="" data-original-title="Edit"><i class="ri-pencil-line"></i></a>                                 -->
                             <!-- <input type="text" value="<?php echo $comptable; ?>" name="comptable" class="" id="comptable<?php echo $immatricule; ?>">
                             <a class="bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier" style="cursor:pointer" id="<?php echo $immatricule; ?>" onclick="updateDemande('<?php echo $immatricule; ?>')"><i class="ri-pencil-line"></i></a> -->
+                            <input type="hidden" value="<?php echo $state; ?>" name="state" id="state<?php echo $immatricule; ?>">
                             <input type="hidden" value="<?php echo $cas; ?>" name="Cas" id="Cas<?php echo $immatricule; ?>">
                             <a class="bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modifier" style="cursor:pointer" id="<?php echo $immatricule; ?>" onclick="traitement('<?php echo $immatricule; ?>')"><i class="ri-pencil-line"></i></a>
                             <a href="#myModal2<?php echo $id ?>" class="bg-primary" data-id="'.$id.'" data-toggle="modal" data-original-title="Supprimer"><i class="ri-delete-bin-line"></i></a>                            </div>

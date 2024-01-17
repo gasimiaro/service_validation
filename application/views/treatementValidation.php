@@ -55,7 +55,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">D</span>
                                                 </div>
-                                                <input type="date" name="datePriseService" class="form-control" id="">
+                                                <input type="date" id="datePriseService" name="datePriseService" class="form-control" >
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -139,7 +139,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">D</span>
                                                 </div>
-                                                <input type="date" name="dateVeilleIntegre" class="form-control" id="">
+                                                <input type="date" name="dateVeilleIntegre" class="form-control" id="dateVeilleIntegre">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -222,7 +222,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">i</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="integre" placeholder="">
+                                                <input type="text" class="form-control" name="integre" placeholder="" id="integre">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -235,7 +235,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">D</span>
                                                 </div>
-                                                <input type="date" name="dateTitularisation" class="form-control" id="">
+                                                <input type="date" name="dateTitularisation" class="form-control" id="dateTitularisation">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -248,7 +248,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">P</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="corpsTitularisation" placeholder="">
+                                                <input type="text" class="form-control" name="corpsTitularisation" placeholder="" id="corpsTitularisation">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -261,7 +261,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">P</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="gradeTitularisation" placeholder="">
+                                                <input type="text" class="form-control" name="gradeTitularisation" placeholder="" id="gradeTitularisation">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -274,7 +274,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">P</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="indiceTitularisation" placeholder="">
+                                                <input type="text" class="form-control" name="indiceTitularisation" placeholder="" id="indiceTitularisation">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -287,7 +287,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">P</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="categTitularisation" placeholder="">
+                                                <input type="text" class="form-control" name="categTitularisation" placeholder="" id="categTitularisation">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -320,7 +320,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">P</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="poste" placeholder="">
+                                                <input type="text" class="form-control" id="poste" name="poste" placeholder="">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -333,7 +333,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">D</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="direction" placeholder="">
+                                                <input type="text" class="form-control" id="direction" name="direction" placeholder="">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -346,11 +346,11 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">DU</span>
                                                 </div>
-                                                <input type="date" name="duDateValidation" class="form-control" id="">
+                                                <input type="date" name="duDateValidation" id="duDateValidation" class="form-control" id="">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">AU</span>
                                                 </div>
-                                                <input type="date" name="auDateValidation" class="form-control" id="" >
+                                                <input type="date" name="auDateValidation" id="auDateValidation" class="form-control" id="" >
                                             </div>
                                         </div>
                                     </div>
@@ -361,11 +361,11 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">DU</span>
                                                 </div>
-                                                <input type="date" name="duDateRetard" class="form-control" id="">
+                                                <input type="date" name="duDateRetard" class="form-control" id="duDateRetard">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">AU</span>
                                                 </div>
-                                                <input type="date" name="auDateRetard" class="form-control" id="">
+                                                <input type="date" name="auDateRetard" class="form-control" id="auDateRetard">
                                             </div>
                                         </div>
                                     </div>
@@ -442,11 +442,11 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">DU</span>
                                                 </div>
-                                                <input type="date" name="duDateCNaPS" class="form-control" id="" value=" ">
+                                                <input type="date" name="duDateCNaPS" class="form-control" id="duDateCNaPS" >
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">AU</span>
                                                 </div>
-                                                <input type="date" name="auDateCNaPS" class="form-control" id="">
+                                                <input type="date" name="auDateCNaPS" class="form-control" id="auDateCNaPS">
                                             </div>
                                         </div>
                                     </div>
@@ -458,7 +458,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">C</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="MontantPrive" placeholder="">
+                                                <input type="text" class="form-control" name="MontantPrive"  id="MontantPriveVal">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -471,7 +471,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">C</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="MontantECD"  placeholder="">
+                                                <input type="text" class="form-control" name="MontantECD"  id="MontantECDVal">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -541,7 +541,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">i</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="integre" placeholder="">
+                                                <input type="text" class="form-control" name="integre" placeholder="" id="integre">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -554,7 +554,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">D</span>
                                                 </div>
-                                                <input type="date" name="dateTitularisation" class="form-control" id="">
+                                                <input type="date" name="dateTitularisation" class="form-control" id="dateTitularisation">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -567,7 +567,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">C</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="corpsTitularisation" placeholder="">
+                                                <input type="text" class="form-control" name="corpsTitularisation" placeholder="" id="corpsTitularisation">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -580,7 +580,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">G</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="gradeTitularisation" placeholder="">
+                                                <input type="text" class="form-control" name="gradeTitularisation" placeholder="" id="gradeTitularisation">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -593,7 +593,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">i</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="indiceTitularisation" placeholder="">
+                                                <input type="text" class="form-control" name="indiceTitularisation" placeholder="" id="indiceTitularisation">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -606,7 +606,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">Cat</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="categTitularisation" placeholder="">
+                                                <input type="text" class="form-control" name="categTitularisation" placeholder="" id="categTitularisation"> 
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -640,7 +640,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">P</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="poste" placeholder="">
+                                                <input type="text" class="form-control" name="poste" placeholder="" id="poste">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -653,7 +653,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">D</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="direction" placeholder="">
+                                                <input type="text" class="form-control" name="direction" placeholder="" id="direction">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -666,11 +666,11 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">DU</span>
                                                 </div>
-                                                <input type="date" name="duDateValidation" class="form-control" id="">
+                                                <input type="date" name="duDateValidation" class="form-control" id="duDateValidation">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">AU</span>
                                                 </div>
-                                                <input type="date" name="auDateValidation" class="form-control" id="" >
+                                                <input type="date" name="auDateValidation" class="form-control" id="auDateValidation" >
                                             </div>
                                         </div>
                                     </div>
@@ -681,11 +681,11 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">DU</span>
                                                 </div>
-                                                <input type="date" name="duDateRetard" class="form-control" id="">
+                                                <input type="date" name="duDateRetard" class="form-control" id="duDateRetard">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">AU</span>
                                                 </div>
-                                                <input type="date" name="auDateRetard" class="form-control" id="">
+                                                <input type="date" name="auDateRetard" class="form-control" id="auDateRetard">
                                             </div>
                                         </div>
                                     </div>
@@ -774,11 +774,11 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">DU</span>
                                                 </div>
-                                                <input type="date" name="duDateCNaPS" class="form-control" id="" value=" ">
+                                                <input type="date" name="duDateCNaPS" class="form-control" id="duDateCNaPS" value=" ">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">AU</span>
                                                 </div>
-                                                <input type="date" name="auDateCNaPS" class="form-control" id="">
+                                                <input type="date" name="auDateCNaPS" class="form-control" id="auDateCNaPS">
                                             </div>
                                         </div>
                                     </div>
@@ -789,7 +789,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">C</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="MontantPrive" placeholder="">
+                                                <input type="text" class="form-control" name="MontantPrive" placeholder="" id="MontantPriveVal">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -802,7 +802,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">C</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="MontantECD"  placeholder="">
+                                                <input type="text" class="form-control" name="MontantECD"  placeholder="" id="MontantECDVal">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -815,7 +815,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">%</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="Tx" id="Tx" placeholder="Tx">
+                                                <input type="text" class="form-control" name="Tx" id="Tx" placeholder="Tx" >
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -872,7 +872,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">D</span>
                                                 </div>
-                                                <input type="date" name="datePriseService" class="form-control" id="">
+                                                <input type="date" name="datePriseService" class="form-control" id="datePriseService">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -954,7 +954,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">D</span>
                                                 </div>
-                                                <input type="date" name="dateVeilleIntegre" class="form-control" id="">
+                                                <input type="date" name="dateVeilleIntegre" class="form-control" id="dateVeilleIntegre">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -1037,7 +1037,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">i</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="integre" placeholder="">
+                                                <input type="text" class="form-control" name="integre" placeholder="" id="integre">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -1050,7 +1050,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">D</span>
                                                 </div>
-                                                <input type="date" name="dateTitularisation" class="form-control" id="">
+                                                <input type="date" name="dateTitularisation" class="form-control" id="dateTitularisation">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -1063,7 +1063,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">P</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="corpsTitularisation" placeholder="">
+                                                <input type="text" class="form-control" name="corpsTitularisation" placeholder="" id="corpsTitularisation">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -1076,7 +1076,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">P</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="gradeTitularisation" placeholder="">
+                                                <input type="text" class="form-control" name="gradeTitularisation" placeholder="" id="gradeTitularisation">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -1089,7 +1089,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">P</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="indiceTitularisation" placeholder="">
+                                                <input type="text" class="form-control" name="indiceTitularisation" placeholder="" id="indiceTitularisation">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -1102,7 +1102,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">P</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="categTitularisation" placeholder="">
+                                                <input type="text" class="form-control" name="categTitularisation" placeholder="" id="categTitularisation">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -1135,7 +1135,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">P</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="poste" placeholder="">
+                                                <input type="text" class="form-control" name="poste" placeholder="" id="poste">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -1148,7 +1148,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">D</span>
                                                 </div>
-                                                <input type="text" class="form-control" name="direction" placeholder="">
+                                                <input type="text" class="form-control" name="direction" placeholder="" id="direction">
                                                 <div class="valid-feedback">Remplit.</div>
                                                 <div class="invalid-feedback">Veillez remplir le champ.</div>
                                             </div>
@@ -1161,11 +1161,11 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">DU</span>
                                                 </div>
-                                                <input type="date" name="duDateValidation" class="form-control" id="">
+                                                <input type="date" name="duDateValidation" class="form-control" id="duDateValidation">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">AU</span>
                                                 </div>
-                                                <input type="date" name="auDateValidation" class="form-control" id="" >
+                                                <input type="date" name="auDateValidation" class="form-control" id="auDateValidation" >
                                             </div>
                                         </div>
                                     </div>
@@ -1176,11 +1176,11 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">DU</span>
                                                 </div>
-                                                <input type="date" name="duDateRetard" class="form-control" id="">
+                                                <input type="date" name="duDateRetard" class="form-control" id="duDateRetard">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text bg-primary">AU</span>
                                                 </div>
-                                                <input type="date" name="auDateRetard" class="form-control" id="">
+                                                <input type="date" name="auDateRetard" class="form-control" id="auDateRetard">
                                             </div>
                                         </div>
                                     </div>
@@ -1241,6 +1241,7 @@
             const Prive = document.getElementById('Prive');
             const EtatPrive = document.getElementById('EtatPrive');
             const cas = document.getElementById('Cas'+immatricule).value;
+            const state = document.getElementById('state'+immatricule).value;
             const imInptutEtat = document.getElementById('imInptutEtat');
             const imInptutPrive = document.getElementById('imInptutPrive');
             const imInptutEtatPrive = document.getElementById('imInptutEtatPrive');
@@ -1259,6 +1260,96 @@
                 Etat.style.display = 'block';
                 imInptutEtat.value = immatricule;
                 casInptutEtat.value = cas;
+
+                if(state == "incomplete"){
+
+
+
+                    $.ajax({
+                        type: 'POST', // ou 'GET' selon vos besoins
+                        url: '<?php echo base_url("validationcontroller/fillUpdateUserValidationForm"); ?>' , // Append form data to the URL
+                        data: { cas: "EFA",
+                                immatricule : immatricule}, // Les données que vous souhaitez envoyer au script PHP
+                        dataType: 'json',
+                        success: function (response) {
+                            // Traitement de la réponse (ce que vous voulez faire avec les données renvoyées par le script PHP)
+                        // console.log("date : "+response.DuDateValidation);
+                        // console.log("response : "+JSON.stringify(response));
+                        // console.log("date : "+response.validationInfo['DuDateValidation']);
+
+                        const etatElement = document.getElementById('Etat');
+
+                        if (etatElement) {
+                            //validation
+                            const poste = etatElement.querySelector('#poste');
+                            const direction = etatElement.querySelector('#direction');
+                            const duDateValidation = etatElement.querySelector('#duDateValidation');
+                            const auDateValidation = etatElement.querySelector('#auDateValidation');
+                            const duDateRetard = etatElement.querySelector('#duDateRetard');
+                            const auDateRetard = etatElement.querySelector('#auDateRetard');
+
+
+                            poste.value =  response.validationInfo['Poste'];
+                            direction.value =  response.validationInfo['Direction'];
+                            duDateValidation.value =  response.validationInfo['DuDateValidation'];
+                            auDateValidation.value =  response.validationInfo['AuDateValidation'];
+                            duDateRetard.value =  response.validationInfo['DuDateRetard'];
+                            auDateRetard.value =  response.validationInfo['DuDateRetard'];
+
+                            //titularisation
+                            const integre = etatElement.querySelector('#integre');
+                            const dateTitularisation = etatElement.querySelector('#dateTitularisation');
+                            const corpsTitularisation = etatElement.querySelector('#corpsTitularisation');
+                            const gradeTitularisation = etatElement.querySelector('#gradeTitularisation');
+                            const indiceTitularisation = etatElement.querySelector('#indiceTitularisation');
+                            const categTitularisation = etatElement.querySelector('#categTitularisation');
+
+                            integre.value =  response.titularisationInfo['integre'];
+                            dateTitularisation.value =  response.titularisationInfo['Date'];
+                            corpsTitularisation.value =  response.titularisationInfo['Corps'];
+                            gradeTitularisation.value =  response.titularisationInfo['Grade'];
+                            indiceTitularisation.value =  response.titularisationInfo['Indice'];
+                            categTitularisation.value =  response.titularisationInfo['Categorie'];
+
+                            //veille integre
+                            const dateVeilleIntegre = etatElement.querySelector('#dateVeilleIntegre');
+                            const corpsVeilleIntegre = etatElement.querySelector('#corpsVeilleIntegre');
+                            const gradeVeilleIntegre = etatElement.querySelector('#gradeVeilleIntegre');
+                            const indiceVeilleIntegre = etatElement.querySelector('#indiceVeilleIntegre');
+                            const categVeilleIntegre = etatElement.querySelector('#categVeilleIntegre');
+
+                            dateVeilleIntegre.value =  response.veilleIntegreInfo['Date'];
+                            corpsVeilleIntegre.value =  response.veilleIntegreInfo['Corps'];
+                            gradeVeilleIntegre.value =  response.veilleIntegreInfo['Grade'];
+                            indiceVeilleIntegre.value =  response.veilleIntegreInfo['Indice'];
+                            categVeilleIntegre.value =  response.veilleIntegreInfo['Categorie'];
+
+                            //priseservice
+                            const datePriseService = etatElement.querySelector('#datePriseService');
+                            const corpsPriseService = etatElement.querySelector('#corpsPriseService');
+                            const gradePriseService = etatElement.querySelector('#gradePriseService');
+                            const indicePriseService = etatElement.querySelector('#indicePriseService');
+                            const categPriseService = etatElement.querySelector('#categPriseService');
+
+                            datePriseService.value =  response.priseServiceInfo['Date'];
+                            corpsPriseService.value =  response.priseServiceInfo['Corps'];
+                            gradePriseService.value =  response.priseServiceInfo['Grade'];
+                            indicePriseService.value =  response.priseServiceInfo['Indice'];
+                            categPriseService.value =  response.priseServiceInfo['Categorie'];
+                        } else {
+                            console.error('Element with ID "Etat" not found.');
+                        }
+
+
+                        },
+                        error: function (error) {
+                            // Gestion des erreurs
+                            console.error('Erreur de requête Ajax :', error);
+                        }
+                    });
+                // const test1 = document.getElementById('corpsPriseService');
+                // test1.value = "test";
+                 }
                
             }else if(cas === "ServicePrive" || cas === "ECD" || cas === "ServicePrive-ECD"){
                 // startPage.style.display = 'none';
@@ -1274,13 +1365,202 @@
                     MontantPrive.style.display = 'block';
                     MontantECD.style.display = 'block';
                 }
-            }else{
+
+
+                if(state == "incomplete"){
+                    $.ajax({
+                        type: 'POST', // ou 'GET' selon vos besoins
+                        url: '<?php echo base_url("validationcontroller/fillUpdateUserValidationForm"); ?>' , // Append form data to the URL
+                        data: { cas: cas,
+                                immatricule : immatricule}, // Les données que vous souhaitez envoyer au script PHP
+                        dataType: 'json',
+                        success: function (response) {
+                            // Traitement de la réponse (ce que vous voulez faire avec les données renvoyées par le script PHP)
+                            const etatElement = document.getElementById('Prive');
+
+                            if (etatElement) {
+                            //validation
+                            const poste = etatElement.querySelector('#poste');
+                            const direction = etatElement.querySelector('#direction');
+                            const duDateValidation = etatElement.querySelector('#duDateValidation');
+                            const auDateValidation = etatElement.querySelector('#auDateValidation');
+                            const duDateRetard = etatElement.querySelector('#duDateRetard');
+                            const auDateRetard = etatElement.querySelector('#auDateRetard');
+
+
+                            poste.value =  response.validationInfo['Poste'];
+                            direction.value =  response.validationInfo['Direction'];
+                            duDateValidation.value =  response.validationInfo['DuDateValidation'];
+                            auDateValidation.value =  response.validationInfo['AuDateValidation'];
+                            duDateRetard.value =  response.validationInfo['DuDateRetard'];
+                            auDateRetard.value =  response.validationInfo['DuDateRetard'];
+
+                            //titularisation
+                            const integre = etatElement.querySelector('#integre');
+                            const dateTitularisation = etatElement.querySelector('#dateTitularisation');
+                            const corpsTitularisation = etatElement.querySelector('#corpsTitularisation');
+                            const gradeTitularisation = etatElement.querySelector('#gradeTitularisation');
+                            const indiceTitularisation = etatElement.querySelector('#indiceTitularisation');
+                            const categTitularisation = etatElement.querySelector('#categTitularisation');
+
+                            integre.value =  response.titularisationInfo['integre'];
+                            dateTitularisation.value =  response.titularisationInfo['Date'];
+                            corpsTitularisation.value =  response.titularisationInfo['Corps'];
+                            gradeTitularisation.value =  response.titularisationInfo['Grade'];
+                            indiceTitularisation.value =  response.titularisationInfo['Indice'];
+                            categTitularisation.value =  response.titularisationInfo['Categorie'];
+
+                            
+
+                            //Cnaps
+                            const duDateCNaPS = etatElement.querySelector('#duDateCNaPS');
+                            const auDateCNaPS = etatElement.querySelector('#auDateCNaPS');
+                            const MontantPrive = etatElement.querySelector('#MontantPriveVal');
+                            const MontantECD = etatElement.querySelector('#MontantECDVal');
+                            const Tx = etatElement.querySelector('#Tx');
+                            const TxUn = etatElement.querySelector('#TxUn');
+                            const TxDeux = etatElement.querySelector('#TxDeux');
+
+
+                            duDateCNaPS.value =  response.cnapsInfo['DuDateCNaPS'];
+                            auDateCNaPS.value =  response.cnapsInfo['AuDateCNaPS'];
+                            MontantECD.value =  response.cnapsInfo['MontantECD'];
+                            MontantPrive.value =  response.cnapsInfo['MontantServPrive'];
+                            Tx.value =  response.cnapsInfo['Tx'];
+                            TxUn.value =  response.cnapsInfo['TxUn'];
+                            TxDeux.value =  response.cnapsInfo['TxDeux'];
+                        // console.log("response : "+JSON.stringify(response));
+
+
+                            } else {
+                                console.error('Element with ID "Etat" not found.');
+                            }
+
+
+                        },
+                        error: function (error) {
+                            // Gestion des erreurs
+                            console.error('Erreur de requête Ajax :', error);
+                        }
+                    });
+                // const test1 = document.getElementById('corpsPriseService');
+                // test1.value = "test";
+                 }
+
+            }else if( cas == "ServicePrive-ECD-ELD-EFA"){
                 // startPage.style.display = 'none';
                 // traitement.style.display = 'block';
                 EtatPrive.style.display = 'block';
                 imInptutEtatPrive.value = immatricule;
                 casInptutEtatPrive.value = cas;
+
+                if(state == "incomplete"){
+                    $.ajax({
+                        type: 'POST', // ou 'GET' selon vos besoins
+                        url: '<?php echo base_url("validationcontroller/fillUpdateUserValidationForm"); ?>' , // Append form data to the URL
+                        data: { cas: cas,
+                                immatricule : immatricule}, // Les données que vous souhaitez envoyer au script PHP
+                        dataType: 'json',
+                        success: function (response) {
+                            // Traitement de la réponse (ce que vous voulez faire avec les données renvoyées par le script PHP)
+                            const etatElement = document.getElementById('EtatPrive');
+
+                            if (etatElement) {
+                            //validation
+                            const poste = etatElement.querySelector('#poste');
+                            const direction = etatElement.querySelector('#direction');
+                            const duDateValidation = etatElement.querySelector('#duDateValidation');
+                            const auDateValidation = etatElement.querySelector('#auDateValidation');
+                            const duDateRetard = etatElement.querySelector('#duDateRetard');
+                            const auDateRetard = etatElement.querySelector('#auDateRetard');
+
+
+                            poste.value =  response.validationInfo['Poste'];
+                            direction.value =  response.validationInfo['Direction'];
+                            duDateValidation.value =  response.validationInfo['DuDateValidation'];
+                            auDateValidation.value =  response.validationInfo['AuDateValidation'];
+                            duDateRetard.value =  response.validationInfo['DuDateRetard'];
+                            auDateRetard.value =  response.validationInfo['DuDateRetard'];
+
+                            //titularisation
+                            const integre = etatElement.querySelector('#integre');
+                            const dateTitularisation = etatElement.querySelector('#dateTitularisation');
+                            const corpsTitularisation = etatElement.querySelector('#corpsTitularisation');
+                            const gradeTitularisation = etatElement.querySelector('#gradeTitularisation');
+                            const indiceTitularisation = etatElement.querySelector('#indiceTitularisation');
+                            const categTitularisation = etatElement.querySelector('#categTitularisation');
+
+                            integre.value =  response.titularisationInfo['integre'];
+                            dateTitularisation.value =  response.titularisationInfo['Date'];
+                            corpsTitularisation.value =  response.titularisationInfo['Corps'];
+                            gradeTitularisation.value =  response.titularisationInfo['Grade'];
+                            indiceTitularisation.value =  response.titularisationInfo['Indice'];
+                            categTitularisation.value =  response.titularisationInfo['Categorie'];
+
+                            
+                            //veille integre
+                            const dateVeilleIntegre = etatElement.querySelector('#dateVeilleIntegre');
+                            const corpsVeilleIntegre = etatElement.querySelector('#corpsVeilleIntegre');
+                            const gradeVeilleIntegre = etatElement.querySelector('#gradeVeilleIntegre');
+                            const indiceVeilleIntegre = etatElement.querySelector('#indiceVeilleIntegre');
+                            const categVeilleIntegre = etatElement.querySelector('#categVeilleIntegre');
+
+                            dateVeilleIntegre.value =  response.veilleIntegreInfo['Date'];
+                            corpsVeilleIntegre.value =  response.veilleIntegreInfo['Corps'];
+                            gradeVeilleIntegre.value =  response.veilleIntegreInfo['Grade'];
+                            indiceVeilleIntegre.value =  response.veilleIntegreInfo['Indice'];
+                            categVeilleIntegre.value =  response.veilleIntegreInfo['Categorie'];
+
+                            //priseservice
+                            const datePriseService = etatElement.querySelector('#datePriseService');
+                            const corpsPriseService = etatElement.querySelector('#corpsPriseService');
+                            const gradePriseService = etatElement.querySelector('#gradePriseService');
+                            const indicePriseService = etatElement.querySelector('#indicePriseService');
+                            const categPriseService = etatElement.querySelector('#categPriseService');
+
+                            datePriseService.value =  response.priseServiceInfo['Date'];
+                            corpsPriseService.value =  response.priseServiceInfo['Corps'];
+                            gradePriseService.value =  response.priseServiceInfo['Grade'];
+                            indicePriseService.value =  response.priseServiceInfo['Indice'];
+                            categPriseService.value =  response.priseServiceInfo['Categorie'];
+
+                            //Cnaps
+                            const duDateCNaPS = etatElement.querySelector('#duDateCNaPS');
+                            const auDateCNaPS = etatElement.querySelector('#auDateCNaPS');
+                            const MontantPrive = etatElement.querySelector('#MontantPriveVal');
+                            const MontantECD = etatElement.querySelector('#MontantECDVal');
+                            const Tx = etatElement.querySelector('#Tx');
+                            const TxUn = etatElement.querySelector('#TxUn');
+                            const TxDeux = etatElement.querySelector('#TxDeux');
+
+
+                            duDateCNaPS.value =  response.cnapsInfo['DuDateCNaPS'];
+                            auDateCNaPS.value =  response.cnapsInfo['AuDateCNaPS'];
+                            MontantECD.value =  response.cnapsInfo['MontantECD'];
+                            MontantPrive.value =  response.cnapsInfo['MontantServPrive'];
+                            Tx.value =  response.cnapsInfo['Tx'];
+                            TxUn.value =  response.cnapsInfo['TxUn'];
+                            TxDeux.value =  response.cnapsInfo['TxDeux'];
+                        // console.log("response : "+JSON.stringify(response));
+
+
+                            } else {
+                                console.error('Element with ID "Etat" not found.');
+                            }
+
+
+                        },
+                        error: function (error) {
+                            // Gestion des erreurs
+                            console.error('Erreur de requête Ajax :', error);
+                        }
+                    });
+                // const test1 = document.getElementById('corpsPriseService');
+                // test1.value = "test";
+                 }
             }
+
+
         }
 
         function cancelValidation(){
